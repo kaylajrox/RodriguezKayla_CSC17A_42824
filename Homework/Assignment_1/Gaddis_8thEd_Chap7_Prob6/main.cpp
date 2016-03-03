@@ -44,8 +44,8 @@ int main(int argc, char** argv) {
 /*                             Read the File                                  */
 /******************************************************************************/
 void readfle(char weather[][COLS],const int ROWS,ifstream& infile){
-    for(int i=0;i<ROWS-1;i++){
-        for(int j=0;j<COLS-1;j++){
+    for(int i=0;i<ROWS;i++){
+        for(int j=0;j<COLS;j++){
             infile>>weather[i][j];
         }
     }
@@ -55,42 +55,34 @@ void readfle(char weather[][COLS],const int ROWS,ifstream& infile){
 /*                                 Display                                    */
 /******************************************************************************/
 void display(char weather[][COLS],const int ROWS){
+string month[]={"June","July","August"};
 int sun = 0;
 int rain = 0;
 int cloudy = 0;
-int totalS,totalR,totalC;
+int totalS=0,totalR=0,totalC=0;
 for (int i=0;i<ROWS;i++){
-    for (int row=0;row<COLS;row++){
-        for (int col=0;col<COLS;col++){
-            switch (weather[row][col]){
-                case 'S' : sun++;
-                break;
-                case 'R' : rain++;
-                break;
-                case 'C' : cloudy++;
-                break;
-            }
+    for (int j=0;j<COLS;j++){
+        switch (weather[i][j]){
+            case 'S' : sun++;
+            break;
+            case 'R' : rain++;
+            break;
+            case 'C' : cloudy++;
+            break;            
         }
-        // Display monthly numbers
-        cout << "\nFor the month of ";
-        if (row == 0)
-                cout << "June."<<endl;
-        else if (row == 1)
-                cout << "July."<<endl;
-        else if (row == 2)
-                cout << "August."<<endl;
-        }
+    }
+    cout<<month[i]<<endl;
     cout<<"Rainy : "<<rain<<endl;
     cout<<"Sunny : "<<sun<<endl;
-    cout<<"Cloudy: "<<cloudy<<endl;
+    cout<<"Cloudy: "<<cloudy<<endl<<endl;
     totalS+=sun;
     totalR+=rain;
-    totalC+=cloudy;   
-    }
-
+    totalC+=cloudy;  
+    sun=rain=cloudy=0;  
+} 
+cout<<"Totals"<<endl;
 cout<<"Rainy total "<<totalR<<endl;
 cout<<"Sunny total "<<totalS<<endl;
 cout<<"Cloudy total "<<totalC<<endl;
     
 }
-
