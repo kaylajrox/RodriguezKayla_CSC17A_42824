@@ -49,6 +49,7 @@ int main(int argc, char** argv) {
         cout<<"Type 5 to Display Gaddis_8thEd_Chap6_Prob7"<<endl;
         cout<<"Type 6 to Display Gaddis_8thEd_Chap7_Prob6"<<endl;
         cout<<"Type 7 to Display Gaddis_8thEd_Chap8_Prob7"<<endl;
+	cout<<"Type 8 to Display Truth Table"<<endl;
         cout<<"Type anything else to exit "<<endl<<endl;
         cin>>nSoltn;
         //Solutions to all the problems
