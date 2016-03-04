@@ -25,6 +25,7 @@ void problem4();
 void problem5();
 void problem6();
 void problem7();
+void problem8();
 void readfle(char[][COLS],int,ifstream&);
 void display(char[][COLS],int);
 float celsius(int);
@@ -59,6 +60,7 @@ int main(int argc, char** argv) {
             case 5:{problem5();break;}
             case 6:{problem6();break;}
             case 7:{problem7();break;}
+            case 8:{problem8();break;}
             default:{
                 cout<<"Exiting the Program"<<endl;
                 reDsply=false;
@@ -316,7 +318,7 @@ void selectS(string names[],int NAMES){
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
-/*                             Binary Sort                                */
+/*                             Binary Sort                                    */
 /******************************************************************************/
 int binaryS(string names[],int NAMES,string sNames){
     int pos = -1,first = 0,last = (NAMES-1);
@@ -337,4 +339,79 @@ int binaryS(string names[],int NAMES,string sNames){
         }
     }
     return pos;
+}
+/******************************************************************************/
+/************************** truth table ***************************************/
+/******************************************************************************/
+void problem8(){
+    //Create Heading
+    cout<< "X Y !X !Y  X&&Y  X||Y  X^Y  (X^Y)^Y  (X^Y)^X  !(X&&Y)  !X||!Y  !(X||Y)  !X&&!Y"<<endl;   
+    
+    //Declare Variables
+    bool x=true, y=false;
+    
+    //Output
+    cout<<(x?'T':'F')<<" ";
+    cout<<(y?'T':'F')<<"  ";
+    cout<<(!x?'T':'F')<<"  "; 
+    cout<<(!y?'T':'F')<<"   ";
+    cout<<(x&&y?'T':'F')<<"     ";
+    cout<<(x||y?'T':'F')<<"     ";
+    cout<<(x^y?'T':'F')<<"      ";
+    cout<<((x^y)^y?'T':'F')<<"        ";
+    cout<<((x^y)^x?'T':'F')<<"        ";
+    cout<<(!(x&&y)?'T':'F')<<"       ";
+    cout<<(!x||!y?'T':'F')<<"        ";
+    cout<<(!(x||y)?'T':'F')<<"       ";
+    cout<<(!x&&!y?'T':'F')<<"     "<<endl;
+     
+    
+    //Second Row
+    x=true;y=false;
+    cout<<(x?'T':'F')<<" ";
+    cout<<(y?'T':'F')<<"  ";
+    cout<<(!x?'T':'F')<<"  ";
+    cout<<(!y?'T':'F')<<"   ";
+    cout<<(x&&y?'T':'F')<<"     ";
+    cout<<(x||y?'T':'F')<<"     ";
+    cout<<(x^y?'T':'F')<<"      ";
+    cout<<((x^y)^y?'T':'F')<<"        ";
+    cout<<((x^y)^x?'T':'F')<<"        ";
+    cout<<(!(x&&y)?'T':'F')<<"       ";
+    cout<<(!x||!y?'T':'F')<<"        ";
+    cout<<(!(x||y)?'T':'F')<<"       ";
+    cout<<(!x&&!y?'T':'F')<<"     "<<endl;
+     
+    //Third Row
+    x=false; y=true;
+    cout<<(x?'T':'F')<<" ";
+    cout<<(y?'T':'F')<<"  ";
+    cout<<(!x?'T':'F')<<"  ";
+    cout<<(!y?'T':'F')<<"   ";
+    cout<<(x&&y?'T':'F')<<"     ";
+    cout<<(x||y?'T':'F')<<"     ";
+    cout<<(x^y?'T':'F')<<"      ";
+    cout<<((x^y)^y?'T':'F')<<"        ";
+    cout<<((x^y)^x?'T':'F')<<"        ";
+    cout<<(!(x&&y)?'T':'F')<<"       ";
+    cout<<(!x||!y?'T':'F')<<"        ";
+    cout<<(!(x||y)?'T':'F')<<"       ";
+    cout<<(!x&&!y?'T':'F')<<"     "<<endl;
+     
+      
+    //Fourth Row
+    x=false; y=false;
+    cout<<(x?'T':'F')<<" ";
+    cout<<(y?'T':'F')<<"  ";
+    cout<<(!x?'T':'F')<<"  ";
+    cout<<(!y?'T':'F')<<"   ";
+    cout<<(x&&y?'T':'F')<<"     ";
+    cout<<(x||y?'T':'F')<<"     ";
+    cout<<(x^y?'T':'F')<<"      ";
+    cout<<((x^y)^y?'T':'F')<<"        ";
+    cout<<((x^y)^x?'T':'F')<<"        ";
+    cout<<(!(x&&y)?'T':'F')<<"       ";
+    cout<<(!x||!y?'T':'F')<<"        ";
+    cout<<(!(x||y)?'T':'F')<<"       ";
+    cout<<(!x&&!y?'T':'F')<<"     "<<endl;
 }
