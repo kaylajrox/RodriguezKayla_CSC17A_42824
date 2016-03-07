@@ -1,0 +1,10 @@
+Class Lecture Notes 2/17/16
+iostream-pulling in an object
+fstream-pulling in a class to use objects
+namespaces-so we dont ave collisons
+-everyting must be defined before its used
+
+Homework Questions
+What's the dfference between the single & and the double &&?
+which operator is evaulated first? && or ||?
+-Aritmetic operators
