@@ -1,0 +1,13 @@
+Lecture Notes 3/7/2016 POINTERS
+
+Why do we use pointers?
+to allocate memory
+to "create memory on the fly"
+you would like a program's input be as small as possible
+you may need more memory than what you started with
+*Allocating memory is important
+you must return things correctly or you will create leaks
+memory that isnt deallocated causes a leak
+needs to clean up after yourself and memory starts to shrink
+dont mix the array and pointer notation
+you can only return pointers
