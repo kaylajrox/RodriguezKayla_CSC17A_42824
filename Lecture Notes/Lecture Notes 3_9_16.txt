@@ -1,0 +1,30 @@
+Homework for Monday:
+Convert this to:
+97 base10 --> __base2,__base8,__base16
+357 base 10-->__base2,__base8,__base16
+
+Homework Mode problem:
+do it with a pass of 3 and use a sort,
+once its sorted count the number of differences, the highest number of differences, once you have 
+max frequency and find
+out how mnay have that maX frequency
+
+Never seed the random number generator in a function
+REMEMBER TO DEALLOCATE
+normal swap:
+temp=a;
+a=b;
+b=temp;
+Exclusive or:
+a=a^b;
+b=a^b
+a=a^b
+
+-Data Bases are NEVER sorted
+-the database itself is never sorted because there is no point to sorting it
+-nothing ever gets deleted it just gets inactivated
+-reconstruct from day 1
+
+a sorted output?
+sort the index and then you output the results
+dont sort the database itself
