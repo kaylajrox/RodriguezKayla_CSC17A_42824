@@ -1,0 +1,56 @@
+Convert a number into text representation
+-->PRACTICE!!!!
+Midterm problem: Conversion
+Convert to a Negative value:
+x=97
+convert with a:
+1's complement ~ x
+2's complement ~ x+1
+x-x=0
+x+(~x+1)=0
+
+01100001 = 97
+
+10011110
+      +1
+--------
+10011111 = -97
+
+ 01100001
++10011111
+---------
+ 00000000
+
+In 2 bytes:
+00000000  01100001
+11111111  10011110 (1's COmplement)
++1        +1       (Add one)
+11111111  10011111
+
+Homework:
+Convert and give me both positive and negative values
+Memorize the conversion table for base 8 and base 16
+convert 4100 base 8,16,2,pos,neg
+
+Chapter 10: Extends what you already know onhow to extend characer arrays
+-built in things for testing character arrays
+-testing using a simple range
+-convert cases to toupper and tolower
+Internal Storage: null terminator at the end
+the size is determined by the null terminator at the end
+cin.getline();
+cin.ignore
+-reading in spaces
+READ UP ON CSTRING LIBRARY
+-used for arrays mostly
+-finding a string within a string
+look up how to convert with string streams!
+-read it in as a string and it will convert it for you
+ASCII-->long
+....
+....
+....
+Writing your own C-String Functions
+-Slicing and dicing
+
+Ulitizing the string library
