@@ -12,9 +12,6 @@
 
 //System Libraries
 #include <iostream>
-#include <string>
-#include <iomanip>
-#include <vector>
 using namespace std;
 
 //User Libraries
@@ -22,34 +19,31 @@ using namespace std;
 //Global Constants
 
 //Function prototypes
-void arrSelectSort(int*,int);
-void showArray(const int[],int);
-void showArrPtr(int*,int);
-void input(int,int*);
+void arrSelectSort(int*,int&);
+void showArray(int*,int&);
+void input(int&,int*);
 
 //Execution Begins Here
 int main(int argc, char** argv) {
+    //Declare Variables
     int nDon; //Number of donations to be put into an array
-    int *donVal;//An Array containing the donation amounts
-    //An array of pointers to int
-  //  int *arrPtr[nDon]={0};
-
-    //Each element of arrPtr is a pointer to int. Make each
-    //element point to an element in the donations array
-    for(int count=0;count<nDon;count++)
-        arrPtr[count]=&donVal[count];
-
-    //Sort the elements of the array of pointers
-    arrSelectSort(arrPtr,nDon);
-
-    //Display the donations using the array of pointers. This
-    //will display them in sorted order
-    showArrPtr(arrPtr,nDon);
-
+    int *donVal;//An Array containing the donation values
+    
+    //Input the number of donations and each donation value
+    input(nDon,donVal);
+    
     //Display the donations in their original order
-    cout<<"The donations, in their orignal order are: \n";
+    cout<<"The donations, in their original order are: \n";
     showArray(donVal,nDon);
-    delete[]donVal;
+    
+    //Sort the elements of the array of pointers
+    arrSelectSort(donVal,nDon);
+    
+    //Display the sorted array
+    cout<<"The sorted donations are "<<endl;
+    showArray(donVal,nDon);
+    //Exit Stage Right
+    delete[] donVal;
     return 0;
 }
 //******************************************************************************
@@ -60,21 +54,20 @@ int main(int argc, char** argv) {
 // arr will point to the elements of the second array in
 // ascending order
 //******************************************************************************
-void arrSelectSort(int *arr,int size){
-    int startScan,minIndex;
-    int *minElem;
-
-    for(startScan=0;startScan<(size-1);startScan++){
-        minIndex=startScan;
-        minElem=arr[startScan];
-        for (int index=startScan+1;index<size;index++){
-            if(*(arr[index])<*minElem){
-                minElem=arr[index];
-                minIndex=index;
+void arrSelectSort(int *arr,int &nDon){
+    //Declare Variables
+    int strScan, mini, minval;
+    for (strScan=0;strScan < (nDon-1); strScan++){
+        mini=strScan;
+        minval = arr[strScan];
+        for (int i=strScan+1;i<nDon;i++){
+            if (arr[i]<minval){
+                minval=arr[i];
+                mini=i;
             }
         }
-        arr[minIndex]=arr[startScan];
-        arr[startScan]=minElem;
+        arr[mini]=arr[strScan];
+        arr[strScan]=minval;
     }
 }
 //******************************************************************************
@@ -87,30 +80,18 @@ void input(int &nDon, int *donVal){
     cin>>nDon;
     for(int i=0;i<nDon;i++){
         do{
-
-        }while(*(donVal+i)<0)
+            cout<<"Enter Donation "<<(i+1)<<endl;
+            cin>>donVal[i];
+        }while(*(donVal+i)<0);
     }
 }
 //******************************************************************************
 // Definition of function showArray
-// This function displays the contents of the arr. size is the
-// number of elements.
+// This function displays the contents of the array
 //******************************************************************************
 
-void showArray(const int arr[],int size){
-    for(int count=0;count<size;count++)
-        cout<<arr[count]<<" ";
-    cout<<endl;
-}
-
-//******************************************************************************
-// Definition of function showArrPtr
-// This function displays the contents of the array pointed to
-// by arr. size is the number of elements.
-//******************************************************************************
-
-void showArrPtr(int *arr,int size){
-    for(int count=0;count<size;count++)
-        cout<<*(arr[count])<<" ";
+void showArray(int *arr,int &nDon){
+    for(int count=0;count<nDon;count++)
+        cout<<*(arr+count)<<" ";
     cout<<endl;
 }
