@@ -19,26 +19,26 @@ using namespace std;
 //Global Constants
 
 //Function prototypes
-void arrSelectSort(int*,int&);
-void showArray(int*,int&);
-void input(int&,int*);
+void arrSelectSort(int*,int);
+void showArray(int*,int);
+int *input(int &);
 
 //Execution Begins Here
 int main(int argc, char** argv) {
     //Declare Variables
     int nDon; //Number of donations to be put into an array
     int *donVal;//An Array containing the donation values
-    
+
     //Input the number of donations and each donation value
-    input(nDon,donVal);
-    
+    donVal=input(nDon);
+
     //Display the donations in their original order
     cout<<"The donations, in their original order are: \n";
     showArray(donVal,nDon);
-    
+
     //Sort the elements of the array of pointers
     arrSelectSort(donVal,nDon);
-    
+
     //Display the sorted array
     cout<<"The sorted donations are "<<endl;
     showArray(donVal,nDon);
@@ -54,7 +54,7 @@ int main(int argc, char** argv) {
 // arr will point to the elements of the second array in
 // ascending order
 //******************************************************************************
-void arrSelectSort(int *arr,int &nDon){
+void arrSelectSort(int *arr,int nDon){
     //Declare Variables
     int strScan, mini, minval;
     for (strScan=0;strScan < (nDon-1); strScan++){
@@ -75,22 +75,25 @@ void arrSelectSort(int *arr,int &nDon){
 // This function allows the user to input any set of donations
 // instead of the same donations written in as a constant
 //******************************************************************************
-void input(int &nDon, int *donVal){
+int *input(int &nDon){
+    int *donVal;
     cout<<"How many donations do you have? ";
     cin>>nDon;
+    donVal= new int[nDon];
     for(int i=0;i<nDon;i++){
         do{
             cout<<"Enter Donation "<<(i+1)<<endl;
             cin>>donVal[i];
         }while(*(donVal+i)<0);
     }
+    return donVal;
 }
 //******************************************************************************
 // Definition of function showArray
 // This function displays the contents of the array
 //******************************************************************************
 
-void showArray(int *arr,int &nDon){
+void showArray(int *arr,int nDon){
     for(int count=0;count<nDon;count++)
         cout<<*(arr+count)<<" ";
     cout<<endl;
