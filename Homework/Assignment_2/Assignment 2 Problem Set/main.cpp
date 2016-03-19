@@ -39,7 +39,10 @@ int numMode(int *,int,int);
 int *freqF(int*,int,int);
 float median(int*,int);
 float mean(int*,int);
-
+void arrSelectSort(int*,int);
+void showArray(int*,int);
+int *input(int &);
+void arrSelectSort2(int*,int);
 
 //Execution Begins Here
 int main(int argc, char** argv) {
@@ -52,8 +55,8 @@ int main(int argc, char** argv) {
         //Input problem to display, i.e. Menu
         cout<<"\nAssignment 2 Problem Set"<<endl;
         cout<<"Type 1 to Display Gaddis_8thEd_Chap9_Prob2"<<endl;
-        cout<<"Type 2 to Display Gaddis_8thEd_Chap9_Prob6"<<endl;
-        cout<<"Type 3 to Display Gaddis_8thEd_Chap9_Prob7"<<endl;
+        cout<<"Type 2 to Display Gaddis_8thEd_Chap9_Prob7"<<endl;
+        cout<<"Type 3 to Display Gaddis_8thEd_Chap9_Prob6"<<endl;
         cout<<"Type 4 to Display Gaddis_8thEd_Chap9_Prob7"<<endl;
         cout<<"Type 5 to Display Gaddis_8thEd_Chap9_Prob7"<<endl;
         cout<<"Type 6 to Display Mean Median and Mode Problem"<<endl;
@@ -152,19 +155,133 @@ void avScore(float *score,int size){
 /******************************************************************************/
 void problem2(){
     //The problem to solve
-    cout<<endl<<"Solution to Gaddis_8thEd_Chap9_Prob6"<<endl;
-    cout<<endl<<"Case Study Modification #1"<<endl<<endl;
+    cout<<endl<<"Solution to Gaddis_8thEd_Chap9_Prob7"<<endl;
+    cout<<endl<<"Case Study Modification #2"<<endl<<endl;
+    //Declare Variables
+    int nDon; //Number of donations to be put into an array
+    int *donVal;//An Array containing the donation values
 
+    //Input the number of donations and each donation value
+    donVal=input(nDon);
+
+    //Display the donations in their original order
+    cout<<"The donations, in their original order are: \n";
+    showArray(donVal,nDon);
+
+    //Sort the elements of the array of pointers
+    arrSelectSort2(donVal,nDon);
+
+    //Display the sorted array
+    cout<<"The sorted donations in descending order are "<<endl;
+    showArray(donVal,nDon);
+    //Free Memory
+    delete[] donVal;
+}
+//******************************************************************************
+// Definition of function arrSelectSort
+// This function performs aan ascending order selection sort on
+// arr, which is an array of pointers. Each elements of array
+// points to an element of a second array. After the sort,
+// arr will point to the elements of the second array in
+// ascending order
+//******************************************************************************
+void arrSelectSort2(int *arr,int nDon){
+    //Declare Variables
+    int strScan, mini, minval;
+    for (strScan=0;strScan < (nDon-1); strScan++){
+        mini=strScan;
+        minval = arr[strScan];
+        for (int i=strScan+1;i<nDon;i++){
+            if (arr[i]>minval){
+                minval=arr[i];
+                mini=i;
+            }
+        }
+        arr[mini]=arr[strScan];
+        arr[strScan]=minval;
+    }
 }
 /******************************************************************************/
 /************************** Problem 3 *****************************************/
 /******************************************************************************/
 void problem3(){
     //The problem to solve
-    cout<<endl<<"Solution to Gaddis_8thEd_Chap9_Prob7"<<endl;
-    cout<<endl<<"Case Study Modification #2"<<endl<<endl;
+    cout<<endl<<"Solution to Gaddis_8thEd_Chap9_Prob6"<<endl;
+    cout<<endl<<"Case Study Modification #1"<<endl<<endl;
+    //Declare Variables
+    int nDon; //Number of donations to be put into an array
+    int *donVal;//An Array containing the donation values
 
-}/******************************************************************************/
+    //Input the number of donations and each donation value
+    donVal=input(nDon);
+
+    //Display the donations in their original order
+    cout<<"The donations, in their original order are: \n";
+    showArray(donVal,nDon);
+
+    //Sort the elements of the array of pointers
+    arrSelectSort(donVal,nDon);
+
+    //Display the sorted array
+    cout<<"The sorted donations in ascending order are "<<endl;
+    showArray(donVal,nDon);
+    //Free Memory
+    delete[] donVal;
+
+}
+//******************************************************************************
+// Definition of function arrSelectSort
+// This function performs aan ascending order selection sort on
+// arr, which is an array of pointers. Each elements of array
+// points to an element of a second array. After the sort,
+// arr will point to the elements of the second array in
+// ascending order
+//******************************************************************************
+void arrSelectSort(int *arr,int nDon){
+    //Declare Variables
+    int strScan, mini, minval;
+    for (strScan=0;strScan < (nDon-1); strScan++){
+        mini=strScan;
+        minval = arr[strScan];
+        for (int i=strScan+1;i<nDon;i++){
+            if (arr[i]<minval){
+                minval=arr[i];
+                mini=i;
+            }
+        }
+        arr[mini]=arr[strScan];
+        arr[strScan]=minval;
+    }
+}
+//******************************************************************************
+// Input function
+// This function allows the user to input any set of donations
+// instead of the same donations written in as a constant
+//******************************************************************************
+int *input(int &nDon){
+    int *donVal;
+    cout<<"How many donations do you have? ";
+    cin>>nDon;
+    donVal= new int[nDon];
+    for(int i=0;i<nDon;i++){
+        do{
+            cout<<"Enter Donation "<<(i+1)<<endl;
+            cin>>donVal[i];
+        }while(*(donVal+i)<0);
+    }
+    return donVal;
+}
+//******************************************************************************
+// Definition of function showArray
+// This function displays the contents of the array
+//******************************************************************************
+
+void showArray(int *arr,int nDon){
+    for(int count=0;count<nDon;count++)
+        cout<<*(arr+count)<<" ";
+    cout<<endl;
+}
+/******************************************************************************/
 /************************** Problem 4 *****************************************/
 /******************************************************************************/
 void problem4(){
