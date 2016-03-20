@@ -12,6 +12,8 @@
 
 //System Libraries
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 //User Libraries
@@ -19,33 +21,51 @@ using namespace std;
 //Global Constants
 
 //Function prototypes
-void arrSelectSort(int*,int&);
-void showArray(int*,int&);
-void inputI(int*,int); //Input integers function
+void display(int*,int&);
+int *inputI(int&); //Input integers function
 
 //Execution Begins Here
 int main(int argc, char** argv) {
+    //Seed the random number generator
+    srand(static_cast<unsigned int>(time(0)));
+    
     //Declare Variables
     int size; //Number of donations to be put into an array
-    int *intgr;//An Array containing the donation values
     
     //Input the number of donations and each donation value
-    inputI(intgr,size);
+    int *intgr=inputI(size);
     
-    //Display the donations in their original order
-    cout<<"The donations, in their original order are: \n";
-    showArray(intgr,size);
-    
-    //Sort the elements of the array of pointers
-    arrSelectSort(intgr,size);
-    
-    //Display the sorted array
-    cout<<"The sorted donations are "<<endl;
-    showArray(intgr,size);
+    //Display the Array of randomly generated integers
+    cout<<"The randomly generated array "<<endl;
+    display(intgr,size);
     //Exit Stage Right
-    delete[] size;
+    delete[] intgr;
     return 0;
 }
-void inputI(int *array,int nDon){
-    
+//000000011111111112222222222333333333344444444445555555555666666666677777777778
+//345678901234567890123456789012345678901234567890123456789012345678901234567890
+//                   Fill Array with Randomly Generated Integers
+//Inputs
+//     size->Size of the array
+////////////////////////////////////////////////////////////////////////////////
+int *inputI(int &size){
+    int *array;
+    cout<<"What is the number of elements you would like to allocate?"<<endl;
+    cin>>size;
+    array= new int[size];
+    for (int i=0;i<size;i++){
+         *(array+i)=rand()%10; //Numbers between [1,10]
+    }
+    return array;
+}
+//000000011111111112222222222333333333344444444445555555555666666666677777777778
+//345678901234567890123456789012345678901234567890123456789012345678901234567890
+//                   Fill Array with Randomly Generated Integers
+//Inputs
+//     size->Size of the array
+////////////////////////////////////////////////////////////////////////////////
+void display(int *array,int &size){
+    for(int i=0;i<size;i++){
+        cout<<*(array+i)<<" ";
+    }
 }
