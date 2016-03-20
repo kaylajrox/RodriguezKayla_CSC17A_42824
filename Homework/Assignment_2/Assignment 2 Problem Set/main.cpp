@@ -1,8 +1,7 @@
 /*
     File:   main.cpp
     Author: Kayla Rodriguez
-    Created on February 3, 2016, 8:35 PM
-    Purpose:  Menu
+    Purpose:  Assignment 2 Menu
  */
 
 //System Libraries
@@ -43,6 +42,8 @@ void arrSelectSort(int*,int);
 void showArray(int*,int);
 int *input(int &);
 void arrSelectSort2(int*,int);
+void display(int*,int&);
+int *inputI(int&); //Input integers function
 
 //Execution Begins Here
 int main(int argc, char** argv) {
@@ -57,7 +58,7 @@ int main(int argc, char** argv) {
         cout<<"Type 1 to Display Gaddis_8thEd_Chap9_Prob2"<<endl;
         cout<<"Type 2 to Display Gaddis_8thEd_Chap9_Prob7"<<endl;
         cout<<"Type 3 to Display Gaddis_8thEd_Chap9_Prob6"<<endl;
-        cout<<"Type 4 to Display Gaddis_8thEd_Chap9_Prob7"<<endl;
+        cout<<"Type 4 to Display Gaddis_8thEd_Chap9_Prob1"<<endl;
         cout<<"Type 5 to Display Gaddis_8thEd_Chap9_Prob7"<<endl;
         cout<<"Type 6 to Display Mean Median and Mode Problem"<<endl;
         cout<<"Type anything else to exit "<<endl<<endl;
@@ -285,10 +286,50 @@ void showArray(int *arr,int nDon){
 /************************** Problem 4 *****************************************/
 /******************************************************************************/
 void problem4(){
-   cout<<endl<<""<<endl;
-   cout<<endl<<""<<endl<<endl;
-
-
+   cout<<endl<<"Solution to Gaddis_8thEd_Chap9_Prob1"<<endl;
+   cout<<endl<<"Array Allocator"<<endl<<endl;
+   //Seed the random number generator
+    srand(static_cast<unsigned int>(time(0)));
+    
+    //Declare Variables
+    int size; //Number of donations to be put into an array
+    
+    //Input the number of donations and each donation value
+    int *intgr=inputI(size);
+    
+    //Display the Array of randomly generated integers
+    cout<<"The randomly generated array "<<endl;
+    display(intgr,size);
+    //Free Memory
+    delete[] intgr;
+}
+//000000011111111112222222222333333333344444444445555555555666666666677777777778
+//345678901234567890123456789012345678901234567890123456789012345678901234567890
+//                   Fill Array with Randomly Generated Integers
+//Inputs
+//     size->Size of the array
+////////////////////////////////////////////////////////////////////////////////
+int *inputI(int &size){
+    int *array;
+    cout<<"What is the number of elements you would like to allocate?"<<endl;
+    cin>>size;
+    array= new int[size];
+    for (int i=0;i<size;i++){
+         *(array+i)=rand()%10; //Numbers between [1,10]
+    }
+    return array;
+}
+//000000011111111112222222222333333333344444444445555555555666666666677777777778
+//345678901234567890123456789012345678901234567890123456789012345678901234567890
+//                        Display Integer Array
+//Inputs
+//     size->Size of the array
+//     array->integer array
+////////////////////////////////////////////////////////////////////////////////
+void display(int *array,int &size){
+    for(int i=0;i<size;i++){
+        cout<<*(array+i)<<" ";
+    }
 }
 /******************************************************************************/
 /************************** Problem 5 *****************************************/
