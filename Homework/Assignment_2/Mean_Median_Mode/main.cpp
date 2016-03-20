@@ -32,8 +32,8 @@ int main(int argc, char** argv) {
     //Seed the random number generator
     srand(static_cast<unsigned int>(time(0)));
     //Declare and allocate the array
-    int size=50;
-    int mod=10;
+    int size=50;//size of array
+    int mod=10; //Used to find the range of numbers in array
     int *array=fillMod(size,mod);
     //Creating frequency array
     int *freq=freqF(array,mod,size);
