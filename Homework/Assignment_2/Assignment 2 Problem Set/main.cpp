@@ -356,7 +356,7 @@ void problem5(){
     //Sort the Scores
     sortary3(score,size);
     //Display the Scores
-    cout<<"The scores from highest to lowest are: "<<endl;
+    cout<<"The scores from lowest to highest are: "<<endl;
     display(score,size);
     float average=avScore3(score,size);
     
