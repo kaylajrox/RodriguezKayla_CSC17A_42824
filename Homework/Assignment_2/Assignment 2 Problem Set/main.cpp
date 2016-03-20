@@ -24,9 +24,9 @@ void problem3();
 void problem4();
 void problem5();
 void problem6();
-void sortary(float*,int);
-void display(float*,int);
-void avScore(float*,int);
+void sortary(int*,int);
+void display(int*,int);
+void avScore(int*,int);
 int *fillAry(int);
 int *fillMod(int,int);
 void prntAry(int *,int,int);
@@ -42,8 +42,10 @@ void arrSelectSort(int*,int);
 void showArray(int*,int);
 int *input(int &);
 void arrSelectSort2(int*,int);
-void display(int*,int&);
+void displayI(int*,int&);
 int *inputI(int&); //Input integers function
+void sortary3(int*,int); //Sort array for problem 3
+float avScore3(int*,int);
 
 //Execution Begins Here
 int main(int argc, char** argv) {
@@ -88,12 +90,12 @@ void problem1(){
     cout<<endl<<"Solution to Gaddis_8thEd_Chap9_Prob2"<<endl;
     cout<<endl<<"Test Scores #1"<<endl<<endl;
     int size; //Number of test scores
- float *score;   //test score
+    int *score;   //test score
   cout<<fixed<<setprecision(1);
     //Input
     cout<<"How many test scores do you have? ";
     cin>>size;
-    score = new float[size];
+    score = new int[size];
     cout<<"Enter the test scores. After each new test score, press enter."<<endl;
     for(int i=0;i<size;i++){
         do{
@@ -115,7 +117,7 @@ void problem1(){
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
 /*                 Sort the Scores/ Selection Sort                            */
 /******************************************************************************/
-void sortary(float *score,int size){
+void sortary(int *score,int size){
     int minI,minVal;
      for (int i=0;i<size;i++){
         minI=i;
@@ -134,7 +136,7 @@ void sortary(float *score,int size){
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
 /*                        Display Scores                                      */
 /******************************************************************************/
-void display(float *score,int size){
+void display(int *score,int size){
      for(int i=0;i<size;i++){
         cout<<*(score+i)<<" ";
         cout<<endl;
@@ -144,7 +146,7 @@ void display(float *score,int size){
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
 /*                          Average the Scores                                */
 /******************************************************************************/
-void avScore(float *score,int size){
+void avScore(int *score,int size){
     float sum=0;
     for(int i=0;i<size;i++){
         sum+=*(score+i);
@@ -299,7 +301,7 @@ void problem4(){
     
     //Display the Array of randomly generated integers
     cout<<"The randomly generated array "<<endl;
-    display(intgr,size);
+    displayI(intgr,size);
     //Free Memory
     delete[] intgr;
 }
@@ -326,7 +328,7 @@ int *inputI(int &size){
 //     size->Size of the array
 //     array->integer array
 ////////////////////////////////////////////////////////////////////////////////
-void display(int *array,int &size){
+void displayI(int *array,int &size){
     for(int i=0;i<size;i++){
         cout<<*(array+i)<<" ";
     }
@@ -335,9 +337,63 @@ void display(int *array,int &size){
 /************************** Problem 5 *****************************************/
 /******************************************************************************/
 void problem5(){
-    cout<<endl<<""<<endl;
-    cout<<endl<<""<<endl<<endl;
-
+    cout<<endl<<"Solution to Gaddis_8thEd_Chap9_Prob1"<<endl;
+    cout<<endl<<"Dropped Lowest Score"<<endl<<endl;
+     int size; //Number of test scores
+     int *score;   //test score
+     cout<<fixed<<setprecision(1);
+    //Input
+    cout<<"How many test scores do you have? ";
+    cin>>size;
+    score = new int[size];
+    cout<<"Enter the test scores. After each new test score, press enter."<<endl;
+    for(int i=0;i<size;i++){
+        do{ 
+            cout<<"Enter score "<<(i+1)<<endl;
+            cin>>*(score+i);
+        }while (*(score+i)<0);
+    }
+    //Sort the Scores
+    sortary3(score,size);
+    //Display the Scores
+    cout<<"The scores from highest to lowest are: "<<endl;
+    display(score,size);
+    float average=avScore3(score,size);
+    
+    //free memory
+    delete[] score;
+}
+//000000001111111112222222222333333333344444444445555555555666666666677777777778
+//345678901234567890123456789012345678901234567890123456789012345678901234567890
+/*                 Sort the Scores/ Selection Sort                            */
+/******************************************************************************/
+void sortary3(int *score,int size){
+   int minI,minVal;
+     for (int i=0;i<size;i++){
+        minI=i;
+        minVal = *(score+i);
+        for (int j=i+1;j<size;j++){
+            if (*(score+j)<minVal){
+                minVal=*(score+j);
+                minI=j;
+            }
+        }
+        score[minI]=score[i];
+        score[i]=minVal;
+    }
+}
+//000000001111111112222222222333333333344444444445555555555666666666677777777778
+//345678901234567890123456789012345678901234567890123456789012345678901234567890
+/*                          Average the Scores                                */
+/******************************************************************************/
+float avScore3(int *score,int size){
+    float sum=0;
+    for(int i=1;i<size;i++){
+        sum+=*(score+i);
+    }
+    cout<<"The average test score was (with the lowest score dropped) ";
+    cout<<(sum/(size-1))<<endl<<endl; 
+    return sum/(size-1);
 }
 /******************************************************************************/
 /************************** Problem 6 *****************************************/
