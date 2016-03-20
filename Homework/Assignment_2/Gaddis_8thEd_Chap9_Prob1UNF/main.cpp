@@ -60,10 +60,7 @@ int *inputI(int &size){
 }
 //000000011111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
-//                   Fill Array with Randomly Generated Integers
-//Inputs
-//     size->Size of the array
-////////////////////////////////////////////////////////////////////////////////
+//                  Display Integer Array
 void display(int *array,int &size){
     for(int i=0;i<size;i++){
         cout<<*(array+i)<<" ";
