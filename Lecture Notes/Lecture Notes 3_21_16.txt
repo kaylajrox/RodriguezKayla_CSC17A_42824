@@ -1,0 +1,54 @@
+Chapter 11: Structured data
+-The beginings of classes
+-define your own data types
+-think of table in a data base
+-abstract
+
+11.1: Abstract Data Types
+-ADTs are created by programmers
+-Abstraction- a defintion that captures general the characteristics without the details
+-Data type defines the values
+
+You can create your own data types
+
+Combining data types into Structures
+-Structure: C++ Construct that allows multiple variabels to be grouped together
+-general Format: 
+struct <structName>
+{
+	type1 field1;
+	type2 field2;
+	. . .
+};
+*when you define your own class- you capilize the first letter of the varible (by convention)
+-this is a hint to other programers that this isnt a variable it is a class
+
+Can we Test this?
+if(bill==william)
+ -no, not for structures
+we must compare on a field basis
+if (bill.studentID==william.studentID) ...
+
+11.4:Initializing a structure
+-treat it like an array
+-like an array except it can include different data types while an array can only have elements
+of the same data type
+
+11.5: Arrays of structures
+-strucutres can be defined in array
+
+-Pointer notation can be utlized wiht all of these
+
+-use the dot operator multiple times to refer to fields of nested structures
+11.7:Structures as Function Arguments
+-copied, or pass by reference
+-passing by reference is not faster with primitive data types, but can be much faster when
+dealing with structures
+-using a const reference parameter does not waste space and doesnt change value
+-const is not just for constants
+-refernce cannot be used to change the element in the structure if const is used
+
+
+
+Questions:
+What is passing by copy?
