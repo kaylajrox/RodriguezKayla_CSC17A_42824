@@ -1,0 +1,6 @@
+Project Requirements:
+abstract data types
+pointers
+binary files
+passing pointers into functions
+*write a game
