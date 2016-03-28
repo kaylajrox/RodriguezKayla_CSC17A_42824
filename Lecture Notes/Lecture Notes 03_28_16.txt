@@ -1,3 +1,4 @@
 Homework: 
 Assignment 2 due next week
 base conversion--learn it before Wednesday!!do base conversion for numbers given in class
+delete allocated memory in the structure
