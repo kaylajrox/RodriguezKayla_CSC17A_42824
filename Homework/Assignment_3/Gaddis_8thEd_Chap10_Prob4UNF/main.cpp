@@ -31,7 +31,6 @@ using namespace std;
 int wrdCnt(char*,int&); //word count function
 int letrCnt(char*,int&); //letter count function
 //Execution Begins Here
-
 int main(int argc, char** argv){
     //Declare Variables   
     char str[50];//character array of max size 50
@@ -39,14 +38,15 @@ int main(int argc, char** argv){
     
     //Input
     cout<<"Please input a string (any word or sentence) and press enter "<<endl;
+    cin.ignore();
     cin.getline(str,50);
+    //Word Count 
     int nWord=wrdCnt(str,count);
     cout<<"There were "<<(count+1)<<" words."<<endl;
-   
+    //Letter Count
     int nLetr=letrCnt(str,count);
-    int avg=(nLetr/nWord);
     cout<<"There were "<<nLetr<<" letters"<<endl;
-    cout<<"There was an average of "<<avg<<" letters per word."<<endl;
+    cout<<"There was an average of "<<(nLetr/nWord)<<" letters per word."<<endl;
     
     return 0;
 }
@@ -68,12 +68,12 @@ int wrdCnt(char *str,int &cWord){
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
 /*                        Letter Count Function                               */
 /******************************************************************************/
-int letrCnt(char *str,int &cWord){
+int letrCnt(char *str,int &cLetr){
      //Count the number of letters
     for (int j=0;j<strlen(str);j++){
         if (str[j]!=' '){
-            cWord++;
+            cLetr++;
         }      
     }
-    return cWord;
+    return cLetr;
 }
