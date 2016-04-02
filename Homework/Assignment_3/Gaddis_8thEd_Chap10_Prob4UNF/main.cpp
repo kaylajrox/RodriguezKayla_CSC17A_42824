@@ -46,7 +46,7 @@ int main(int argc, char** argv){
     //Letter Count
     int nLetr=letrCnt(str,count);
     cout<<"There were "<<nLetr<<" letters"<<endl;
-    cout<<"There was an average of "<<(nLetr/nWord)<<" letters per word."<<endl;
+    cout<<"There was an average of "<<(nLetr/(nWord+1))<<" letters per word."<<endl;
     
     return 0;
 }
