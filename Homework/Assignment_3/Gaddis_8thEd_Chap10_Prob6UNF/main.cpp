@@ -4,27 +4,23 @@
  * Problem: Gaddis_8thEd_Chap10_Prob6
  *
     Problem 6:
-   Write a function that accepts a pointer to a C-string as its argument. 
-  The function should count the number of vowels appearing in the string and 
-  return that number.  Write another function that accepts a pointer to a 
-  C-string as its argument. This function should count the number of consonants 
-  appearing in the string and return that number.  Demonstrate these two 
-  functions in a program that performs the following steps:     
-  1.   The user is asked to enter a string.     
-  2.   The program displays the following menu:   
-   A)   Count the number of vowels in the string    
-   B)   Count the number of consonants in the string   
-   C)   Count both the vowels and consonants in the string    
-   D)   Enter another string    
-   E)   Exit the program       
-  3.    The program performs the operation selected by the user and repeats 
-    until the user selects E to exit the program.     
+   Write a function that accepts a pointer to a C-string as its argument.
+  The function should count the number of vowels appearing in the string and
+  return that number.  Write another function that accepts a pointer to a
+  C-string as its argument. This function should count the number of consonants
+  appearing in the string and return that number.  Demonstrate these two
+  functions in a program that performs the following steps:
+  1.   The user is asked to enter a string.
+  2.   The program displays the following menu:
+   A)   Count the number of vowels in the string
+   B)   Count the number of consonants in the string
+   C)   Count both the vowels and consonants in the string
+   D)   Enter another string
+   E)   Exit the program
+  3.    The program performs the operation selected by the user and repeats
+    until the user selects E to exit the program.
  */
-/*Problems: everything works except for when it is added to the switch statement
- does not allow input for the switch statement 
- Plan on filling the other functions- assigning integer values to vowels and
- consonants and counting these through for loops, return string isnt working
- either space count?*/
+/*How can i make the D selection as opposed to a do-while loop*/
 //System Libraries
 #include <iostream>
 #include <cstring>
@@ -36,32 +32,36 @@ using namespace std;
 //Global Constants
 
 //Function Prototypes
-void cVowel();  //Vowel count function
-void cConsts(); //Consonants count function
+int cVowel(char*,char*);  //Vowel count function
+int cConsts(char*,char*); //Consonants count function
 void cVowNCon();//Consonants and Vowel count function
-char *input();
 //Execution Begins Here
 int main(int argc, char** argv){
     //Declare and initialize variables
     char nSoltn;//Problem Solution to display
     bool reDsply=true;    //Exit program when false
-    
-    //Menu to Display Solution
+    char strng[50];
+    char vowels[5]={'a','e','i','o','u'};
+    //Input String
+    cout<<"Enter a string "<<endl;
+    cin.getline(strng,50);
+    for (int i=0;i<strlen(strng);i++)
+        cout<<*(strng+i);//Menu to Display Solution
     do{
         //Input problem to display, i.e. Menu
         cout<<"\nVowels and Consonants Menu"<<endl;
         cout<<"Type A to count the number of vowels in a string"<<endl;
         cout<<"Type B to count the number of consonants in a string"<<endl;
         cout<<"Type C to count both vowels and consonants in a string"<<endl;
-        cout<<"Type D to enter another string"<<endl;
-        cout<<"Type anything else to exit "<<endl<<endl;
+        cout<<"Type E to exit "<<endl<<endl;
         cin>>nSoltn;
         //Solutions to all the problems
         switch(nSoltn){
-            case 65:case 97:{cVowel();break;}
-            case 66:case 98:{cConsts();break;}
+            case 65:case 97:{int cVow=cVowel(strng,vowels);
+            cout<<"Number of vowels "<<cVow;break;}
+            case 66:case 98:{int cCon=cConsts(strng,vowels);
+            cout<<"Number of consonants "<<cCon;break;}
             case 67:case 99:{cVowNCon();break;}
-            case 68:case 100:{*input();break;}
             default:{
                 cout<<"Exiting the Program"<<endl;
                 reDsply=false;
@@ -74,34 +74,36 @@ int main(int argc, char** argv){
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
-/*                        Count Consonants Function                           */
-/******************************************************************************/
-char *input(){ 
-    char strng[50];
-    cout<<"Enter a string "<<endl;
-    cin.getline(strng,50);
-    for (int i=0;i<strlen(strng);i++)
-        cout<<*(strng+i);
-//    return strng;
-}
-//000000001111111112222222222333333333344444444445555555555666666666677777777778
-//345678901234567890123456789012345678901234567890123456789012345678901234567890
 /*                        Count Vowels Function                               */
 /******************************************************************************/
-void cVowel(){
-
+int cVowel(char *strng, char *vowels){
+   int count=0;
+    //Count the number of words
+    for (int i=0;i<strlen(strng);i++){
+        if (strng[i]==vowels[0]||strng[i]==vowels[1]||strng[i]==vowels[2]||strng[i]==vowels[3]||strng[i]==vowels[4]){
+        count++;
+        }
+    }
+    return count;
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
 /*                        Count Consonants Function                           */
 /******************************************************************************/
-void cConsts(){
-  
+int cConsts(char *strng, char *vowels){
+  int count=0;
+    //Count the number of words
+    for (int i=0;i<strlen(strng);i++){
+        if (!(strng[i]==vowels[0]||strng[i]==vowels[1]||strng[i]==vowels[2]||strng[i]==vowels[3]||strng[i]==vowels[4])){
+        count++;
+        }
+    }
+    return count;
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
 /*                      Count Vowels and Consonants Function                  */
 /******************************************************************************/
 void cVowNCon(){
-  
+
 }
