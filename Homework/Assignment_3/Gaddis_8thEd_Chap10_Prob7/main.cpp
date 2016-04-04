@@ -19,7 +19,7 @@ using namespace std;
 //Global Constants
 
 //Function Prototypes
-//void rdFile(ifstream&   infile);
+
 //Execution Begins Here
 int main(int argc, char** argv){    
     //Open the File
@@ -65,23 +65,3 @@ int main(int argc, char** argv){
    
     return 0;
 }
-////000000001111111112222222222333333333344444444445555555555666666666677777777778
-////345678901234567890123456789012345678901234567890123456789012345678901234567890
-///*                             Read the File                                  */
-///******************************************************************************/
-//void rdFile(ifstream&   infile){
-//    for (int i=0;i<NAMES;i++){
-//        infile>>names[i];
-//    }
-//}
-////    //Declare variables 
-////    ifstream file1;
-////    ofstream file2;
-////    file2;
-////    //Input 
-////    cout<<"Input two file names. The first will be opened for input and the ";
-////    cout<<"second will be opened for output "<<endl;
-////    cout<<"Enter the first file name and press enter."<<endl;
-////    cin>>file1;
-////    cout<<"Enter the second file name and press enter."<<endl;
-////    cin>>file2;
