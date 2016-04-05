@@ -1,17 +1,5 @@
-/*Author: Kayla Rodriguez
- Title: Sentence Filter
- Problem:
-  Write a program that asks the user for two file names.
-  The first file will be opened for input and the second file will be opened 
-  for output. (It will be assumed that the first file contains sentences that 
-  end with a period.) The program will read the contents of the first file and 
-  change all the letters to lowercase except the first letter of each sentence, 
-  which should be made uppercase. The revised contents should be stored in the 
-  second file.       */
 //System Libraries
 #include <bits/stdc++.h>
-#include <fstream>
-#include <cctype>
 using namespace std;
 
 //User Libraries
@@ -22,15 +10,28 @@ using namespace std;
 
 //Execution Begins Here
 int main(int argc, char** argv){    
-    //Open the File
+    //Open the File and Declare/Initialize variables
     ifstream infile;
     infile.open("input.txt");
     ofstream outfile;
     outfile.open("output.txt");
+    string fileIn,fileOut;
     //boolean to flag end of sentence
     bool isfirst=true;
+    //check if file can open
+    cout << "This program changes all letters after a period to uppercase"
+            << endl;
+     //get user input for an input file name
+    cout << "Enter a file name you would like to read from" << endl;
+    getline(cin,fileIn);
+    infile.open(fileIn.c_str());
+     // get user input for an output file name
+    cout << "Enter a file name you would like to save the revised version " << endl;
+    cin >> fileOut;
+    outfile.open(fileOut.c_str());
     //Reading the first character
     char ch=infile.get();
+    if (infile){
     while (!infile.eof())
     {
         if (isfirst)
@@ -59,9 +60,10 @@ int main(int argc, char** argv){
     }
     infile.close();
     outfile.close();
-    //Read the File
-//    rdFile();
-    
-   
+    }else{
+        cout << "File opening failed" << endl;
+        cout << fileIn << endl << fileOut << endl;
+    }
+
     return 0;
 }
