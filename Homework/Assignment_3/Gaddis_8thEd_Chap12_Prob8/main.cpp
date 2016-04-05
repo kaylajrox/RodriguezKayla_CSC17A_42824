@@ -29,57 +29,53 @@ using namespace std;
 //Global Constants
 
 //Function Prototypes
-void fileToArray(ifstream&,const int,int *);
-void arrayToFile(ofstream&,int *,const int);
-void prntary(ofstream&,int *,const int);
+void fileToArray(fstream&,const int,int *);
+void arrayToFile(fstream&,int *,const int);
+void prntary(fstream&,int *,const int);
+string fileToString(fstream&);
 //Execution Begins Here
 int main(int argc, char** argv){
     //Declare Variables
     const int SIZE=7;//size of array
-    ifstream infile; //input infile
-    ofstream out;    //output file
-    int array[SIZE];
-    //Open the files
-    infile.open("arrayInput.txt",ios::binary);
-//trying to resolve problem so it includes spaces not sure if this is important
-    //for program
-    //   infile.read(&array,sizeof(array)); 
-    out.open("fileToArray.txt");
+    fstream fleNme; //file name
+    int array[SIZE]={1,2,3,4,5,6,7};    
+    //Output results to a file
+    arrayToFile(fleNme,array,SIZE);//File to string to print on console
     //Read the files
-    fileToArray(infile,SIZE,array);
-  //  getline(infile,array);
-    //print the contents of the array
-    prntary(out,array,SIZE);
+    fileToArray(fleNme,SIZE,array);    
     //close the files
-    infile.close();
-    out.close();
+    fleNme.close();
     return 0;
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
-/*                            Array to File                                   */
+/*                            Array to File (outputs file)                    */
 /******************************************************************************/
-void arrayToFile(ofstream& out,int *array,const int SIZE){
-    for(int i=0;i<SIZE;i++){
-        out<<array[i];           
-    }
+void arrayToFile(fstream& fleNme,int *array,const int SIZE){
+    //open the file
+    fleNme.open("fileToArray.txt",ios::out|ios::binary);
+    if(fleNme){
+        cout<<"File opened"<<endl;
+        fleNme.write(reinterpret_cast<char *>(array),sizeof(array));
+    }else
+        cout<<"File failed to open."<<endl;
+    //close the file
+    fleNme.close();
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
-/*                             File to Array                                  */
+/*                             File to Array (reads file)                     */
 /******************************************************************************/
-void fileToArray(ifstream& infile,const int SIZE,int *array){
-  for(int i=0;i<SIZE;i++){
-        infile>>array[i];
-   //    getline(infile,array,'\n');
-    }
-}
-//000000001111111112222222222333333333344444444445555555555666666666677777777778
-//345678901234567890123456789012345678901234567890123456789012345678901234567890
-/*                            Array to File                                   */
-/******************************************************************************/
-void prntary(ofstream& out,int *array,const int SIZE){
+void fileToArray(fstream& infile,const int SIZE,int *array){
+    infile.open("fileToArray.txt",ios::in|ios::binary);  
+    if(infile){
+        infile.read(reinterpret_cast<char *>(array),sizeof(array));            
+    }else
+        cout<<"File failed to Open"<<endl;
+    cout<<"Contents of array "<<endl;
     for(int i=0;i<SIZE;i++){
-        cout<<array[i];           
+        cout<<array[i]<<" ";
     }
+    infile.close();
 }
+

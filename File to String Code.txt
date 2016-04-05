@@ -1,0 +1,14 @@
+//000000001111111112222222222333333333344444444445555555555666666666677777777778
+//345678901234567890123456789012345678901234567890123456789012345678901234567890
+/*                            File to String 
+ * -->turns contents of file into a string and reads it line by line          */
+/******************************************************************************/
+string fileToString(ifstream& infile){
+    string filestring;
+    while(!infile.eof()){
+        string line;
+        getline(infile,line,'\n');
+        filestring+=line;
+    }
+    return filestring;
+}
