@@ -1,0 +1,23 @@
+Division Name: 
+west
+Quarter: 
+1
+Quarterly Sales 
+2
+Quarter: 
+1
+Quarterly Sales 
+2
+
+Division Name: 
+westn
+Quarter: 
+1
+Quarterly Sales 
+2
+Quarter: 
+1
+Quarterly Sales 
+2
+
+
