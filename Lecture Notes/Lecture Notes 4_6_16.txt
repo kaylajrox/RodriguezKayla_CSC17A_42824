@@ -1,0 +1,42 @@
+_ _ _ _ _ _ _ _|_ _ _ _ _ _ _ _|_ _ _ _ _ _ _ _|_ _ _ _ _ _ _ _
+
+                          24 bits
+ H1     H2       H3       H4      H5       H6      H7     H8 
+->hex is every four bits
+->this is the representation of a float
+
+What was largest factorial you could put for 3 bits?
+7 was largest,
+3! was largest you could do
+
+cout the answer for 5 and 6, you do not have a write a program that does it
+-you could bound the answer, value has to be between certain values
+
+What have we covered?
+-all notation and dynamic allocation applies to classes
+-dynamicly allocate the same way
+
+
+Questions/Concerns on Midterm
+-Make sure to understand conversions
+-Why do i have to dynamically allocate this one when i declared the size at the top?
+-Is there a way to dynamically allocate without asking the user the size?
+An alternative way to write this program by putting it in a structure:
+ SEE MIDTERM PROB 1 AND 2
+-Do i use const in my structure questions??
+-a way to put functions in a structure.....
+
+Chapter 13: Introduction to Classes
+-already know everything about notation and dynamic allocation
+-before classes, two ways to program:
+->Procedural programming
+->object-oriented programming-makes program more efficient
+-data hiding
+
+-you can utlitize a class the same way as a structure
+-the data elements in a class should be private--> not allowed in there
+
+-you need to know termnology
+
+
+         
