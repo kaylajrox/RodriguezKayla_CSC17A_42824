@@ -1,5 +1,6 @@
 /*midterm Problem 4_V2
-works..for now. possibly need to add the reverse encryption*/
+-possibly need to add the reverse encryption
+-need to check length of string!*/
 
 //System Libraries
 #include <bits/stdc++.h>
