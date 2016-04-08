@@ -19,17 +19,8 @@ struct statsResult
 //Global Constants
 
 //Function Prototypes
-int *fillAry(int);
-int *fillMod(int,int*);
 void prntAry(int *,int);
 void markSrt(int *,int);
-int *mode(int *,int,int,int);
-int findMax (int*,int);
-void prntMod(int *,int);
-int numMode(int *,int,int);
-int *freqF(int*,int,int);
-float med(int*,int);
-float mean(int*,int);
 statsResult printStat(int*,int,statsResult*);
 statsResult *avgMedMode(int*,int);
 
