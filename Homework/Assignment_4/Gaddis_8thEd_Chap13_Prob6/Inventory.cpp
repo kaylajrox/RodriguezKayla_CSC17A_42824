@@ -1,14 +1,17 @@
 #include "Inventory.h"
-
+//default constructor
 Inventory::Inventory() {
     itemNumber=0;
     quantity=0;
     cost=0;
     totalCost=0;
 }
-
+//copy constructor
 Inventory::Inventory(const Inventory& orig) {
-    setTotalCost();
+    itemNumber = orig.itemNumber;
+    quantity = orig.quantity;
+    cost = orig.cost;
+    totalCost = orig.totalCost;   
 }
 float Inventory::getCost() const{
     return cost;
@@ -22,19 +25,17 @@ int Inventory::getQuantity() const{
 float Inventory::getTotalCost() const{
     return totalCost;
 }
-float Inventory::setCost(float n){
+void Inventory::setCost(float n){
     cost=n;
-    return n;
 }
-int Inventory::setItemNumber(int n){
+void Inventory::setItemNumber(int n){
     itemNumber=n; 
-    return n;
 }
-int Inventory::setQuantity(int n){
+void Inventory::setQuantity(int n){
     quantity=n;
-    return n;
 }
-float Inventory::setTotalCost(){
-    totalCost=quantity*cost;
-    return totalCost;
+void Inventory::setTotalCost(int a,float b){
+    quantity=a;
+    cost=b;
+    totalCost=a*b;
 }

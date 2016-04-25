@@ -33,7 +33,7 @@ int main(int argc, char** argv) {
         cin>>cost;
     }while(cost<0);
     itemInfo.setCost(cost);
-    itemInfo.setTotalCost();
+    itemInfo.setTotalCost(quantity,cost);
     cout<<"Item Information\n";
     cout<<"Item Number: "<<itemInfo.getItemNumber()<<endl;
     cout<<"Quantity: "<<itemInfo.getQuantity()<<endl;

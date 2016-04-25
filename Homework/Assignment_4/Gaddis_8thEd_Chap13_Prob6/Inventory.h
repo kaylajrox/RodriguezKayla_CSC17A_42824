@@ -9,23 +9,22 @@
 #define INVENTORY_H
 
 class Inventory {
-public:
-    Inventory();
-    Inventory(const Inventory& orig);//
-    int setItemNumber(int);
-    int setQuantity(int);
-    float setCost(float);
-    float setTotalCost();
-    int getQuantity()const;
-    float getCost()const;
-    float getTotalCost()const;
-    int getItemNumber() const;
-private:
-    int itemNumber;
-    int quantity;
-    float cost;
-    float totalCost;
-
-};
+    private:
+        int itemNumber;
+        int quantity;
+        float cost;
+        float totalCost;
+    public:
+        Inventory();
+        Inventory(const Inventory& orig);//
+        void setItemNumber(int);
+        void setQuantity(int);
+        void setCost(float);
+        void setTotalCost(int,float);
+        int getQuantity()const;
+        float getCost()const;
+        float getTotalCost()const;
+        int getItemNumber() const;
+    };
 
 #endif /* INVENTORY_H */

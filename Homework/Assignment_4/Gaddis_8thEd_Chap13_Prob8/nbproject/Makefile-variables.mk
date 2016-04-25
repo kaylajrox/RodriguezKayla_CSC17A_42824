@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=Cygwin-Windows
 CND_ARTIFACT_DIR_Debug=dist/Debug/Cygwin-Windows
-CND_ARTIFACT_NAME_Debug=cppapplication_9
-CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin-Windows/cppapplication_9
+CND_ARTIFACT_NAME_Debug=gaddis_8thed_chap13_prob8
+CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin-Windows/gaddis_8thed_chap13_prob8
 CND_PACKAGE_DIR_Debug=dist/Debug/Cygwin-Windows/package
-CND_PACKAGE_NAME_Debug=cppapplication9.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin-Windows/package/cppapplication9.tar
+CND_PACKAGE_NAME_Debug=gaddis8thedchap13prob8.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin-Windows/package/gaddis8thedchap13prob8.tar
 # Release configuration
-CND_PLATFORM_Release=Cygwin_1-Windows
-CND_ARTIFACT_DIR_Release=dist/Release/Cygwin_1-Windows
-CND_ARTIFACT_NAME_Release=cppapplication_9
-CND_ARTIFACT_PATH_Release=dist/Release/Cygwin_1-Windows/cppapplication_9
-CND_PACKAGE_DIR_Release=dist/Release/Cygwin_1-Windows/package
-CND_PACKAGE_NAME_Release=cppapplication9.tar
-CND_PACKAGE_PATH_Release=dist/Release/Cygwin_1-Windows/package/cppapplication9.tar
+CND_PLATFORM_Release=Cygwin_4.x-Windows
+CND_ARTIFACT_DIR_Release=dist/Release/Cygwin_4.x-Windows
+CND_ARTIFACT_NAME_Release=gaddis_8thed_chap13_prob8
+CND_ARTIFACT_PATH_Release=dist/Release/Cygwin_4.x-Windows/gaddis_8thed_chap13_prob8
+CND_PACKAGE_DIR_Release=dist/Release/Cygwin_4.x-Windows/package
+CND_PACKAGE_NAME_Release=gaddis8thedchap13prob8.tar
+CND_PACKAGE_PATH_Release=dist/Release/Cygwin_4.x-Windows/package/gaddis8thedchap13prob8.tar
 #
 # include compiler specific variables
 #

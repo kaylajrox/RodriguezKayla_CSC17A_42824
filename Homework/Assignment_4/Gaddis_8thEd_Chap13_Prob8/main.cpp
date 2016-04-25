@@ -10,7 +10,7 @@
 #include <iostream>
 using namespace std;
 //User Libraries
-#include "newClass.h"
+#include "Circle.h"
 //Global Constants
 const float PI=3.1415926;
 

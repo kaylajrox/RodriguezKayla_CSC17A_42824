@@ -1,3 +1,3 @@
-build/Debug/Cygwin-Windows/main.o: main.cpp newClass.h
+build/Debug/Cygwin-Windows/main.o: main.cpp Circle.h
 
-newClass.h:
+Circle.h:
