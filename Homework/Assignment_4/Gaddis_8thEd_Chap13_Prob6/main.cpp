@@ -5,8 +5,10 @@
  * Gaddis_8thEd_Chap13_Prob6
  * Created on April 24, 2016, 2:09 PM
  */
+//System Libraries
 #include <iostream>
 #include <iomanip>
+//User Libraries
 #include "Inventory.h"
 using namespace std;
 

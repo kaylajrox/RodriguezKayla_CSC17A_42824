@@ -5,10 +5,10 @@
  * Problem: Gaddis_8thEd_Chap13_Prob1
  * Created on April 25, 2016, 3:39 PM
  */
-//system libraries
+//System Libraries
 #include <iostream>
 using namespace std;
-//function prototypes
+//User Libraries
 #include "Date.h"
 int main(int argc, char** argv) {
     //declare variables
