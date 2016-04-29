@@ -1,4 +1,4 @@
-+/* 
+/* 
  * File:   main.cpp
  * Author: Kayla
  * Title: Numbers Class
@@ -27,7 +27,13 @@ using namespace std;
 //User Libraries
 #include "Numbers.h"
 int main(int argc, char** argv) {
-
+    //declare variables
+    int number;
+    Numbers numInfo;
+    //input number to be written in its English word form
+    cout<<"Enter a number between 0-1000 ";
+    cin>>number;
+    numInfo.print(number);
     return 0;
 }
 

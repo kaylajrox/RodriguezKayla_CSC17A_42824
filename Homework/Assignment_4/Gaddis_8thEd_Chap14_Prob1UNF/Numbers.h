@@ -11,15 +11,9 @@
 using namespace std;
 class Numbers {
 private:
-    static string lessThan20[20] = {"zero","one","two","three","four","five","six",
-    "seven","eight","nine","ten","eleven","twelve","thirteen","fourteen",
-    "fifteen","sixteen","seventeen","eighteen","nineteen"};
-    static string hundred="hundred";
-    static string thousand="thousand";
+    int number;
 public:
-    Numbers();
-    Numbers(const Numbers& orig);
-    virtual ~Numbers();
+    void print(int);
 };
 
 #endif /* NUMBERS_H */

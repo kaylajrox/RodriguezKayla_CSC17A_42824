@@ -4,7 +4,6 @@
  * 
  * Created on April 25, 2016, 8:35 PM
  */
-/*Questions: Do I also have to set the strings in the default constructor?*/
 #include "PersonalInfo.h"
 #include <string>
 using namespace std;
