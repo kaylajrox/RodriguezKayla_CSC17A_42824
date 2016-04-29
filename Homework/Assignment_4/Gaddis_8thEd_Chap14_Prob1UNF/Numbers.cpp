@@ -21,7 +21,15 @@ using namespace std;
 //    "","","","", ""}; 
 //    SIZE=0;
 }
-void Numbers::print(int amount){
+  //initialize static members
+  const int Numbers::SIZE=20;
+  const string Numbers::thousand= "thousand";
+  const string Numbers::thousand= "hundred";
+  const string Numbers::lessThan20[SIZE]= {"zero", "one","two","three","four","five",
+    "six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen",
+    "fifteen","sixteen","seventeen","eighteen", "nineteen"}; 
+  //print number function
+  void Numbers::print(int amount){
     number=amount;
     int n10000s,n1000s,n100s,n10s,n1s;//Number of 10^x's
     //Calculate the number of 1000's,100's,10's,1's
@@ -37,18 +45,18 @@ void Numbers::print(int amount){
     switch(n1000s){
         for(int i=1;i<=10;i++){
         lessThan20[i]; 
-        if (i=n1000s)
-            result+=lessThan20[i]; 
-        result+=thousand;
+            if (i=n1000s)
+                result+=lessThan20[i]; 
+            result+=thousand;
         }
     }
     //Output the 100's
     switch(n100s){
         for(int i=1;i<=10;i++){
-        lessThan20[i]; 
-        if (i=n100s)
-            result+=lessThan20[i]; 
-        result+=hundred;
+            lessThan20[i]; 
+            if (i=n100s)
+                result+=lessThan20[i]; 
+            result+=hundred;
         }
     }
     switch(n10s){

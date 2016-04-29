@@ -12,18 +12,12 @@ class Numbers {
 private:
     int number;
     static const int SIZE;
-    static string lessThan20[SIZE];
-    static string hundred; 
-    static string thousand; 
+    static const string *lessThan20;
+    static const string hundred; 
+    static const string thousand; 
 public:
     Numbers();
     void print(int);
 };
-const int Numbers::SIZE=20;
-string Numbers::thousand= "thousand";
-string Numbers::thousand= "hundred";
-string Numbers::lessThan20[SIZE]= {"zero", "one","two","three","four","five",
-    "six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen",
-    "fifteen","sixteen","seventeen","eighteen", "nineteen"}; 
 #endif /* NUMBERS_H */
 
