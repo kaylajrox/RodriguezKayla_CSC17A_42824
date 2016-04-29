@@ -1,4 +1,4 @@
-/* 
+ /* 
  * File:   Numbers.cpp
  * Author: Kayla
  * 
@@ -47,8 +47,7 @@ using namespace std;
     
     switch(n1000s){
         for(int i=1;i<=10;i++){
-        lessThan20[i]; 
-            if (i==n1000s)
+            if (lessThan20[i]==n1000s)
                 result+=lessThan20[i]; 
             result+=thousand;
         }
@@ -56,8 +55,7 @@ using namespace std;
     //Output the 100's
     switch(n100s){
         for(int i=1;i<=10;i++){
-            lessThan20[i]; 
-            if (i==n100s)
+            if (lessThan20[i]==n100s)
                 result+=lessThan20[i]; 
             result+=hundred;
         }
@@ -73,8 +71,7 @@ using namespace std;
         case 2:  result+="Twenty ";break;
         case 1: {
             for(int i=10;i<=SIZE;i++){
-                lessThan20[i]; 
-                if (i==n1s)
+                if (lessThan20[i]==n1s)
                     result+=lessThan20[i]; 
             }
         }

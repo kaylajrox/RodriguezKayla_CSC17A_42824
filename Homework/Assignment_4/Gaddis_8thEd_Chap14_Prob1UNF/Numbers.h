@@ -13,13 +13,12 @@ class Numbers {
 private:
     int number;
     static const int SIZE;
-    static const string *lessThan20;
+    static const string lessThan20[SIZE];
     static const string hundred; 
     static const string thousand; 
 public:
     Numbers();
     void print(int);
-  //  ~Numbers();
 };
 #endif /* NUMBERS_H */
 
