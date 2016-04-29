@@ -24,6 +24,7 @@ private:
     float price3;
 public:
   //  RetailItem(string descrptn,int unitsOnHand,float price);  
+    RetailItem();
     void setItem1(string,int,float);
     void setItem2(string,int,float);
     void setItem3(string,int,float);

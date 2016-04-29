@@ -8,17 +8,17 @@
 #include "RetailItem.h"
 #include <string>
 using namespace std;
-//RetailItem::RetailItem() {
-//    string descrptn1=""; 
-//    int unitsOnHand1=0;
-//    float price1=0.0;
-//    string descrptn2=""; 
-//    int unitsOnHand2=0;
-//    float price2=0.0;
-//    string descrptn3=""; 
-//    int unitsOnHand3=0;
-//    float price3=0.0;
-//}
+RetailItem::RetailItem() {
+    descrptn1=""; 
+    unitsOnHand1=0;
+    price1=0.0;
+    descrptn2=""; 
+    unitsOnHand2=0;
+    price2=0.0;
+    descrptn3=""; 
+    unitsOnHand3=0;
+    price3=0.0;
+}
 void RetailItem::setItem1(string a, int b, float c){
     descrptn1=a;
     unitsOnHand1=b;

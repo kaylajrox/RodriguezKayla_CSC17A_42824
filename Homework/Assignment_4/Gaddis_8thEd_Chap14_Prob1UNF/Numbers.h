@@ -13,6 +13,7 @@ class Numbers {
 private:
     int number;
 public:
+    Numbers();
     void print(int);
 };
 

@@ -8,8 +8,8 @@
 #include "Numbers.h"
 #include <string>
 using namespace std;
-Numbers::Numbers() {
-    number=0;
+  Numbers::Numbers() {
+    number = 0;
 }
 void Numbers::print(int amount){
     number=amount;
