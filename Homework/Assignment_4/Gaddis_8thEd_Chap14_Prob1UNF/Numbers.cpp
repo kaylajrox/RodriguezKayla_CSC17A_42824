@@ -23,14 +23,14 @@ using namespace std;
 //    SIZE=0;
 }
 
-  /*only works with strings taken out*/
+  /*Problems with array*/
   //initialize static members
   const int Numbers::SIZE=20;
   const string Numbers::thousand= "thousand";
   const string Numbers::hundred= "hundred";
-//  const string Numbers::lessThan20[SIZE]= {"zero", "one","two","three","four","five",
-//    "six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen",
-//    "fifteen","sixteen","seventeen","eighteen", "nineteen"}; 
+  const string Numbers::lessThan20[SIZE]= {"zero", "one","two","three","four","five",
+    "six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen",
+    "fifteen","sixteen","seventeen","eighteen", "nineteen"}; 
   //print number function
  void Numbers::print(int amount){
     number=amount;
@@ -48,7 +48,7 @@ using namespace std;
     switch(n1000s){
         for(int i=1;i<=10;i++){
         lessThan20[i]; 
-            if (i=n1000s)
+            if (i==n1000s)
                 result+=lessThan20[i]; 
             result+=thousand;
         }
@@ -57,7 +57,7 @@ using namespace std;
     switch(n100s){
         for(int i=1;i<=10;i++){
             lessThan20[i]; 
-            if (i=n100s)
+            if (i==n100s)
                 result+=lessThan20[i]; 
             result+=hundred;
         }
@@ -74,7 +74,7 @@ using namespace std;
         case 1: {
             for(int i=10;i<=SIZE;i++){
                 lessThan20[i]; 
-                if (i=n1s)
+                if (i==n1s)
                     result+=lessThan20[i]; 
             }
         }
