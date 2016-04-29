@@ -8,6 +8,7 @@
 //system libraries
 #include <string>
 #include <iostream>
+  
 using namespace std;
 //user libraries
 #include "Numbers.h"
@@ -21,15 +22,17 @@ using namespace std;
 //    "","","","", ""}; 
 //    SIZE=0;
 }
+
+  /*only works with strings taken out*/
   //initialize static members
   const int Numbers::SIZE=20;
   const string Numbers::thousand= "thousand";
-  const string Numbers::thousand= "hundred";
-  const string Numbers::lessThan20[SIZE]= {"zero", "one","two","three","four","five",
-    "six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen",
-    "fifteen","sixteen","seventeen","eighteen", "nineteen"}; 
+  const string Numbers::hundred= "hundred";
+//  const string Numbers::lessThan20[SIZE]= {"zero", "one","two","three","four","five",
+//    "six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen",
+//    "fifteen","sixteen","seventeen","eighteen", "nineteen"}; 
   //print number function
-  void Numbers::print(int amount){
+ void Numbers::print(int amount){
     number=amount;
     int n10000s,n1000s,n100s,n10s,n1s;//Number of 10^x's
     //Calculate the number of 1000's,100's,10's,1's

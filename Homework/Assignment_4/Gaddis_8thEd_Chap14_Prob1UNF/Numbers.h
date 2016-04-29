@@ -7,6 +7,7 @@
 #ifndef NUMBERS_H
 #define NUMBERS_H
 #include <string>
+#include <bits/stdc++.h>
 using namespace std;
 class Numbers {
 private:
@@ -18,6 +19,7 @@ private:
 public:
     Numbers();
     void print(int);
+  //  ~Numbers();
 };
 #endif /* NUMBERS_H */
 
