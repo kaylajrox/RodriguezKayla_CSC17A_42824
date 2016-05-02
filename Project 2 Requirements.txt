@@ -18,10 +18,9 @@ I want computer to not to pick duplicate colors
 
 
 Layout:
-struct for color picks
-memory allocation for how many turns 
-I want to take what is inputted as string and have the Computer change
-it into a single character
-I want to put the colors in the spots that the user entered
-Holds each turn into an array->this will be used for memory allocation
-possibly add another class with static variables for the leaderboard
+struct for color picks -
+memory allocation for how many turns -
+I want to take what is inputted as string and have the Computer change it into a single character -
+I want to put the colors in the spots that the user entered **STILL NEED TO DO THIS**
+Holds each turn into an array->this will be used for memory allocation (possibly did this)
+possibly add another class with static variables for the leaderboard **STILL NEED TO DO THIS**
