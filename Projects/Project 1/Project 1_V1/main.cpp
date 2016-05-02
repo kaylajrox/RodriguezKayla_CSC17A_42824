@@ -21,6 +21,9 @@
   * want to convert these strings to characters
   * 
   * Possibly change the else if to just a bunch of single ifs
+  * get the leader board  to work
+  * 
+  * Need to read and write to a binary file
   * 
   */
 //System Libraries
@@ -47,7 +50,7 @@ char *compic(ComColor[],string[],char[],int,char[]);
 char *input(UserColor[],string*,const int,string[],char[],char[]);
 void switchH(UserColor[],ComColor[],bool,char,int,int&);
 void reppic(char[],char[],int &,const char,int &,const int ,vector<string>&);
-void results(char[],char[],int&,const char,const char,int&,int,char[][COLS],
+void results(UserColor[],ComColor[],int&,const char,const char,int&,int,char[][COLS],
         const int,string[],int);
 int check(char[],int, char);
 string aryToStr(char [],int);
@@ -82,6 +85,7 @@ char end[SIZE][COLS]; //2D array to show final results
 vector<string>list; //vector which converts characters to one condensed string
 int nameN=10; //number of names
 string *eachPick; //holds an array of each of the turn options 
+string names[nameN];//names in list
 char optChar[8]={'R','G','B','N','K','Y','O','W'};//character options
 char comChar[SIZE];//computer's colors in character representation
 char userChar[SIZE];//User's colors in character representation
@@ -109,7 +113,7 @@ for(int n=1;n<=limit;n++){
     }
     switchH(clrPick,cColor,hintR,hint,nTrys,limit);
 }
-//results(color,cColor,nTrys,CNVPERC,GMELMT,limit,SIZE,end,COLS,names,nameN);
+results(clrPick,cColor,nTrys,CNVPERC,GMELMT,limit,SIZE,end,COLS,names,nameN);
 //free allocated memory
 delete[] eachPick;
 return 0;
@@ -180,33 +184,34 @@ string aryToStr(char color[],int cSize){
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
 /*                        Results Output Function                             */
 /******************************************************************************/
-void results(char color[],char pick[],int &nTrys,const char CNVPERC,
+void results(UserColor color[],ComColor pick[],int &nTrys,const char CNVPERC,
         const char GMELMT,int &limit,const int SIZE,char end[][COLS],const int COLS,
         string names[],int nameN){
     //Reveals Computer's Choice Once User Guesses
     cout<<"Your colors are ";
     for(int i=0;i<SIZE;i++){
-        cout<<color[i]<<" ";
+        cout<<color[i].color<<" ";
     }cout<<endl; 
-    cout<<"Final Color Choices\tNumber of Attempts Listed For each Color"<<endl;
-    for (int j=0;j<SIZE;j++){
-        cout<<color[j];
-        int i=nTrys;
-        cout<<end[color[j]][COLS];
-        cout<<"                                     "<<i;
-        cout<<endl;
-    }
-    if(nTrys<=GMELMT&&color[0]==pick[0]&&color[1]==pick[1]&&
-    color[2]==pick[2]&&color[3]==pick[3]){
-        //Tries Percentage if won
+//    cout<<"Final Color Choices\tNumber of Attempts Listed For each Color"<<endl;
+//    for (int j=0;j<SIZE;j++){
+//        cout<<color[j].color;
+//        int i=nTrys;
+//        cout<<end[color[j]][COLS];
+//        cout<<"                                     "<<i;
+//        cout<<endl;
+ //   }
+    if(nTrys<=GMELMT&&color[0].color==pick[0].getColor()&&color[1].color==pick[1].getColor()&&
+    color[2].color==pick[2].getColor()&&color[3].color==pick[3].getColor()){
+        //Tries Percentage if won 
+        //possibly do not need this
         cout<<fixed<<setprecision(1);
         cout<<"You win!"<<endl;
         cout<<"The percentage of the board you got through is ";
         cout<<(float)(nTrys)/(10.0f)*CNVPERC<<"% "<<endl;
         leader(names,nameN);
-    }else{
+    }else
         cout<<"You lose. You could not guess in 10 tries or less."<<endl;
-    }
+    
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
@@ -300,7 +305,7 @@ do{
             //Three of your color choices are correct
             if ((color[0].color==pick[1].getColor()||color[0].color==pick[2].getColor()
                     ||color[0].color==pick[3].getColor())&&
-(color[1].color==pick[2].getColor()||
+                    (color[1].color==pick[2].getColor()||
                     color[1].color==pick[3].getColor()||color[1].color==pick[0].getColor())
                      &&(color[2].color==pick[1].getColor()||
                     color[2].color==pick[3].getColor()||
