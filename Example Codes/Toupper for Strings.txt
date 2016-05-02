@@ -1,0 +1,3 @@
+ for (int i=0;i<color1.size();i++){
+        color1[i]=toupper(color1[i]);
+    }
