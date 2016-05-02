@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=Cygwin-Windows
 CND_ARTIFACT_DIR_Debug=dist/Debug/Cygwin-Windows
-CND_ARTIFACT_NAME_Debug=project_1_testing
-CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin-Windows/project_1_testing
+CND_ARTIFACT_NAME_Debug=project_1_setup
+CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin-Windows/project_1_setup
 CND_PACKAGE_DIR_Debug=dist/Debug/Cygwin-Windows/package
-CND_PACKAGE_NAME_Debug=project1testing.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin-Windows/package/project1testing.tar
+CND_PACKAGE_NAME_Debug=project1setup.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin-Windows/package/project1setup.tar
 # Release configuration
 CND_PLATFORM_Release=Cygwin_1-Windows
 CND_ARTIFACT_DIR_Release=dist/Release/Cygwin_1-Windows
-CND_ARTIFACT_NAME_Release=project_1_testing
-CND_ARTIFACT_PATH_Release=dist/Release/Cygwin_1-Windows/project_1_testing
+CND_ARTIFACT_NAME_Release=project_1_setup
+CND_ARTIFACT_PATH_Release=dist/Release/Cygwin_1-Windows/project_1_setup
 CND_PACKAGE_DIR_Release=dist/Release/Cygwin_1-Windows/package
-CND_PACKAGE_NAME_Release=project1testing.tar
-CND_PACKAGE_PATH_Release=dist/Release/Cygwin_1-Windows/package/project1testing.tar
+CND_PACKAGE_NAME_Release=project1setup.tar
+CND_PACKAGE_PATH_Release=dist/Release/Cygwin_1-Windows/package/project1setup.tar
 #
 # include compiler specific variables
 #

@@ -5,6 +5,7 @@
  /*Still converting everything to object form.
   Trying to change the string values into characters that can be shown in a 
   table to see how the user has done yet
+  * THIS IS VERY IMPORTANT-SPOT VARIABLE
   * Need to assign values to the "spot" variables within the classes
   * and within the structure and that spot needs to corelate to the order
   * of which the color is seen in the table. 
@@ -42,10 +43,10 @@ struct UserColor{
 const char CNVPERC=100;
 const int COLS=2;
 //Function Prototypes
-void compic(ComColor[],string[]);
-void input(UserColor[],string*,const int,string[]);
-void switchH(char[],char[],bool,char,int,int&);
-void reppic(UserColor[],ComColor[],int&,const char,int&,const int,vector<string>&);
+char *compic(ComColor[],string[],char[],int,char[]);
+char *input(UserColor[],string*,const int,string[],char[],char[]);
+void switchH(UserColor[],ComColor[],bool,char,int,int&);
+void reppic(char[],char[],int &,const char,int &,const int ,vector<string>&);
 void results(char[],char[],int&,const char,const char,int&,int,char[][COLS],
         const int,string[],int);
 int check(char[],int, char);
@@ -53,6 +54,9 @@ string aryToStr(char [],int);
 void leader(string[],int);
 void selectS(string[],int);
 void bublSrt(int[],int);
+void hints1();
+void hints2();
+void hints3();
 
 //Execution Begins Here
 int main(int argc, char** argv) {
@@ -79,32 +83,35 @@ vector<string>list; //vector which converts characters to one condensed string
 int nameN=10; //number of names
 string *eachPick; //holds an array of each of the turn options 
 char optChar[8]={'R','G','B','N','K','Y','O','W'};//character options
+char comChar[SIZE];//computer's colors in character representation
+char userChar[SIZE];//User's colors in character representation
         
 //User Inputs Game Amount
-//cout<<"What is the max amount of attempts you would like to play?"<<endl;
-//cin>>limit;
-////Modify the limit of games based on how many it takes to win
-//limit=limit>GMELMT?limit:GMELMT;//Ternary Operator
-//eachPick=new string[limit];
+cout<<"What is the max amount of attempts you would like to play?"<<endl;
+cin>>limit;
+//Modify the limit of games based on how many it takes to win
+limit=limit>GMELMT?limit:GMELMT;//Ternary Operator
+eachPick=new string[limit];  
 //Function Output
-compic(cColor,options);
+char *cmChar=compic(cColor,options,optChar,SIZE,comChar);
 for(int i=0;i<SIZE;i++){
     cout<<cColor[i].getColor()<<" \n";
 }
-//for(int n=1;n<=limit;n++){
-    input(clrPick,order,SIZE,options);
-    reppic(color,cColor,nTrys,GMELMT,limit,SIZE,list);
-//    nTrys++;
-//    if (nTrys<=GMELMT&&color[0]==cColor[0]&&color[1]==cColor[1]&&color[2]==cColor[2]&&
-//             color[3]==cColor[3]){
-//        limit=nTrys;
-//        cout<<"Your number of tries is "<<nTrys<<endl;
-//    }
-//    switchH(color,cColor,hintR,hint,nTrys,limit);
-//}
+for(int n=1;n<=limit;n++){
+    char *urChar=input(clrPick,order,SIZE,options,optChar,userChar);
+    reppic(urChar,cmChar,nTrys,GMELMT,limit,SIZE,list);
+    nTrys++;
+    if (nTrys<=GMELMT&&clrPick[0].color==cColor[0].getColor()&&
+            clrPick[1].color==cColor[1].getColor()&&
+            clrPick[2].color==cColor[2].getColor()&&clrPick[3].color==cColor[3].getColor()){
+        limit=nTrys;
+        cout<<"Your number of tries is "<<nTrys<<endl;
+    }
+    switchH(clrPick,cColor,hintR,hint,nTrys,limit);
+}
 //results(color,cColor,nTrys,CNVPERC,GMELMT,limit,SIZE,end,COLS,names,nameN);
 //free allocated memory
-//delete[] eachPick;
+delete[] eachPick;
 return 0;
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
@@ -112,38 +119,46 @@ return 0;
 /*                       Computer picks its colors                            */
 /******************************************************************************/
 //Computer Generated Pick of Colors User Tries to Guess
-void compic(ComColor cColor[],string options[]){
-    for(int j=0;j<4;j++){
+char *compic(ComColor cColor[],string options[],char optChar[],int SIZE,char comChar[]){
+    for(int j=0;j<SIZE;j++){
         int index=rand()%8;
         cColor[j].setColor(options[index]);
+        comChar[j]=optChar[index];
     }
+    return comChar;
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
 /*                       Input colors Function                                */
 /******************************************************************************/
-void input(UserColor clrPick[],string *order,const int SIZE,string options[]){
+char *input(UserColor clrPick[],string *order,const int SIZE,string options[],char optChar[],
+         char userChar[]){
     for (int i=0;i<SIZE;i++){
         //i want to have a validation here to make sure its of the colors in list
         //also I want to make sure any form of capitial/lowercase is acceptable
         cout<<"Pick your "<<*(order+i)<<" color"<<endl;      
         cin>>clrPick[i].color;
-    }   
+         //turn to characters also
+        if(clrPick[i].color==options[i])
+            optChar[i]= userChar[i];               
+    } 
+    return userChar;
+    
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
 /*                      Representation of previous picks to user              */
 /******************************************************************************/
-void reppic(UserColor color[],ComColor pick[],int &nTrys,const char GMELMT,int &limit,
+void reppic(char color[],char pick[],int &nTrys,const char GMELMT,int &limit,
      const int SIZE,vector<string>&list){
     //Representation of User's Original Choices
     //this is where the conversion from string to characters will happen
     cout<<"Your colors are ";
     for(int i=0;i<SIZE;i++){
-        cout<<color[i].color<<" ";
+        cout<<color[i]<<" ";
     }cout<<endl;
     //Loop to generate the table of choices
-    //list.push_back(aryToStr(color,SIZE));
+    list.push_back(aryToStr(color,SIZE));
     cout<<"Color Choices\tAttempt Number"<<endl;
     cout<<"----------------------------"<<endl;
     for(int i=0;i<list.size();i++){
@@ -286,7 +301,7 @@ do{
             if ((color[0].color==pick[1].getColor()||color[0].color==pick[2].getColor()
                     ||color[0].color==pick[3].getColor())&&
 (color[1].color==pick[2].getColor()||
-                    color[1].color==pick[3].getColor()||color[1]==pick[0])
+                    color[1].color==pick[3].getColor()||color[1].color==pick[0].getColor())
                      &&(color[2].color==pick[1].getColor()||
                     color[2].color==pick[3].getColor()||
                     color[2].color==pick[0].getColor())){
@@ -322,7 +337,7 @@ do{
                     ||color[1].color==pick[0].getColor())){
                 hints2();
             }else if ((color[0].color==pick[1].getColor()||
-                    color[0].color==pick[2].getColor()||color[0]==pick[3])
+                    color[0].color==pick[2].getColor()||color[0].color==pick[3].getColor())
                     &&(color[2].color==pick[1].getColor()||
                     color[2].color==pick[3].getColor()||color[2].color==pick[0].getColor())){
                 hints2();

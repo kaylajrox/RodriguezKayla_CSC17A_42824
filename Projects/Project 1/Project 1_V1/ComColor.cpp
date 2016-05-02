@@ -23,14 +23,6 @@ string ComColor::getColor() {
 int ComColor::getSpot() {
     return spot;
 }
-//converting character strings to single characters
-char ComColor::strToChar(string color){
-    string options[8]={"Red","Green","Blue","Brown","Black","Yellow","Orange","White"};
-    if (color=="Red")"Red"='R';
-        
-        
-        
-        
-    }
+
 
 
