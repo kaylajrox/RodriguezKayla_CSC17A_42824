@@ -14,7 +14,7 @@ Also, use doxygen to document your code in addition to flowcharting.
 
 Questions: 
 What is doxygen?
-I want computer to duplicate colors
+I want computer to not to pick duplicate colors
 
 
 Layout:
