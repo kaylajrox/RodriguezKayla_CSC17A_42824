@@ -24,7 +24,8 @@
   * get the leader board  to work
   * 
   * Need to read and write to a binary file
-  * 
+  * Questions: Should I use cin or getline to read in the word? Will cin cause
+  * problems
   */
 //System Libraries
 #include <iostream>
@@ -33,7 +34,7 @@
 #include <ctime>
 #include <fstream> //File I/O
 #include <iomanip> //Formatting
-#include <vector>
+#include <vector> //vector library
 using namespace std;
  
 //User Libraries
@@ -171,7 +172,8 @@ void reppic(char color[],char pick[],int &nTrys,const char GMELMT,int &limit,
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
-/*                          Array to String                                   */
+/*                          Array to String 
+ * Turns an Array of characters into its own string to be outputted in a table*/
 /******************************************************************************/
 string aryToStr(char color[],int cSize){
     string str=" ";
