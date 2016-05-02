@@ -24,3 +24,6 @@ I want to take what is inputted as string and have the Computer change it into a
 I want to put the colors in the spots that the user entered **STILL NEED TO DO THIS**
 Holds each turn into an array->this will be used for memory allocation (possibly did this)
 possibly add another class with static variables for the leaderboard **STILL NEED TO DO THIS**
+
+if statement for spots??
+change the order of which they are inputting with the spot in place
