@@ -1,0 +1,27 @@
+ Memory allocation
+
+     Functions with structures, used as input and output
+
+     Pointers with arrays and arrays of structures, internally as well as externally.
+
+     Use of character arrays as well as string objects.
+
+     Reading and wrting to binary files.
+
+Basically anything in Chapters 9 to 12 from Gaddis.
+
+Also, use doxygen to document your code in addition to flowcharting.
+
+Questions: 
+What is doxygen?
+I want computer to duplicate colors
+
+
+Layout:
+struct for color picks
+memory allocation for how many turns 
+I want to take what is inputted as string and have the Computer change
+it into a single character
+I want to put the colors in the spots that the user entered
+Holds each turn into an array->this will be used for memory allocation
+possibly add another class with static variables for the leaderboard
