@@ -22,7 +22,6 @@ public:
     void setSpot(int);
     string getColor();
     int getSpot();
-    char strToChar(string);
 };
 
 #endif /* COMCOLOR_H */

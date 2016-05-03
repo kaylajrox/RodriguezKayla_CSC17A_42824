@@ -5,16 +5,6 @@
  /*Still converting everything to object form.
   Trying to change the string values into characters that can be shown in a 
   table to see how the user has done yet
-  * THIS IS VERY IMPORTANT-SPOT VARIABLE
-  * Need to assign values to the "spot" variables within the classes
-  * and within the structure and that spot needs to corelate to the order
-  * of which the color is seen in the table. 
-  * For example: The user inputs 
-  * yellow spot 3
-  * green spot 2
-  * blue spot 4
-  * brown spot 1 it needs to be saved and displayed as
-  * brown green yellow blue 
   * and I need to validate that they do not put in
   * a spot number that they had already put for a previous input
   * I need to validate that they only pick the colors from the given list
@@ -24,8 +14,6 @@
   * get the leader board  to work
   * 
   * Need to read and write to a binary file
-  * Questions: Should I use cin or getline to read in the word? Will cin cause
-  * problems
   */
 //System Libraries
 #include <iostream>
@@ -47,8 +35,8 @@ struct UserColor{
 const char CNVPERC=100;
 const int COLS=2;
 //Function Prototypes
-char *compic(ComColor[],string[],char[],int,char[]);
-char *input(UserColor[],string*,const int,string[],char[],char[]);
+char *compic(ComColor[],string[],char[],int);
+char *input(UserColor[],string*,const int,string[],char[]);
 void switchH(UserColor[],ComColor[],bool,char,int,int&);
 void reppic(char[],char[],int &,const char,int &,const int ,vector<string>&);
 void results(UserColor[],ComColor[],int&,const char,const char,int&,int,char[][COLS],
@@ -59,11 +47,12 @@ void leader(string[],int);//leader board shows the best scores
 void hints1();
 void hints2();
 void hints3();
+void wtFile(char[],int,fstream& ,int,const char,UserColor[],ComColor[],vector<string>&);
 //Execution Begins Here
 int main(int argc, char** argv) {
     //The Problem to solve
-    cout<<endl<<"Solution to Project 2"<<endl;
-    cout<<endl<<"Mastermind Problem "<<endl<<endl;
+//    cout<<endl<<"Solution to Project 2"<<endl;
+//    cout<<endl<<"Mastermind Problem "<<endl<<endl;
     int nTrys=0;
     //Set the random number seed
     srand(static_cast<unsigned int>(time(0)));
@@ -74,7 +63,7 @@ int main(int argc, char** argv) {
     string order[SIZE]={"first","second","third","fourth"}; //User Order Inputs
     string options[8]={"Red","Green","Blue","Brown","Black","Yellow","Orange","White"};//Options for computer and user 
     ComColor cColor[SIZE]; //Computer generated random pick
-    char hint;  //hint for the gamee
+    char hint;  //hint for the game
     int limit=0;  //number of attempts, the user can set their attempts greater than 10
     const char GMELMT=10; //Number limit which determines win or loss
     bool hintR=true; //exit hint when false
@@ -85,25 +74,38 @@ int main(int argc, char** argv) {
     string *eachPick; //holds an array of each of the turn options 
     string names[nameN];//names in list
     char optChar[8]={'R','G','B','N','K','Y','O','W'};//character options
-    char comChar[SIZE];//computer's colors in character representation
-    char userChar[SIZE];//User's colors in character representation
-
+//    char *comChar;//computer's colors in character representation
+    char *userChar;//User's colors in character representation
+    fstream infile; //in file instructions
+    string instr; //file instructions
+    fstream outptFile;//output file
+    //Open the Files
+    infile.open("instructions.txt", ios::in|ios::binary);
+    outptFile.open("results.txt",ios::out);
+    if( infile ){
+        getline( infile, instr );
+        while( infile ){
+            cout << instr << endl;
+            getline( infile, instr );
+        }
+    }
+    //Set Game Limit
     cout<<"Enter in a maximum limit for the game. The game limit is ten, but you ";
     cout<<"can play more than 10 games to enter"<<endl;
     //User Inputs Game Amount
     cout<<"What is the max amount of attempts you would like to play?"<<endl;
     cin>>limit;
     //Modify the limit of games based on how many it takes to win
-    limit=limit>GMELMT?limit:GMELMT;//Ternary Operator
+    limit= limit>GMELMT ? limit : GMELMT;//Ternary Operator
     eachPick=new string[limit];  
     //Function Output
-    char *cmChar=compic(cColor,options,optChar,SIZE,comChar);
+    char *comChar = compic(cColor,options,optChar,SIZE);
     for(int i=0;i<SIZE;i++){
-        cout<<cColor[i].getColor()<<" \n";
+        cout<<cColor[i].getColor()<<" ";
     }
     for(int n=1;n<=limit;n++){
-        char *urChar=input(clrPick,order,SIZE,options,optChar,userChar);
-        reppic(urChar,cmChar,nTrys,GMELMT,limit,SIZE,list);
+        userChar=input(clrPick,order,SIZE,options,optChar);
+        reppic(userChar,comChar,nTrys,GMELMT,limit,SIZE,list);
         nTrys++;
         if (nTrys<=GMELMT&&clrPick[0].color==cColor[0].getColor()&&
                 clrPick[1].color==cColor[1].getColor()&&
@@ -114,16 +116,45 @@ int main(int argc, char** argv) {
         switchH(clrPick,cColor,hintR,hint,nTrys,limit);
     }
     results(clrPick,cColor,nTrys,CNVPERC,GMELMT,limit,SIZE,end,COLS,names,nameN);
+    wtFile(userChar,SIZE,outptFile,nTrys,GMELMT,clrPick,cColor,list);
     //free allocated memory
     delete[] eachPick;
+    delete[] comChar;
+    delete[] userChar;
+    //close the files
+    infile.close();
     return 0;
 }
+//000000001111111112222222222333333333344444444445555555555666666666677777777778
+//345678901234567890123456789012345678901234567890123456789012345678901234567890
+/*                             Write the File                                  */
+/******************************************************************************/
+void wtFile(char color[], int SIZE,fstream& out,int &nTrys,const char GMELMT,
+        UserColor clrPick[],ComColor pick[],vector<string>&list){
+    out<<"Color Choices\tTurn Number\r";
+    out<<"----------------------------\r";
+    for(int i=0;i<list.size();i++)
+        out<<list[i]<<"               "<<i+1<<"\r";
+     
+    if(nTrys<=GMELMT&&clrPick[0].color==pick[0].getColor()&&clrPick[1].color==pick[1].getColor()&&
+    clrPick[2].color==pick[2].getColor()&&clrPick[3].color==pick[3].getColor()){
+        //Tries Percentage if won 
+        //possibly do not need this
+        out<<fixed<<setprecision(1);
+        out<<"You win!"<<endl;
+        out<<"The percentage of the board you got through is ";
+        out<<(float)(nTrys)/(10.0f)*CNVPERC<<"% "<<endl;
+    }else
+        out<<"You lose. You could not guess in 10 tries or less."<<endl;
+    
+}    
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
 /*                       Computer picks its colors                            */
 /******************************************************************************/
 //Computer Generated Pick of Colors User Tries to Guess
-char *compic(ComColor cColor[],string options[],char optChar[],int SIZE,char comChar[]){
+char *compic(ComColor cColor[],string options[],char optChar[],int SIZE){
+    char *temp = new char[SIZE];
     bool cPick[8] = {0};
     for(int j=0;j<SIZE;j++){
         int index=rand()%8;
@@ -131,16 +162,16 @@ char *compic(ComColor cColor[],string options[],char optChar[],int SIZE,char com
             index=rand()%8;
         cPick[index] = true;
         cColor[j].setColor(options[index]);
-        comChar[j]=optChar[index];
+        temp[j]=optChar[index];
     }
-    return comChar;
+    return temp;
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
 /*                       Input colors Function                                */
 /******************************************************************************/
-char *input(UserColor clrPick[],string *order,const int SIZE,string options[],char optChar[],
-         char userChar[]){
+char *input(UserColor clrPick[],string *order,const int SIZE,string options[],char optChar[]){
+    char * userChar=new char[SIZE];
     bool set[SIZE]={0};
     for (int i=0;i<SIZE;i++){
         string color;
@@ -150,17 +181,15 @@ char *input(UserColor clrPick[],string *order,const int SIZE,string options[],ch
             cin>>color;
             //pick spot
             cout<<"What spot would you like this color in?"<<endl;
-            cin>>spot;
-        }while(set[spot-1]);
-        set[spot-1]=true;
+            cin>>clrPick[i].spot;
+        }while(set[clrPick[i].spot-1]);
+        set[clrPick[i].spot-1]=true;
         
         //input to that index;
-        clrPick[spot-1].color=color;
-//        cout<<"spot = "<<spot<<endl;
-//        cout<<color<<endl<<clrPick[spot-1].color<<endl;
+        clrPick[clrPick[i].spot-1].color=color;
         for(int j=0;j<8;j++){
-            if(clrPick[spot-1].color==options[j])
-                userChar[spot-1]=optChar[j];
+            if(clrPick[clrPick[i].spot-1].color==options[j])
+                userChar[clrPick[i].spot-1]=optChar[j];
         }
     }
     return userChar;
