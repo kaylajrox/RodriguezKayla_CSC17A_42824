@@ -2,18 +2,12 @@
  * Created on January 30, 2016, 8:55 PM
  * Purpose: Mastermind
  */
- /*Still converting everything to object form.
-  Trying to change the string values into characters that can be shown in a 
-  table to see how the user has done yet
-  * and I need to validate that they do not put in
-  * a spot number that they had already put for a previous input
+ /*CHECK VALIDATIONS
+  -toupper validation for strings
+  -output the spot number for computer?
   * I need to validate that they only pick the colors from the given list
   * want to convert these strings to characters
-  * 
-  * Possibly change the else if to just a bunch of single ifs
-  * get the leader board  to work
-  * 
-  * Need to read and write to a binary file
+  * Missing any requirements? 
   */
 //System Libraries
 #include <iostream>
@@ -51,8 +45,8 @@ void  writeFile(fstream& ,int,const char,UserColor[],ComColor[],vector<string>&)
 int main(int argc, char** argv) {
     //The Problem to solve
     cout<<endl<<"Solution to Project 2"<<endl;
-    cout<<endl<<"Mastermind Problem "<<endl<<endl;
-    int nTrys=0;
+    cout<<endl<<"Mastermind Problem "<<endl;
+    
     //Set the random number seed
     srand(static_cast<unsigned int>(time(0)));
 
@@ -71,15 +65,14 @@ int main(int argc, char** argv) {
     string *eachPick; //holds an array of each of the turn options 
     string names[nameN];//names in list
     char optChar[8]={'R','G','B','N','K','Y','O','W'};//character options
-//    char *userChar;//User's colors in character representation
     fstream infile; //in file instructions
     string instr; //file instructions
-    fstream outptFile;//output file
-    char *userChar; 
-    
+    fstream out;//output file
+    char *userChar; //User's colors in character representation
+    int nTrys=0;//number of tries counter
     //Open the Files
     infile.open("instructions.txt", ios::in|ios::binary);
-    outptFile.open("results.txt",ios::out|ios::binary);
+    out.open("results.txt",ios::out|ios::binary);
     //Read the File
     if( infile ){
         getline( infile, instr );
@@ -117,14 +110,29 @@ int main(int argc, char** argv) {
     }
     results(clrPick,cColor,nTrys,CNVPERC,GMELMT,limit,SIZE,end,COLS,names,nameN);
     //Write the Output Results File
-    writeFile(outptFile,nTrys,GMELMT,clrPick,cColor,list);
+    //writeFile(outptFile,nTrys,GMELMT,clrPick,cColor,list);
+     out<<"Color Choices\tTurn Number\r";
+    out<<"----------------------------\r";
+    for(int i=0;i<list.size();i++)
+        out<<list[i]<<"               "<<i+1<<"\r";
+     
+    if(nTrys<=GMELMT&&clrPick[0].color==cColor[0].getColor()
+            &&clrPick[1].color==cColor[1].getColor()&&
+            clrPick[2].color==cColor[2].getColor()&&clrPick[3].color==cColor[3].getColor()){
+        //Tries Percentage if won 
+        out<<fixed<<setprecision(1);
+        out<<"You win!"<<endl;
+        out<<"The percentage of the board you got through is ";
+        out<<(float)(nTrys)/(10.0f)*CNVPERC<<"% "<<endl;
+    }else
+        out<<"You lose. You could not guess in 10 tries or less."<<endl;
     //free allocated memory
     delete[] eachPick;
     delete[] comChar;
     delete[] userChar;
     //close the files
     infile.close();
-    outptFile.close();
+    out.close();
     return 0;
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
