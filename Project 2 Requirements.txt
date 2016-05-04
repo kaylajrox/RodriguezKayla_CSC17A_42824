@@ -38,3 +38,5 @@ questions:
   */
 When I put the write file calculations into a function it no longer works
 I am curious as to why it does not work
+ASK IF BLANK DIAMONDS ARE OKAY!!!
+34 diamonds needed

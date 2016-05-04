@@ -332,188 +332,187 @@ if (color[0].color==pick[0].getColor()&&
     cout<<"One of your colors is correct and in the correct "; 
     cout<<"spot."<<endl<<endl;
 }else{
-    cout<<"None are in the right spot."<<endl;
+        cout<<"None are in the right spot."<<endl;
 
 
-//Three of your color choices are correct
-if ((color[0].color==pick[1].getColor()||color[0].color==pick[2].getColor()
-        ||color[0].color==pick[3].getColor())&&
-        (color[1].color==pick[2].getColor()||
-        color[1].color==pick[3].getColor()||color[1].color==pick[0].getColor())
-         &&(color[2].color==pick[1].getColor()||
-        color[2].color==pick[3].getColor()||
-        color[2].color==pick[0].getColor())){
-    hints3();
-}else if ((color[0].color==pick[1].getColor()||
-        color[0].color==pick[2].getColor()||color[0].color==pick[3].getColor())
-        &&(color[1].color==pick[2].getColor()||color[1].color==
-        pick[3].getColor()||color[1].color==pick[0].getColor())
-         &&(color[3].color==pick[1].getColor()||
-        color[3].color==pick[2].getColor()||color[3].color==pick[0].getColor())){
-    hints3();
-}else if ((color[3].color==pick[1].getColor()||
-        color[3].color==pick[2].getColor()||color[3].color==pick[0].getColor())
-        &&(color[1].color==pick[2].getColor()||
-        color[1].color==pick[3].getColor()||color[1].color==pick[0].getColor())
-         &&(color[2].color==pick[1].getColor()||
-        color[2].color==pick[3].getColor()||color[2].color==pick[0].getColor())){
-    hints3();
-}else if ((color[0].color==pick[1].getColor()||
-        color[0].color==pick[2].getColor()||
-        color[0].color==pick[3].getColor())
-        &&(color[3].color==pick[2].getColor()||
-        color[3].color==pick[1].getColor()||color[3].color==pick[0].getColor())
-         &&(color[2].color==pick[1].getColor()||
-        color[2].color==pick[3].getColor()||color[2].color==pick[0].getColor())){
-    hints3();
-} 
-//Two of your color choices are correct  
-    else if ((color[0].color==pick[1].getColor()||
-        color[0].color==pick[2].getColor()||
-        color[0].color==pick[3].getColor())
-        &&(color[1].color==pick[2].getColor()||color[1].color==pick[3].getColor()
-        ||color[1].color==pick[0].getColor())){
-    hints2();
-}else if ((color[0].color==pick[1].getColor()||
-        color[0].color==pick[2].getColor()||color[0].color==pick[3].getColor())
-        &&(color[2].color==pick[1].getColor()||
-        color[2].color==pick[3].getColor()||color[2].color==pick[0].getColor())){
-    hints2();
-}else if ((color[0].color==pick[1].getColor()||
-        color[0].color==pick[2].getColor()||color[0].color==pick[3].getColor())
-        &&(color[3].color==pick[2].getColor()||
-        color[3].color==pick[1].getColor()||color[3].color==pick[0].getColor())){
-    hints2();
-}else if ((color[3].color==pick[1].getColor()||color[3].color==pick[2].getColor()
-        ||color[3].color==pick[0].getColor())&&
-        (color[1].color==pick[2].getColor()||
-        color[1].color==pick[3].getColor()||color[1].color==pick[0].getColor())){
-    hints2();
-}else if ((color[2].color==pick[1].getColor()||
-        color[2].color==pick[0].getColor()||color[2].color==pick[3].getColor())
-        &&(color[1].color==pick[2].getColor()||
-        color[1].color==pick[3].getColor()||color[1].color==pick[0].getColor())){
-    hints2();
-}else if ((color[3].color==pick[1].getColor()||
-        color[3].color==pick[2].getColor()||color[3].color==pick[0].getColor())
-        &&(color[2].color==pick[1].getColor()||
-        color[2].color==pick[3].getColor()||color[2].color==pick[0].getColor())){
-    hints2();
-//One of your color choices is correct
-}else if (color[0].color==pick[1].getColor()&&
-        !(color[0].color==pick[2].getColor()&&color[0].color==pick[3].getColor()
-        &&color[1].color==pick[0].getColor()&&
-        color[1].color==pick[2].getColor()&&color[1].color==pick[3].getColor()&&
-        color[2].color==pick[1].getColor()&&color[2].color==pick[0].getColor()
-        &&color[2].color==pick[3].getColor()&&
-        color[3].color==pick[1].getColor()&&color[3].color==pick[2].getColor()
-        &&color[3].color==pick[0].getColor())){
-    hints1();
-}else if (color[0].color==pick[2].getColor()&&!(color[0].color==pick[1].getColor()
-        &&color[0].color==pick[3].getColor()&&
-        color[1].color==pick[0].getColor()&&color[1].color==pick[2].getColor()
-        &&color[1].color==pick[3].getColor()&&
-        color[2].color==pick[1].getColor()&&color[2].color==pick[0].getColor()
-        &&color[2].color==pick[3].getColor()&&
-        color[3].color==pick[1].getColor()&&
-        color[3].color==pick[2].getColor()&&color[3].color==pick[0].getColor())){
-    hints1();
-}else if(color[0].color==pick[3].getColor()&&!(color[0].color==pick[2].getColor()
-        &&color[0].color==pick[1].getColor()
-        &&color[1].color==pick[0].getColor()&&color[1].color==pick[2].getColor()
-        &&color[1].color==pick[3].getColor()&&
-        color[2].color==pick[1].getColor()&&color[2].color==pick[0].getColor()
-        &&color[2].color==pick[3].getColor()&&
-        color[3].color==pick[1].getColor()&&color[3].color==pick[2].getColor()
-        &&color[3].color==pick[0].getColor())){
-    hints1();
-}else if (color[1].color==pick[0].getColor()&&!(color[0].color==pick[2].getColor()
-        &&color[0].color==pick[3].getColor()
-        &&color[0].color==pick[1].getColor()&&color[1].color==pick[2].getColor()
-        &&color[1].color==pick[3].getColor()&&
-        color[2].color==pick[1].getColor()&&color[2].color==pick[0].getColor()
-        &&color[2].color==pick[3].getColor()&&
-        color[3].color==pick[1].getColor()&&color[3].color==pick[2].getColor()
-        &&color[3].color==pick[0].getColor())){
-    hints1();
-}else if(color[1].color==pick[2].getColor()&&!(color[0].color==pick[2].getColor()
-        &&color[0].color==pick[3].getColor()
-        &&color[1].color==pick[0].getColor()&&color[0].color==pick[1].getColor()
-        &&color[1].color==pick[3].getColor()&&
-        color[2].color==pick[1].getColor()&&color[2].color==pick[0].getColor()
-        &&color[2].color==pick[3].getColor()&&
-        color[3].color==pick[1].getColor()&&color[3].color==pick[2].getColor()
-        &&color[3].color==pick[0].getColor())){
-    hints1();
-}else if(color[1].color==pick[3].getColor()&&!(color[0].color==pick[2].getColor()
-        &&color[0].color==pick[3].getColor()
-        &&color[1].color==pick[0].getColor()&&color[1].color==pick[2].getColor()
-        &&color[0].color==pick[1].getColor()&&
-        color[2].color==pick[1].getColor()&&color[2].color==pick[0].getColor()
-        &&color[2].color==pick[3].getColor()&&
-        color[3].color==pick[1].getColor()&&color[3].color==pick[2].getColor()
-        &&color[3].color==pick[0].getColor())){
-    hints1();
-}else if (color[2].color==pick[1].getColor()&&!(color[0].color==pick[2].getColor()
-        &&color[0].color==pick[3].getColor()
-        &&color[1].color==pick[0].getColor()&&color[1].color==pick[2].getColor()
-        &&color[1].color==pick[3].getColor()&&
-        color[0].color==pick[1].getColor()&&color[2].color==pick[0].getColor()
-        &&color[2].color==pick[3].getColor()&&
-        color[3].color==pick[1].getColor()&&color[3].color==pick[2].getColor()
-        &&color[3].color==pick[0].getColor())){
-    hints1();
-}else if(color[2].color==pick[0].getColor()&&!(color[0].color==pick[2].getColor()
-        &&color[0].color==pick[3].getColor()
-        &&color[1].color==pick[0].getColor()&&color[1].color==pick[2].getColor()
-        &&color[1].color==pick[3].getColor()&&
-        color[2].color==pick[1].getColor()&&color[0].color==pick[1].getColor()
-        &&color[2].color==pick[3].getColor()&&
-        color[3].color==pick[1].getColor()&&color[3].color==pick[2].getColor()
-        &&color[3].color==pick[0].getColor())){
-    hints1();
-}else if(color[2].color==pick[3].getColor()&&!(color[0].color==pick[2].getColor()
-        &&color[0].color==pick[3].getColor()
-        &&color[1].color==pick[0].getColor()&&color[1].color==pick[2].getColor()
-        &&color[1].color==pick[3].getColor()&&
-        color[2].color==pick[1].getColor()&&color[2].color==pick[0].getColor()
-        &&color[0].color==pick[1].getColor()&&
-        color[3].color==pick[1].getColor()&&color[3].color==pick[2].getColor()
-        &&color[3].color==pick[0].getColor())){
-    hints1();
-}else if (color[3].color==pick[1].getColor()&&!(color[0].color==pick[2].getColor()
-        &&color[0].color==pick[3].getColor()
-        &&color[1].color==pick[0].getColor()&&color[1].color==pick[2].getColor()
-        &&color[1].color==pick[3].getColor()&&
-        color[2].color==pick[1].getColor()&&color[2].color==pick[0].getColor()
-        &&color[2].color==pick[3].getColor()&&
-        color[0].color==pick[1].getColor()&&color[3].color==pick[2].getColor()
-        &&color[3].color==pick[0].getColor())){
-    hints1();
-}else if(color[3].color==pick[2].getColor()&&(!(color[0].color==pick[2].getColor()
-        &&color[0].color==pick[3].getColor()
-        &&color[1].color==pick[0].getColor()&&color[1].color==pick[2].getColor()
-        &&color[1].color==pick[3].getColor()&&
-        color[2].color==pick[1].getColor()&&color[2].color==pick[0].getColor()
-        &&color[2].color==pick[3].getColor()&&
-        color[3].color==pick[1].getColor()&&color[0].color==pick[1].getColor()
-        &&color[3].color==pick[0].getColor()))){
-    hints1();
-}else if(color[3].color==pick[0].getColor()&&!(color[0].color==pick[2].getColor()
-        &&color[0].color==pick[3].getColor()
-        &&color[1].color==pick[0].getColor()&&color[1].color==pick[2].getColor()
-        &&color[1].color==pick[3].getColor()&&
-        color[2].color==pick[1].getColor()&&color[2].color==pick[0].getColor()
-        &&color[2].color==pick[3].getColor()&&
-        color[3].color==pick[1].getColor()&&color[3].color==pick[2].getColor()
-        &&color[0].color==pick[1].getColor())){
-    hints1();
-}else{
-    cout<<"None of these color choices are correct or in the  "; 
-    cout<<"right spot."<<endl<<"Try something different."<<endl
-                                                         <<endl;
-}
-
+    //Three of your color choices are correct
+    if ((color[0].color==pick[1].getColor()||color[0].color==pick[2].getColor()
+            ||color[0].color==pick[3].getColor())&&
+            (color[1].color==pick[2].getColor()||
+            color[1].color==pick[3].getColor()||color[1].color==pick[0].getColor())
+             &&(color[2].color==pick[1].getColor()||
+            color[2].color==pick[3].getColor()||
+            color[2].color==pick[0].getColor())){
+        hints3();
+    }else if ((color[0].color==pick[1].getColor()||
+            color[0].color==pick[2].getColor()||color[0].color==pick[3].getColor())
+            &&(color[1].color==pick[2].getColor()||color[1].color==
+            pick[3].getColor()||color[1].color==pick[0].getColor())
+             &&(color[3].color==pick[1].getColor()||
+            color[3].color==pick[2].getColor()||color[3].color==pick[0].getColor())){
+        hints3();
+    }else if ((color[3].color==pick[1].getColor()||
+            color[3].color==pick[2].getColor()||color[3].color==pick[0].getColor())
+            &&(color[1].color==pick[2].getColor()||
+            color[1].color==pick[3].getColor()||color[1].color==pick[0].getColor())
+             &&(color[2].color==pick[1].getColor()||
+            color[2].color==pick[3].getColor()||color[2].color==pick[0].getColor())){
+        hints3();
+    }else if ((color[0].color==pick[1].getColor()||
+            color[0].color==pick[2].getColor()||
+            color[0].color==pick[3].getColor())
+            &&(color[3].color==pick[2].getColor()||
+            color[3].color==pick[1].getColor()||color[3].color==pick[0].getColor())
+             &&(color[2].color==pick[1].getColor()||
+            color[2].color==pick[3].getColor()||color[2].color==pick[0].getColor())){
+        hints3();
+    } 
+    //Two of your color choices are correct  
+        else if ((color[0].color==pick[1].getColor()||
+            color[0].color==pick[2].getColor()||
+            color[0].color==pick[3].getColor())
+            &&(color[1].color==pick[2].getColor()||color[1].color==pick[3].getColor()
+            ||color[1].color==pick[0].getColor())){
+        hints2();
+    }else if ((color[0].color==pick[1].getColor()||
+            color[0].color==pick[2].getColor()||color[0].color==pick[3].getColor())
+            &&(color[2].color==pick[1].getColor()||
+            color[2].color==pick[3].getColor()||color[2].color==pick[0].getColor())){
+        hints2();
+    }else if ((color[0].color==pick[1].getColor()||
+            color[0].color==pick[2].getColor()||color[0].color==pick[3].getColor())
+            &&(color[3].color==pick[2].getColor()||
+            color[3].color==pick[1].getColor()||color[3].color==pick[0].getColor())){
+        hints2();
+    }else if ((color[3].color==pick[1].getColor()||color[3].color==pick[2].getColor()
+            ||color[3].color==pick[0].getColor())&&
+            (color[1].color==pick[2].getColor()||
+            color[1].color==pick[3].getColor()||color[1].color==pick[0].getColor())){
+        hints2();
+    }else if ((color[2].color==pick[1].getColor()||
+            color[2].color==pick[0].getColor()||color[2].color==pick[3].getColor())
+            &&(color[1].color==pick[2].getColor()||
+            color[1].color==pick[3].getColor()||color[1].color==pick[0].getColor())){
+        hints2();
+    }else if ((color[3].color==pick[1].getColor()||
+            color[3].color==pick[2].getColor()||color[3].color==pick[0].getColor())
+            &&(color[2].color==pick[1].getColor()||
+            color[2].color==pick[3].getColor()||color[2].color==pick[0].getColor())){
+        hints2();
+    //One of your color choices is correct
+    }else if (color[0].color==pick[1].getColor()&&
+            !(color[0].color==pick[2].getColor()&&color[0].color==pick[3].getColor()
+            &&color[1].color==pick[0].getColor()&&
+            color[1].color==pick[2].getColor()&&color[1].color==pick[3].getColor()&&
+            color[2].color==pick[1].getColor()&&color[2].color==pick[0].getColor()
+            &&color[2].color==pick[3].getColor()&&
+            color[3].color==pick[1].getColor()&&color[3].color==pick[2].getColor()
+            &&color[3].color==pick[0].getColor())){
+        hints1();
+    }else if (color[0].color==pick[2].getColor()&&!(color[0].color==pick[1].getColor()
+            &&color[0].color==pick[3].getColor()&&
+            color[1].color==pick[0].getColor()&&color[1].color==pick[2].getColor()
+            &&color[1].color==pick[3].getColor()&&
+            color[2].color==pick[1].getColor()&&color[2].color==pick[0].getColor()
+            &&color[2].color==pick[3].getColor()&&
+            color[3].color==pick[1].getColor()&&
+            color[3].color==pick[2].getColor()&&color[3].color==pick[0].getColor())){
+        hints1();
+    }else if(color[0].color==pick[3].getColor()&&!(color[0].color==pick[2].getColor()
+            &&color[0].color==pick[1].getColor()
+            &&color[1].color==pick[0].getColor()&&color[1].color==pick[2].getColor()
+            &&color[1].color==pick[3].getColor()&&
+            color[2].color==pick[1].getColor()&&color[2].color==pick[0].getColor()
+            &&color[2].color==pick[3].getColor()&&
+            color[3].color==pick[1].getColor()&&color[3].color==pick[2].getColor()
+            &&color[3].color==pick[0].getColor())){
+        hints1();
+    }else if (color[1].color==pick[0].getColor()&&!(color[0].color==pick[2].getColor()
+            &&color[0].color==pick[3].getColor()
+            &&color[0].color==pick[1].getColor()&&color[1].color==pick[2].getColor()
+            &&color[1].color==pick[3].getColor()&&
+            color[2].color==pick[1].getColor()&&color[2].color==pick[0].getColor()
+            &&color[2].color==pick[3].getColor()&&
+            color[3].color==pick[1].getColor()&&color[3].color==pick[2].getColor()
+            &&color[3].color==pick[0].getColor())){
+        hints1();
+    }else if(color[1].color==pick[2].getColor()&&!(color[0].color==pick[2].getColor()
+            &&color[0].color==pick[3].getColor()
+            &&color[1].color==pick[0].getColor()&&color[0].color==pick[1].getColor()
+            &&color[1].color==pick[3].getColor()&&
+            color[2].color==pick[1].getColor()&&color[2].color==pick[0].getColor()
+            &&color[2].color==pick[3].getColor()&&
+            color[3].color==pick[1].getColor()&&color[3].color==pick[2].getColor()
+            &&color[3].color==pick[0].getColor())){
+        hints1();
+    }else if(color[1].color==pick[3].getColor()&&!(color[0].color==pick[2].getColor()
+            &&color[0].color==pick[3].getColor()
+            &&color[1].color==pick[0].getColor()&&color[1].color==pick[2].getColor()
+            &&color[0].color==pick[1].getColor()&&
+            color[2].color==pick[1].getColor()&&color[2].color==pick[0].getColor()
+            &&color[2].color==pick[3].getColor()&&
+            color[3].color==pick[1].getColor()&&color[3].color==pick[2].getColor()
+            &&color[3].color==pick[0].getColor())){
+        hints1();
+    }else if (color[2].color==pick[1].getColor()&&!(color[0].color==pick[2].getColor()
+            &&color[0].color==pick[3].getColor()
+            &&color[1].color==pick[0].getColor()&&color[1].color==pick[2].getColor()
+            &&color[1].color==pick[3].getColor()&&
+            color[0].color==pick[1].getColor()&&color[2].color==pick[0].getColor()
+            &&color[2].color==pick[3].getColor()&&
+            color[3].color==pick[1].getColor()&&color[3].color==pick[2].getColor()
+            &&color[3].color==pick[0].getColor())){
+        hints1();
+    }else if(color[2].color==pick[0].getColor()&&!(color[0].color==pick[2].getColor()
+            &&color[0].color==pick[3].getColor()
+            &&color[1].color==pick[0].getColor()&&color[1].color==pick[2].getColor()
+            &&color[1].color==pick[3].getColor()&&
+            color[2].color==pick[1].getColor()&&color[0].color==pick[1].getColor()
+            &&color[2].color==pick[3].getColor()&&
+            color[3].color==pick[1].getColor()&&color[3].color==pick[2].getColor()
+            &&color[3].color==pick[0].getColor())){
+        hints1();
+    }else if(color[2].color==pick[3].getColor()&&!(color[0].color==pick[2].getColor()
+            &&color[0].color==pick[3].getColor()
+            &&color[1].color==pick[0].getColor()&&color[1].color==pick[2].getColor()
+            &&color[1].color==pick[3].getColor()&&
+            color[2].color==pick[1].getColor()&&color[2].color==pick[0].getColor()
+            &&color[0].color==pick[1].getColor()&&
+            color[3].color==pick[1].getColor()&&color[3].color==pick[2].getColor()
+            &&color[3].color==pick[0].getColor())){
+        hints1();
+    }else if (color[3].color==pick[1].getColor()&&!(color[0].color==pick[2].getColor()
+            &&color[0].color==pick[3].getColor()
+            &&color[1].color==pick[0].getColor()&&color[1].color==pick[2].getColor()
+            &&color[1].color==pick[3].getColor()&&
+            color[2].color==pick[1].getColor()&&color[2].color==pick[0].getColor()
+            &&color[2].color==pick[3].getColor()&&
+            color[0].color==pick[1].getColor()&&color[3].color==pick[2].getColor()
+            &&color[3].color==pick[0].getColor())){
+        hints1();
+    }else if(color[3].color==pick[2].getColor()&&(!(color[0].color==pick[2].getColor()
+            &&color[0].color==pick[3].getColor()
+            &&color[1].color==pick[0].getColor()&&color[1].color==pick[2].getColor()
+            &&color[1].color==pick[3].getColor()&&
+            color[2].color==pick[1].getColor()&&color[2].color==pick[0].getColor()
+            &&color[2].color==pick[3].getColor()&&
+            color[3].color==pick[1].getColor()&&color[0].color==pick[1].getColor()
+            &&color[3].color==pick[0].getColor()))){
+        hints1();
+    }else if(color[3].color==pick[0].getColor()&&!(color[0].color==pick[2].getColor()
+            &&color[0].color==pick[3].getColor()
+            &&color[1].color==pick[0].getColor()&&color[1].color==pick[2].getColor()
+            &&color[1].color==pick[3].getColor()&&
+            color[2].color==pick[1].getColor()&&color[2].color==pick[0].getColor()
+            &&color[2].color==pick[3].getColor()&&
+            color[3].color==pick[1].getColor()&&color[3].color==pick[2].getColor()
+            &&color[0].color==pick[1].getColor())){
+        hints1();
+    }else{
+        cout<<"None of these color choices are correct or in the  "; 
+        cout<<"right spot."<<endl<<"Try something different."<<endl
+                                                             <<endl;
+    }
 }
 
 
