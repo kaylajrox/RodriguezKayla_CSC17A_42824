@@ -19,9 +19,7 @@ public:
     ComColor();
     //Accessor and Mutator Functions
     void setColor(string);
-    void setSpot(int);
     string getColor();
-    int getSpot();
 };
 
 #endif /* COMCOLOR_H */

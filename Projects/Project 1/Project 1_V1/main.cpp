@@ -193,7 +193,9 @@ char *input(UserColor clrPick[],string *order,const int SIZE,char optChar[],
             cin>>color;
             for (int i=0;i<color.size();i++){
                 color[i]=tolower(color[i]);
-            }
+            }if(!(color==options[0]||color==options[1]||color==options[2]||color==options[3]
+          ||color==options[4]||color==options[5]||color==options[6]||color==options[7]))
+                cout<<"Invalid color. Enter again."<<endl;
         }while(!(color==options[0]||color==options[1]||color==options[2]||color==options[3]
           ||color==options[4]||color==options[5]||color==options[6]||color==options[7]));
         do{    

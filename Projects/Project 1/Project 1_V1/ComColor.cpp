@@ -14,15 +14,10 @@ ComColor::ComColor() {
 void ComColor::setColor(string x) {
     color=x;
 }
-void ComColor::setSpot(int y) {
-    spot=y;
-}
 string ComColor::getColor() {
     return color;
 }
-int ComColor::getSpot() {
-    return spot;
-}
+
 
 
 
