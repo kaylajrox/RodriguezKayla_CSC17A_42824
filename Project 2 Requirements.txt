@@ -29,7 +29,6 @@ if statement for spots??
 change the order of which they are inputting with the spot in place
 
 questions:
-I need to fix the output file so that it outputs it in table form
  /*CHECK VALIDATIONS
   -toupper validation for strings
   -output the spot number for computer?
@@ -37,3 +36,5 @@ I need to fix the output file so that it outputs it in table form
   * want to convert these strings to characters
   * Missing any requirements? 
   */
+When I put the write file calculations into a function it no longer works
+I am curious as to why it does not work

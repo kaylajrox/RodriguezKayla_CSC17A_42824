@@ -36,7 +36,7 @@ string aryToStr(char [],int);//converts a character array to a string
 void hints1();
 void hints2();
 void hints3();
-void  writeFile(fstream& ,int,const char,UserColor[],ComColor[],vector<string>&);
+void  writeFile(fstream& ,int ,const char, UserColor[],ComColor[],vector<string>&);
 //Execution Begins Here
 int main(int argc, char** argv) {
     //The Problem to solve
@@ -108,7 +108,7 @@ int main(int argc, char** argv) {
     //Print results of the game
     results(clrPick,cColor,nTrys,CNVPERC,GMELMT,limit,SIZE,end,COLS,names,nameN);
     //Write the Output Results File
-    //writeFile(outptFile,nTrys,GMELMT,clrPick,cColor,list);
+    //writeFile(out,nTrys,GMELMT,clrPick,cColor,list);
     out<<"Color Choices\tTurn Number\r"<<endl;
     out<<"----------------------------\r"<<endl;
     for(int i=0;i<list.size();i++)
@@ -140,20 +140,23 @@ int main(int argc, char** argv) {
 /*                             Write the File                                 */
 /******************************************************************************/
 void writeFile(fstream& out,int &nTrys,const char GMELMT,
-        UserColor clrPick[],ComColor pick[],vector<string>&list){    
-    out<<"Color Choices\tTurn Number\r";
-    out<<"----------------------------\r";
+        UserColor clrPick[],ComColor cColor[],vector<string>&list){    
+    out<<"Color Choices\tTurn Number\r"<<endl;
+    out<<"----------------------------\r"<<endl;
     for(int i=0;i<list.size();i++)
-        out<<list[i]<<"               "<<i+1<<"\r";
+        out<<list[i]<<setw(15)<<i+1<<"\r"<<endl;
      
-    if(nTrys<=GMELMT&&clrPick[0].color==pick[0].getColor()
-            &&clrPick[1].color==pick[1].getColor()&&
-            clrPick[2].color==pick[2].getColor()&&clrPick[3].color==pick[3].getColor()){
+    if(nTrys<=GMELMT&&clrPick[0].color==cColor[0].getColor()
+            &&clrPick[1].color==cColor[1].getColor()&&
+            clrPick[2].color==cColor[2].getColor()&&clrPick[3].color==cColor[3].getColor())
+    {
         //Tries Percentage if won 
         out<<fixed<<setprecision(1);
         out<<"You win!"<<endl;
-        out<<"The percentage of the board you got through is ";
+        out<<"You attempted "<<nTrys<<" out of the maximum ten tries to win. \r"<<endl;
+        out<<"Which means the percentage of the board you got through is ";
         out<<(float)(nTrys)/(10.0f)*CNVPERC<<"% "<<endl;
+        
     }else
         out<<"You lose. You could not guess in 10 tries or less."<<endl;
 }    
