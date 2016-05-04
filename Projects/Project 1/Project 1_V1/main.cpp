@@ -49,7 +49,6 @@ int main(int argc, char** argv) {
     UserColor clrPick[SIZE];  //User Inputs
     string order[SIZE]={"first","second","third","fourth"}; //User Order Inputs
     string options[8]={"red","green","blue","brown","black","yellow","orange","white"};//Options for computer and user 
-//    string options2[8]={"Red","Green","Blue","Brown","Black","Yellow","Orange","White"};//Options for computer and user 
     ComColor cColor[SIZE]; //Computer generated random pick
     int limit=0;  //number of attempts, the user can set their attempts greater than 10
     const char GMELMT=10; //Number limit which determines win or loss
