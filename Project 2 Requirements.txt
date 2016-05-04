@@ -27,3 +27,12 @@ possibly add another class with static variables for the leaderboard **STILL NEE
 
 if statement for spots??
 change the order of which they are inputting with the spot in place
+
+questions:
+ /*CHECK VALIDATIONS
+  -toupper validation for strings
+  -output the spot number for computer?
+  * I need to validate that they only pick the colors from the given list
+  * want to convert these strings to characters
+  * Missing any requirements? 
+  */

@@ -2,13 +2,7 @@
  * Created on January 30, 2016, 8:55 PM
  * Purpose: Mastermind
  */
- /*CHECK VALIDATIONS
-  -toupper validation for strings
-  -output the spot number for computer?
-  * I need to validate that they only pick the colors from the given list
-  * want to convert these strings to characters
-  * Missing any requirements? 
-  */
+
 //System Libraries
 #include <iostream>
 #include <string>
@@ -96,6 +90,7 @@ int main(int argc, char** argv) {
     for(int i=0;i<SIZE;i++){
         cout<<cColor[i].getColor()<<" ";
     }
+    //for loop allows player to play until the limit is hit
     for(int n=1;n<=limit;n++){
         userChar =input(clrPick,order,SIZE,options,optChar);
         reppic(userChar,comChar,nTrys,GMELMT,limit,SIZE,list);
@@ -108,6 +103,7 @@ int main(int argc, char** argv) {
         }
         switchH(clrPick,cColor,nTrys,limit);
     }
+    //Print results of the game
     results(clrPick,cColor,nTrys,CNVPERC,GMELMT,limit,SIZE,end,COLS,names,nameN);
     //Write the Output Results File
     //writeFile(outptFile,nTrys,GMELMT,clrPick,cColor,list);
