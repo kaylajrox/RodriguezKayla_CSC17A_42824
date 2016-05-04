@@ -187,7 +187,6 @@ char *input(UserColor clrPick[],string *order,const int SIZE,char optChar[],
     bool set[SIZE]={0};
     for (int i=0;i<SIZE;i++){
         string color;
-        int spot;
         do{
             cout<<"Pick your "<<*(order+i)<<" color"<<endl;
             cin>>color;
