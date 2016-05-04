@@ -1,6 +1,8 @@
 /* Author: Kayla Rodriguez
  * Created on January 30, 2016, 8:55 PM
  * Purpose: Mastermind
+ * file opening was used on notepad and the format outputs the way it should
+ * on notepad
  */
 
 //System Libraries
@@ -107,10 +109,10 @@ int main(int argc, char** argv) {
     results(clrPick,cColor,nTrys,CNVPERC,GMELMT,limit,SIZE,end,COLS,names,nameN);
     //Write the Output Results File
     //writeFile(outptFile,nTrys,GMELMT,clrPick,cColor,list);
-     out<<"Color Choices\tTurn Number\r";
-    out<<"----------------------------\r";
+    out<<"Color Choices\tTurn Number\r"<<endl;
+    out<<"----------------------------\r"<<endl;
     for(int i=0;i<list.size();i++)
-        out<<list[i]<<"               "<<i+1<<"\r";
+        out<<list[i]<<setw(15)<<i+1<<"\r"<<endl;
      
     if(nTrys<=GMELMT&&clrPick[0].color==cColor[0].getColor()
             &&clrPick[1].color==cColor[1].getColor()&&
@@ -118,8 +120,10 @@ int main(int argc, char** argv) {
         //Tries Percentage if won 
         out<<fixed<<setprecision(1);
         out<<"You win!"<<endl;
-        out<<"The percentage of the board you got through is ";
+        out<<"You attempted "<<nTrys<<" out of the maximum ten tries to win. \r"<<endl;
+        out<<"Which means the percentage of the board you got through is ";
         out<<(float)(nTrys)/(10.0f)*CNVPERC<<"% "<<endl;
+        
     }else
         out<<"You lose. You could not guess in 10 tries or less."<<endl;
     //free allocated memory

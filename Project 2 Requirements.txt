@@ -29,6 +29,7 @@ if statement for spots??
 change the order of which they are inputting with the spot in place
 
 questions:
+I need to fix the output file so that it outputs it in table form
  /*CHECK VALIDATIONS
   -toupper validation for strings
   -output the spot number for computer?
