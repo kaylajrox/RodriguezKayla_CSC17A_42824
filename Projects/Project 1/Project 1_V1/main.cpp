@@ -25,7 +25,7 @@ struct UserColor{
 const char CNVPERC=100;
 //Function Prototypes
 char *compic(ComColor[],string[],char[],int);
-char *input(UserColor[],string*,const int,char[],string[]);
+UserColor *input(string *,const int,char[],string[]);
 void switchH(UserColor[],ComColor[],int,int &);
 void reppic(char[],char[],int &,const char,int &,const int ,vector<string>&);
 void results(UserColor[],int&,const char,const char,int&,int,char[],char[]);
@@ -33,8 +33,9 @@ string aryToStr(char [],int);//converts a character array to a string
 void hints1();
 void hints2();
 void hints3();
-void  writeFile(fstream& ,int ,const char, UserColor[],ComColor[],vector<string>&);
+void  writeFile(fstream& ,int& ,const char, UserColor[],ComColor[],vector<string>&);
 void readFile(fstream& ,string);
+char *input2(UserColor[],const int,char[],string[]);
 //Execution Begins Here
 int main(int argc, char** argv) {
     //The Problem to solve
@@ -46,7 +47,7 @@ int main(int argc, char** argv) {
 
     //Declare and initialize variables
     const int SIZE=4;  //Size of array used to keep track of color choices    
-    UserColor clrPick[SIZE];  //User Inputs
+    UserColor *clrPick;  //User Inputs
     string order[SIZE]={"first","second","third","fourth"}; //User Order Inputs
     string options[8]={"red","green","blue","brown","black","yellow","orange","white"};//Options for computer and user 
     ComColor cColor[SIZE]; //Computer generated random pick
@@ -58,7 +59,7 @@ int main(int argc, char** argv) {
     fstream infile; //in file instructions
     string instr; //file instructions
     fstream out;//output file
-    char *userChar; //User's colors in character representation
+    char *userChar;//User's colors in character representation
     int nTrys=0;//number of tries counter
     //Open the Files
     infile.open("instructions.txt", ios::in|ios::binary);
@@ -80,42 +81,31 @@ int main(int argc, char** argv) {
     for(int i=0;i<SIZE;i++){
         cout<<cColor[i].getColor()<<" ";
     }
+    
     //for loop allows player to play until the limit is hit
     for(int n=1;n<=limit;n++){
-        userChar =input(clrPick,order,SIZE,optChar,options);
+        clrPick=input(order,SIZE,optChar,options);   
+        userChar=input2(clrPick,SIZE,optChar,options);
         reppic(userChar,comChar,nTrys,GMELMT,limit,SIZE,list);
-        nTrys++;
-        if (nTrys<=GMELMT&&userChar[0]==comChar[0]&&userChar[1]==comChar[1]&&
+        nTrys++; 
+        if(nTrys<=GMELMT&&userChar[0]==comChar[0]&&userChar[1]==comChar[1]&&
                 userChar[2]==comChar[2]&&userChar[3]==comChar[3]){
             limit=nTrys;
-            cout<<"Your number of tries is "<<nTrys<<endl;
-        }
+         }
         switchH(clrPick,cColor,nTrys,limit);
     }
+    
     //Print results of the game
     results(clrPick,nTrys,CNVPERC,GMELMT,limit,SIZE,userChar,comChar);
+    
     //Write the Output Results File
-    //writeFile(out,nTrys,GMELMT,clrPick,cColor,list);
-    out<<"Color Choices\tTurn Number\r"<<endl;
-    out<<"----------------------------\r"<<endl;
-    for(int i=0;i<list.size();i++)
-        out<<list[i]<<setw(15)<<i+1<<"\r"<<endl;
-     
-    if(nTrys<=GMELMT&&userChar[0]==comChar[0]&&userChar[1]==comChar[1]&&
-                userChar[2]==comChar[2]&&userChar[3]==comChar[3]){
-        //Tries Percentage if won 
-        out<<fixed<<setprecision(1);
-        out<<"You win!"<<endl;
-        out<<"You attempted "<<nTrys<<" out of the maximum ten tries to win. \r"<<endl;
-        out<<"Which means the percentage of the board you got through is ";
-        out<<(float)(nTrys)/(10.0f)*CNVPERC<<"% "<<endl;
-        
-    }else
-        out<<"You lose. You could not guess in 10 tries or less."<<endl;
+    writeFile(out,nTrys,GMELMT,clrPick,cColor,list);
+    
     //free allocated memory
     delete[] eachPick;
     delete[] comChar;
     delete[] userChar;
+    delete[] clrPick;
     //close the files
     infile.close();
     out.close();
@@ -181,9 +171,8 @@ char *compic(ComColor cColor[],string options[],char optChar[],int SIZE){
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
 /*                       Input colors Function                                */
 /******************************************************************************/
-char *input(UserColor clrPick[],string *order,const int SIZE,char optChar[],
-        string options[]){
-    char * userChar=new char[SIZE];
+UserColor *input(string *order,const int SIZE,char optChar[],string options[]){
+    UserColor * clrPick=new UserColor[SIZE];
     bool set[SIZE]={0};
     for (int i=0;i<SIZE;i++){
         string color;
@@ -192,27 +181,41 @@ char *input(UserColor clrPick[],string *order,const int SIZE,char optChar[],
             cin>>color;
             for (int i=0;i<color.size();i++){
                 color[i]=tolower(color[i]);
-            }if(!(color==options[0]||color==options[1]||color==options[2]||color==options[3]
-          ||color==options[4]||color==options[5]||color==options[6]||color==options[7]))
+            }
+            if(!(color==options[0]||color==options[1]||color==options[2]||
+                color==options[3]||color==options[4]||color==options[5]||
+                    color==options[6]||color==options[7]))
                 cout<<"Invalid color. Enter again."<<endl;
-        }while(!(color==options[0]||color==options[1]||color==options[2]||color==options[3]
-          ||color==options[4]||color==options[5]||color==options[6]||color==options[7]));
-        do{    
+        }while(!(color==options[0]||color==options[1]||
+                color==options[2]||color==options[3]||
+                color==options[4]||color==options[5]||
+                color==options[6]||color==options[7]));
+    do{    
             //pick spot
             cout<<"What spot would you like this color in?"<<endl;
             cin>>clrPick[i].spot;
-        }while(set[clrPick[i].spot-1]);
-        set[clrPick[i].spot-1]=true;
-        
+            }while(set[clrPick[i].spot-1]);
+            set[clrPick[i].spot-1]=true;
+            //input to that index
+            clrPick[clrPick[i].spot-1].color=color;
+    } 
+   return clrPick; 
+}
+//000000001111111112222222222333333333344444444445555555555666666666677777777778
+//345678901234567890123456789012345678901234567890123456789012345678901234567890
+/*                       Input colors Function 2
+ *returns the character representation of the color strings the user typed out*/
+/******************************************************************************/
+char *input2(UserColor clrPick[],const int SIZE,char optChar[],string options[]){
+    char * userChar=new char[SIZE];
+    for(int i=0;i<SIZE;i++){
         //input to that index;
-        clrPick[clrPick[i].spot-1].color=color;
         for(int j=0;j<8;j++){
             if(clrPick[clrPick[i].spot-1].color==options[j])
                 userChar[clrPick[i].spot-1]=optChar[j];
         }
     }
     return userChar;
-    
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
@@ -259,9 +262,11 @@ void results(UserColor color[],int &nTrys,const char CNVPERC,
     }cout<<endl; 
     if(nTrys<=GMELMT&&userChar[0]==comChar[0]&&userChar[1]==comChar[1]&&
                 userChar[2]==comChar[2]&&userChar[3]==comChar[3]){
+        //limit=nTrys;
         //Tries Percentage if won 
         cout<<fixed<<setprecision(1);
         cout<<"You win!"<<endl;
+        cout<<"Your number of tries is "<<nTrys<<endl;
         cout<<"The percentage of the board you got through is ";
         cout<<(float)(nTrys)/(10.0f)*CNVPERC<<"% "<<endl;
     }else
