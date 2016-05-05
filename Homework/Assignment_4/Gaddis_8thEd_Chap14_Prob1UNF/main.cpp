@@ -23,6 +23,7 @@
  * number in the proper range and then prints out its English description.  */
 //System Libraries
 #include <iostream>
+#include <string>
 using namespace std;
 //User Libraries
 #include "Numbers.h"
@@ -31,7 +32,7 @@ int main(int argc, char** argv) {
     int number;
     Numbers numInfo;
     //input number to be written in its English word form
-    cout<<"Enter a number between 0-1000 ";
+    cout<<"Enter a number between 0-10000 ";
     cin>>number;
     numInfo.print(number);
     return 0;

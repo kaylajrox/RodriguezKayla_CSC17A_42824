@@ -15,20 +15,11 @@ using namespace std;
 //do we still have to initialize even if we have set a value to it?
   Numbers::Numbers() {
     number = 0;  
-//    hundred="";
-//    thousand="";
-//    lessThan20[SIZE] = {"", "","","","","",
-//    "","","","","","","","","",
-//    "","","","", ""}; 
-//    SIZE=0;
 }
-
-  /*Problems with array*/
   //initialize static members
-  const int Numbers::SIZE=20;
-  const string Numbers::thousand= "thousand";
-  const string Numbers::hundred= "hundred";
-  const string Numbers::lessThan20[SIZE]= {"zero", "one","two","three","four","five",
+  string Numbers::thousand= "thousand";
+  string Numbers::hundred= "hundred";
+  string Numbers::lessThan20[SIZE]= {"zero", "one","two","three","four","five",
     "six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen",
     "fifteen","sixteen","seventeen","eighteen", "nineteen"}; 
   //print number function
@@ -45,21 +36,19 @@ using namespace std;
     n1s=amount;
     string result="";
     
-    switch(n1000s){
-        for(int i=1;i<=10;i++){
-            if (lessThan20[i]==n1000s)
-                result+=lessThan20[i]; 
-            result+=thousand;
-        }
+    
+    for(int i=0;i<SIZE;i++){
+        result+=lessThan20[i];
     }
+    result+=" "+thousand;
+        
     //Output the 100's
-    switch(n100s){
-        for(int i=1;i<=10;i++){
-            if (lessThan20[i]==n100s)
-                result+=lessThan20[i]; 
-            result+=hundred;
-        }
-    }
+    for(int i=1;i<SIZE;i++){
+        if(i==n100s)
+            result+=lessThan20[i];
+     }
+    result+=" "+hundred;
+//    cout<<result;
     switch(n10s){
         case 9:  result+="Ninety ";break;
         case 8:  result+="Eighty ";break;
@@ -70,26 +59,13 @@ using namespace std;
         case 3:  result+="Thirty ";break;
         case 2:  result+="Twenty ";break;
         case 1: {
-            for(int i=10;i<=SIZE;i++){
-                if (lessThan20[i]==n1s)
-                    result+=lessThan20[i]; 
-            }
-        }
+                result+=lessThan20[number]; 
         break;}
    
     if(n10s==0){
         //Output the 1's
-        switch(n1s){
-            case 9:  result+="Nine ";break;
-            case 8:  result+="Eight ";break;
-            case 7:  result+="Seven ";break;
-            case 6:  result+="Six ";break;
-            case 5:  result+="Five ";break;
-            case 4:  result+="Four ";break;
-            case 3:  result+="Three ";break;
-            case 2:  result+="Two ";break;
-            case 1:  result+="One ";break;
-            }
+        result+=lessThan20[number];         
     }
-    
-}
+cout << result << endl;
+ }
+ }

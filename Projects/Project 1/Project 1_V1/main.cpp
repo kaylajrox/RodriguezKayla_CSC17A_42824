@@ -170,7 +170,11 @@ char *compic(ComColor cColor[],string options[],char optChar[],int SIZE){
 /******************************************************************************/
 UserColor *input(string *order,const int SIZE,char optChar[],string options[]){
     UserColor * clrPick=new UserColor[SIZE];
-    bool set[SIZE]={0};
+    bool set[SIZE];
+    for(int i = 0; i < SIZE; i++)
+    {
+        set[i] = false;
+    }
     for (int i=0;i<SIZE;i++){
         string color;
         do{
