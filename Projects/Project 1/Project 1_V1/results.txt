@@ -1,6 +1,13 @@
 Color Choices	Turn Number
 ----------------------------
-BKWN              1
-You win!
-You attempted 1 out of the maximum ten tries to win. 
-Which means the percentage of the board you got through is 10.0% 
+RRRR              1
+GGGG              2
+RGGG              3
+RRGG              4
+YGYY              5
+KGKK              6
+OGOO              7
+NGKN              8
+NGRR              9
+NGOY             10
+You lose. You could not guess in 10 tries or less.

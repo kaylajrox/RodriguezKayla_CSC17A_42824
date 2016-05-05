@@ -78,9 +78,6 @@ int main(int argc, char** argv) {
     //Function Output
     //computer's colors in character representation
     char *comChar = compic(cColor,options,optChar,SIZE);
-    for(int i=0;i<SIZE;i++){
-        cout<<cColor[i].getColor()<<" ";
-    }
     
     //for loop allows player to play until the limit is hit
     for(int n=1;n<=limit;n++){
@@ -262,7 +259,6 @@ void results(UserColor color[],int &nTrys,const char CNVPERC,
     }cout<<endl; 
     if(nTrys<=GMELMT&&userChar[0]==comChar[0]&&userChar[1]==comChar[1]&&
                 userChar[2]==comChar[2]&&userChar[3]==comChar[3]){
-        //limit=nTrys;
         //Tries Percentage if won 
         cout<<fixed<<setprecision(1);
         cout<<"You win!"<<endl;
