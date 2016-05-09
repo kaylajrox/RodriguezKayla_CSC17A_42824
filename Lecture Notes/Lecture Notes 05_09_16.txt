@@ -1,0 +1,2 @@
+array of cards, if you give someone a card, you have to delete that same card from the deck
+randomly choose a card to swap it with
