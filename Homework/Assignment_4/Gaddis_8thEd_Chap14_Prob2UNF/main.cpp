@@ -1,17 +1,13 @@
 /* 
  * File:   main.cpp
- * Author: rcc
- *
- * Created on May 9, 2016, 3:32 PM
+ * Author: Kayla Rodriguez
+ * Problem: Gaddis_8thEd_Chap14_Prob2
+ * Title:
  */
 
-#include <cstdlib>
-
+#include <iostream>
 using namespace std;
 
-/*
- * 
- */
 int main(int argc, char** argv) {
 
     return 0;
