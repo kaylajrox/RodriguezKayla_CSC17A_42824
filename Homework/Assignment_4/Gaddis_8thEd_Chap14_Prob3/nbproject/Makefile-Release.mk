@@ -35,7 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/DayOfYear.o \
+	${OBJECTDIR}/DayOfYear2.o \
 	${OBJECTDIR}/main.o
 
 
@@ -57,16 +57,16 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gaddis_8thed_chap14_prob2.exe
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gaddis_8thed_chap14_prob3.exe
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gaddis_8thed_chap14_prob2.exe: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gaddis_8thed_chap14_prob3.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gaddis_8thed_chap14_prob2 ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gaddis_8thed_chap14_prob3 ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/DayOfYear.o: DayOfYear.cpp 
+${OBJECTDIR}/DayOfYear2.o: DayOfYear2.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DayOfYear.o DayOfYear.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DayOfYear2.o DayOfYear2.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -79,7 +79,7 @@ ${OBJECTDIR}/main.o: main.cpp
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gaddis_8thed_chap14_prob2.exe
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gaddis_8thed_chap14_prob3.exe
 
 # Subprojects
 .clean-subprojects:

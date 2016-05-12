@@ -20,14 +20,14 @@
  */
 
 #include <iostream>
-#include "DayOfYear.h"
+#include "DayOfYear2.h"
 using namespace std;
 
 int main(int argc, char** argv) {
 //declare variables
     int day;
     char leapQ; //leap year question
-    DayOfYear info;
+    DayOfYear2 info;
     //input day
     do{
         cout<<"Is it a leap year this year? Type y if yes, n if no "<<endl;

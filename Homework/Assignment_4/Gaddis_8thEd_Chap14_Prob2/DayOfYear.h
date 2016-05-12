@@ -11,7 +11,6 @@
 class DayOfYear {
 private:
     int day;
-    int SIZE=365;
 public:
     DayOfYear();
     print(int);
