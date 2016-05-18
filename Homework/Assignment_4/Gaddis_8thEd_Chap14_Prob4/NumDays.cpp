@@ -1,18 +1,42 @@
-/* 
- * File:   NumDays.cpp
- * Author: rcc
- * 
- * Created on May 18, 2016, 1:26 PM
- */
+/*File: NumDays.cpp*/
 
 #include "NumDays.h"
-
 NumDays::NumDays() {
 }
-
-NumDays::NumDays(const NumDays& orig) {
+//constructor
+NumDays::NumDays() {
+    hours = 0; 
 }
-
-NumDays::~NumDays() {
+//mutator functions
+void NumDays::setHours(float x){
+    hours = x;
 }
-
+//accessor functions
+float NumDays::getHours() const{
+    return hours;
+}
+float NumDays::getDays() const{
+    return hours/8;
+}
+NumDays NumDays::operator +(const NumDays&right){
+    
+}
+NumDays NumDays::operator -(const NumDays&right)
+{
+    
+}
+NumDays NumDays::operator++(){
+    
+}
+NumDays NumDays::operator++(int){
+    
+}
+NumDays NumDays::operator--(){
+    
+}
+NumDays NumDays::operator--(int){
+    
+}
+NumDays NumDays::operator++(){
+    
+}
