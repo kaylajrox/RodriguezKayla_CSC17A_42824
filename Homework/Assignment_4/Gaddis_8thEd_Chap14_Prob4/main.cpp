@@ -24,13 +24,23 @@ should be automatically recalculated.
 −− Prefix and postfix decrement operators. These operators should decrement the
 number of hours stored in the object. When decremented, the number of days
 should be automatically recalculated. */
-
+//System Libraries
 #include <iostream>
 using namespace std;
-
+//User Libraries
+#include "NumDays.h"
 int main(int argc, char** argv) {
+    //declare variables
+    int hours;
+    NumDays hrsToDays;
+    //input
     cout<<"This program converts number of hours to number of days"<<endl;
     cout<<"Enter the number hours to be converted "<<endl;
+    cin>>hours;
+    hrsToDays.setHours(hours);
+    cout<<"The number of days this is: ";
+    hrsToDays.getDays();
+    cout<<" days."<<endl;
     return 0;
 }
 

@@ -12,14 +12,16 @@ void NumDays::setHours(float x){
     hours = x;
 }
 //accessor functions
-float NumDays::getHours() const{
+int NumDays::getHours() const{
     return hours;
 }
 float NumDays::getDays() const{
     return hours/8;
 }
 NumDays NumDays::operator +(const NumDays&right){
-    
+    NumDays t;
+    t.hours = hours +right.hours ;
+    return t;
 }
 NumDays NumDays::operator -(const NumDays&right)
 {
