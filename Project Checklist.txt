@@ -9,3 +9,39 @@ Chap
 16 -> Templates
 
 Objective: Dynamic array of Templated objects created from abstract base class using derived children
+-pointers to create dynamic arrays
+-pointer and array notation
+-templated arrays
+-structures, structures that point to structures
+-.read and .write for binary files** (I did this wrong last time)
+- do not need to see friends
+-overloaded operators
+-break up the class into inherited , inherited derived
+-vectors can be used with anything
+-templates can be used with anything (templated functions and templated classes)
+-structures with pointers 
+-final will contain pieces of this
+
+
+
+
+
+
+
+Directions on blackboard:
+Make sure you create a folder in Github so I can see the progress over time.  I am to be a collaborator so I can check your progress.  
+You are to create a folder inside of this repository called Project 2.  In the folder you will place the work you have done with respect 
+to Project 2 up to this point and/or if you haven't started you will place Project 1 which will be modified to become Project 2.  I will 
+keep track of your progress over the coming weeks.
+
+Refer, to the Project 1 writeup and examples of previous students submissions. Also, send me an email attaching the writeup and the 
+program to mark.lehr@rcc.edu with the subject LastName,FirstName - Project 2 - 42824
+
+Make sure to include concepts for Chapters 9 to 16.  To make sure you don't exclude anything provide a checklist of those concepts that 
+should be included vs. what you actually included.
+
+Minimum Line count = 1000
+
+Writeup has the same requirements as the first project.
+
+Document using doxygen, gliffy, and UML diagrams.
