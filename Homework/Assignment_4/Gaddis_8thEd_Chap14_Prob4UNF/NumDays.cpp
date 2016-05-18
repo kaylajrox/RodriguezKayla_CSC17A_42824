@@ -1,8 +1,6 @@
 /*File: NumDays.cpp*/
 
 #include "NumDays.h"
-NumDays::NumDays() {
-}
 //constructor
 NumDays::NumDays() {
     hours = 0; 
@@ -12,7 +10,7 @@ void NumDays::setHours(float x){
     hours = x;
 }
 //accessor functions
-int NumDays::getHours() const{
+float NumDays::getHours() const{
     return hours;
 }
 float NumDays::getDays() const{
@@ -23,22 +21,32 @@ NumDays NumDays::operator +(const NumDays&right){
     t.hours = hours +right.hours ;
     return t;
 }
-NumDays NumDays::operator -(const NumDays&right)
-{
-    
+NumDays NumDays::operator -(const NumDays&right){
+    NumDays temp;
+    temp.hours = hours - right.hours ;
+    return temp;
 }
 NumDays NumDays::operator++(){
-    
+    ++hours;
+    getDays();
+    return *this;
 }
 NumDays NumDays::operator++(int){
-    
+     NumDays temp;
+    temp.setHours(hours);
+    hours++;
+    temp.getDays();
+    return temp;  
 }
 NumDays NumDays::operator--(){
-    
+    --hours;
+    getDays();
+    return *this;
 }
 NumDays NumDays::operator--(int){
-    
-}
-NumDays NumDays::operator++(){
-    
+    NumDays temp;
+    temp.setHours(hours);
+    hours--;
+    temp.getDays();
+    return temp;
 }

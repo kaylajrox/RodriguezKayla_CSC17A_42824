@@ -9,7 +9,7 @@
 
 class NumDays {
 private:
-    int hours; //number of hours worked
+    float hours; //number of hours worked
 public:
     NumDays();
     void setHours(float);

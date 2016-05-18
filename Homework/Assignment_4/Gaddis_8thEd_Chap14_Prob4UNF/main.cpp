@@ -31,16 +31,47 @@ using namespace std;
 #include "NumDays.h"
 int main(int argc, char** argv) {
     //declare variables
-    int hours;
-    NumDays hrsToDays;
+    float hours,hours1,hours2;
+    NumDays hrsToDays,hrsToDays1,hrsToDays2;
     //input
     cout<<"This program converts number of hours to number of days"<<endl;
-    cout<<"Enter the number hours to be converted "<<endl;
-    cin>>hours;
+    do{
+        cout<<"Enter the number hours to be converted "<<endl;
+        cin>>hours;
+    }while(hours<0);
     hrsToDays.setHours(hours);
     cout<<"The number of days this is: ";
     hrsToDays.getDays();
     cout<<" days."<<endl;
+    cout<<"This part of the program demonstrates overloaded operators"<<endl;
+    cout<<"Adding Days"<<endl;
+    //Adding Days
+    do{
+        cout<<"Enter the number hours to be converted "<<endl;
+        cin>>hours1;
+    }while(hours1<0);
+    hrsToDays1.setHours(hours1);
+    do{
+        cout<<"Enter the number hours to be converted "<<endl;
+        cin>>hours2;
+    }while(hours2<0);
+    hrsToDays2.setHours(hours2);
+    hrsToDays1.getDays();
+    hrsToDays2.getDays();
+    cout<<"The added amount of days is ";
+    float combined=hrsToDays1+hrsToDays2; //combined days of both inputs
+    cout<<combined;
+    cout<<"Incrementing Days (Prefix operator)"<<endl;
+    float incre1pre = ++hrsToDays1;//increment days of first input(prefix)
+    float incre2pre = ++hrsToDays2;//increment days of second input(prefix)
+    cout<<"For first input: "<<incre1pre<<endl;
+    cout<<"For second input: "<<incre2pre<<endl;
+    cout<<"Incrementing Days (Postfix operator)"<<endl;
+    float incre1pst = hrsToDays1++; //incrementing days of first input(postfix)
+    float incre2pst = hrsToDays2++;//incrementing days of second input(postfix)
+    cout<<"For first input: "<<incre1pst<<endl;
+    cout<<"For second input: "<<incre2pst<<endl;
+    cout<<"Decrementing Days"<<endl;
     return 0;
 }
 
