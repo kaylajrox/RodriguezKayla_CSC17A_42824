@@ -40,10 +40,9 @@ int main(int argc, char** argv) {
         cin>>hours;
     }while(hours<0);
     hrsToDays.setHours(hours);
-    cout<<"The number of days this is: ";
-    hrsToDays.getDays();
-    cout<<" days."<<endl;
-    cout<<"This part of the program demonstrates overloaded operators"<<endl;
+    cout<<"The number of days this is: \n";
+    cout<<hrsToDays.getDays();
+    cout<<"\nThis part of the program demonstrates overloaded operators"<<endl;
     cout<<"Adding Days"<<endl;
     //Adding Days
     do{
@@ -58,20 +57,32 @@ int main(int argc, char** argv) {
     hrsToDays2.setHours(hours2);
     hrsToDays1.getDays();
     hrsToDays2.getDays();
-    cout<<"The added amount of days is ";
-    float combined=hrsToDays1+hrsToDays2; //combined days of both inputs
-    cout<<combined;
-    cout<<"Incrementing Days (Prefix operator)"<<endl;
-    float incre1pre = ++hrsToDays1;//increment days of first input(prefix)
-    float incre2pre = ++hrsToDays2;//increment days of second input(prefix)
-    cout<<"For first input: "<<incre1pre<<endl;
-    cout<<"For second input: "<<incre2pre<<endl;
+    cout<<"\nThe added amount of days is ";
+    NumDays combined=hrsToDays1+hrsToDays2; //combined days of both inputs
+    cout<<combined.getDays();
+    cout<<"\nThe subtracted days is:";
+    NumDays combine=hrsToDays1-hrsToDays2; //combined days of both inputs
+    cout<<combine.getDays();
+    cout<<"\nIncrementing Days (Prefix operator)"<<endl;
+    NumDays incre1pre = ++hrsToDays1;//increment days of first input(prefix)
+    NumDays incre2pre = ++hrsToDays2;//increment days of second input(prefix)
+    cout<<"For first input: "<<incre1pre.getDays()<<endl;
+    cout<<"For second input: "<<incre2pre.getDays()<<endl;
     cout<<"Incrementing Days (Postfix operator)"<<endl;
-    float incre1pst = hrsToDays1++; //incrementing days of first input(postfix)
-    float incre2pst = hrsToDays2++;//incrementing days of second input(postfix)
-    cout<<"For first input: "<<incre1pst<<endl;
-    cout<<"For second input: "<<incre2pst<<endl;
-    cout<<"Decrementing Days"<<endl;
+    NumDays incre1pst = hrsToDays1++; //incrementing days of first input(postfix)
+    NumDays incre2pst = hrsToDays2++;//incrementing days of second input(postfix)
+    cout<<"For first input: "<<incre1pst.getDays()<<endl;
+    cout<<"For second input: "<<incre2pst.getDays()<<endl;
+    cout<<"Decrementing Days (prefix)"<<endl;
+    NumDays decr1pre = --hrsToDays1;//decrement days of first input(prefix)
+    NumDays decr2pre = --hrsToDays2;//decrement days of second input(prefix)
+    cout<<"For first input: "<<decr1pre.getDays()<<endl;
+    cout<<"For second input: "<<decr2pre.getDays()<<endl;
+    cout<<"Decrementing Days (postfix)"<<endl;
+    NumDays decr1pst = hrsToDays1--;//decrement days of first input(postfix)
+    NumDays decr2pst = hrsToDays2--;//decrement days of second input(postfix)
+    cout<<"For first input: "<<decr1pst.getDays()<<endl;
+    cout<<"For second input: "<<decr2pst.getDays()<<endl;
     return 0;
 }
 
