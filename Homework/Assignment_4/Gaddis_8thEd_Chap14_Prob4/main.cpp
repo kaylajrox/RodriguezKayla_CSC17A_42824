@@ -34,7 +34,8 @@ int main(int argc, char** argv) {
     float hours,hours1,hours2;
     NumDays hrsToDays,hrsToDays1,hrsToDays2;
     //input
-    cout<<"This program converts number of hours to number of days"<<endl;
+    cout<<"This program converts number of work hours to number of days"<<endl;
+    cout<<"And demonstrates different overloaded operators."<<endl;
     do{
         cout<<"Enter the number hours to be converted "<<endl;
         cin>>hours;
