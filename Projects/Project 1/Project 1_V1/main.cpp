@@ -26,7 +26,7 @@ const char CNVPERC=100;
 //Function Prototypes
 char *compic(ComColor[],string[],char[],int);
 UserColor *input(string *,const int,char[],string[]);
-void switchH(UserColor[],ComColor[],int,int &);
+void switchH(UserColor[],ComColor[],int,int &,const int);
 void reppic(char[],char[],int &,const char,int &,const int ,vector<string>&);
 void results(UserColor[],int&,const char,const char,int&,int,char[],char[]);
 string aryToStr(char [],int);//converts a character array to a string
@@ -89,7 +89,7 @@ int main(int argc, char** argv) {
                 userChar[2]==comChar[2]&&userChar[3]==comChar[3]){
             limit=nTrys;
          }
-        switchH(clrPick,cColor,nTrys,limit);
+        switchH(clrPick,cColor,nTrys,limit,SIZE);
     }
     
     //Print results of the game
@@ -277,7 +277,31 @@ void results(UserColor color[],int &nTrys,const char CNVPERC,
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
 /*                        Switch Hints Function                               */
 /******************************************************************************/
-void switchH(UserColor color[],ComColor pick[],int nTrys,int &limit){ 
+void switchH(UserColor color[],ComColor pick[],int nTrys,int &limit,const int SIZE){ 
+//    int counter=0;
+//    bool check=false;
+//        for(int i=0;i<SIZE;i++){
+//            if(color[i].color==pick[i].getColor())
+//                counter++;
+//        }
+//    if (counter==1){
+//        cout<<"One color is in the correct spot."<<endl;
+//        check=true;
+//        
+//    }else if (counter==2){
+//        cout<<"Two color is in the correct spot."<<endl;
+//        check=true;
+//    }else if (counter==3){
+//        cout<<"Three color is in the correct spot."<<endl;
+//        check=true;
+//    }
+//    for(int j=0;j<SIZE;j++){
+//        for(int i=0;i<SIZE;i++){
+////            if(color[i].color==pick[j].getColor())
+//        }
+//    }
+//    
+//    
 //Two in the correct spot
 if (color[0].color==pick[0].getColor()&&
         color[1].color==pick[1].getColor()&&

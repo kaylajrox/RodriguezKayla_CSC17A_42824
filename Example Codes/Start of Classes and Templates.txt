@@ -1,0 +1,48 @@
+int main(int argc, char** argv) {
+    C2 a;
+    
+    cout << a.getMny();
+    
+    return 0;
+}
+
+
+class C1
+{
+public:
+    void getMny() {return money};
+private:
+    int money = 20;
+};
+
+class C2 :: public C1
+{
+public:
+    
+protected:
+    int saving;
+};
+
+template< T > 
+class C3 :: public C2
+
+
+int i = 2;
+int j = 3; 
+cout << i + j << endl;
+float i1 = 2;
+float j1 = 3;
+cout << i1/j1 << endl;
+
+
+
+int a,b;
+func(a,b);
+float c,d;
+func(c,d);
+template< typename T>
+void func<float>(T i,T j){
+//    T i = 2;
+//    T j = 3;
+    cout << i/j << endl;
+}
