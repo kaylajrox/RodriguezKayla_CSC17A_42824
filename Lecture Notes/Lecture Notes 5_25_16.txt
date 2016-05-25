@@ -1,0 +1,22 @@
+with a templates, you have to put the specification and the implication in the same file !! 
+**Everything must be in the same file for templates!!**
+You have to put a template before every function its used
+
+but with classes thats our difference between .cpp(implication) and .h(specification)
+
+
+-You should never use built in arrays if you already know classes because these classes already 
+clean up after themselves
+-You need to be able to use legacy code
+-we have to write your own vectors because the other ones have extra stuff
+-simplest templated class (need to know for 17C)
+-built into the vector is the size, push_back function which allows you to add elements into the vector
+-allocates a new array and copies all the contents from the previous array into this new allocated memory, this is what push_back does to add just that one element
+-pop_back function shrinks the vector, to deallocate the memory
+
+
+Questions: 
+What is the use of templates?
+
+Projects:
+We dont have to include exceptions in our projects

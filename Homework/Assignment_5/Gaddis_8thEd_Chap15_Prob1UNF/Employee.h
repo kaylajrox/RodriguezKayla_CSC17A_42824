@@ -9,7 +9,7 @@
 #define	EMPLOYEE_H
 #include <string>
 class Employee {
-    protected:
+    private:
         std::string name;
         int id;
         std::string hireDate;
@@ -21,10 +21,6 @@ class Employee {
         int getNum();
         void setHireD(std::string);
         std::string getHirdD();
-};
-class ProductionWorker:public Employee{
-private:
-public:
 };
 #endif	/* EMPLOYEE_H */
 
