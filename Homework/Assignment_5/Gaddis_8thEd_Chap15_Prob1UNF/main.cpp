@@ -23,13 +23,48 @@ shift is shift 1, and the night shift is shift 2. Write one or more constructors
 and the appropriate accessor and mutator functions for the class. Demonstrate
 the classes by writing a program that uses a ProductionWorker object. 
  */
+/*Need to add the constructors default content*/
 //System Libraries
 #include <iostream>
+#include <string>
+
+#include "Employee.h"
+#include "ProductionWorker.h"
 using namespace std;
 
 int main(int argc, char** argv) {
-   
-    
+    //declare variables
+    string name; //employee name
+    int empNum; //employee number
+    string hireDate; //hire date of the employee
+    int shift; //the shift of the employee (shift 1 or shift 2)
+    float rate; //employee rate of pay
+    ProductionWorker emp;
+    //input information
+    cout<<"What is the name of the employee? "<<endl;
+    getline(cin,name);
+    emp.setName(name);
+    cout<<"What is the employee's id number? "<<endl;
+    cin>>empNum;
+    emp.setNum(empNum);
+    cout<<"What was the hire date of the employee? (mm/dd/yy) "<<endl;
+    cin>>hireDate;
+    emp.setHireD(hireDate);
+    do{
+        cout<<"What is the employee's shift? Enter 1 for shift 1, 2 for shift 2"<<endl;
+        cin>>shift;
+        if(shift<1||shift>2)cout<<"Invalid shift number"<<endl;
+    }while(shift<1||shift>2);
+    emp.setShift(shift);
+    cout<<"What is the employee's rate of pay? "<<endl;
+    cin>>rate;
+    emp.setRate(rate);
+    cout<<"Employee Information "<<endl;
+    cout<<"Name: "<<emp.getName()<<endl;
+    cout<<"Employee Id: "<<emp.getNum()<<endl;
+    cout<<"Hire Date: "<<emp.getHirdD()<<endl;
+    cout<<"Shift: "<<emp.getShift()<<endl;
+    cout<<"Hourly Pay Rate "<<emp.getRate()<<endl;
     return 0;
 }
 
