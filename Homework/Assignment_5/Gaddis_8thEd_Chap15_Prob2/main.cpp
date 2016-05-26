@@ -42,7 +42,7 @@ int main(int argc, char** argv) {
     
     //Output Employee Information
     cout<<"***********************************"<<endl;
-    cout<<"Employee Information "<<endl;
+    cout<<"Shift Supervisor Information "<<endl;
     cout<<"Name: "<<emp.getName()<<endl;
     cout<<"Employee Id: "<<emp.getNum()<<endl;
     cout<<"Hire Date: "<<emp.getHirdD()<<endl;
