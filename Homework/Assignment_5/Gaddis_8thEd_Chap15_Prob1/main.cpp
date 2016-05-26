@@ -28,7 +28,7 @@ the classes by writing a program that uses a ProductionWorker object.
 #include <iostream>
 #include <string>
 
-#include "Employee.h"
+//User Libraries
 #include "ProductionWorker.h"
 using namespace std;
 
@@ -60,7 +60,7 @@ int main(int argc, char** argv) {
     cin>>rate;
     emp.setRate(rate);
     cout<<"***********************************"<<endl;
-    cout<<"Employee Information "<<endl;
+    cout<<"Production Worker Information "<<endl;
     cout<<"Name: "<<emp.getName()<<endl;
     cout<<"Employee Id: "<<emp.getNum()<<endl;
     cout<<"Hire Date: "<<emp.getHirdD()<<endl;
