@@ -59,12 +59,14 @@ int main(int argc, char** argv) {
     cout<<"What is the employee's rate of pay? "<<endl;
     cin>>rate;
     emp.setRate(rate);
+    cout<<"***********************************"<<endl;
     cout<<"Employee Information "<<endl;
     cout<<"Name: "<<emp.getName()<<endl;
     cout<<"Employee Id: "<<emp.getNum()<<endl;
     cout<<"Hire Date: "<<emp.getHirdD()<<endl;
     cout<<"Shift: "<<emp.getShift()<<endl;
-    cout<<"Hourly Pay Rate "<<emp.getRate()<<endl;
+    cout<<"Hourly Pay Rate: $"<<emp.getRate()<<endl;
+    cout<<"***********************************"<<endl;
     return 0;
 }
 

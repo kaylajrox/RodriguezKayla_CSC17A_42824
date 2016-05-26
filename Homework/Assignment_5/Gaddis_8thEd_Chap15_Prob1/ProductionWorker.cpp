@@ -5,7 +5,8 @@
 #include "ProductionWorker.h"
 //constructor
 ProductionWorker::ProductionWorker() : Employee() {
-    
+    shift=0;
+    rate=0;
 }
 //mutator functions
 void ProductionWorker::setShift(int x){
