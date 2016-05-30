@@ -8,7 +8,7 @@
  Run failed, I do not know where my error is
  only around 490 lines including all the .cpp and .h file lines
  Need to come up with more ways to add lines
- Fix leade rboard
+ Fix leader board
  Add a Sort function to sort the leader board*/
 //System Libraries
 #include <iostream>
@@ -39,6 +39,7 @@ void  writeFile(fstream& ,int& ,const char, UserColor[],ComColor[],vector<string
 void readFile(fstream& ,string);
 char *input2(UserColor[],const int,char[],string[]);
 void lder(ofstream&);
+void markSrt(int *a,int n); //sorts the leaderboard
 
 //Execution Begins Here
 int main(int argc, char** argv) {
@@ -53,7 +54,8 @@ int main(int argc, char** argv) {
     const int SIZE=4;  //Size of array used to keep track of color choices    
     UserColor *clrPick;  //User Inputs
     string order[SIZE]={"first","second","third","fourth"}; //User Order Inputs
-    string options[8]={"red","green","blue","brown","black","yellow","orange","white"};//Options for computer and user 
+    //Options for computer and user 
+    string options[8]={"red","green","blue","brown","black","yellow","orange","white"};
     ComColor *cColor; //Computer generated random pick
     const char GMELMT=10; //Number limit which determines win or loss
     vector<string>list; //vector which converts characters to one condensed string
@@ -66,7 +68,7 @@ int main(int argc, char** argv) {
     char choice; //choice on whether or not to increment turns
     UserColor limit; //object to be incremented using overloaded operator
     ofstream leader; //file to hold leader board results
-    
+//    ComColor lead; 
     //Open the Files
     infile.open("instructions.txt", ios::in|ios::binary);
     out.open("results.txt",ios::out|ios::binary);
@@ -89,7 +91,7 @@ int main(int argc, char** argv) {
         if(nTrys<=GMELMT&&userChar[0]==comChar[0]&&userChar[1]==comChar[1]&&
                 userChar[2]==comChar[2]&&userChar[3]==comChar[3]){
             nTrys=limit.getTurn();
-            lder(leader);
+//            lead.lder();
         }
         else if(nTrys==GMELMT){
             cout<<"You have reached the game limit and still have not guessed ";
@@ -99,7 +101,7 @@ int main(int argc, char** argv) {
             cin>>choice;  
             choice=tolower(choice);
             if (choice=='y'){
-                ++limit;
+                ++limit; //increment the number of turns user is allowed
             }
         }
         switchH(clrPick,cColor,nTrys,SIZE);
@@ -344,32 +346,4 @@ void switchH(UserColor color[],ComColor pick[],int nTrys,const int SIZE){
         }
     }while(check=false);
 }
-//000000001111111112222222222333333333344444444445555555555666666666677777777778
-//345678901234567890123456789012345678901234567890123456789012345678901234567890
-/*                         Leader board Function  
- * This function should read in the contents of the leader file and sort them
- * and then output the leader board with the new name on it                   */
-/******************************************************************************/
-void lder(ofstream& leader){
-    char *name;
-    string n; 
-    for (int i=0;i<strlen(name);i++){
-        cout<<"Please enter a username to be put onto the Leader board "<<endl;
-        cin>>name[i];
-    }
-//        leader>>name[i];
-//    }cout<<"Top Ten on the Leader board "<<endl;
-//    for(int i=0;i<n.length();i++){
-//        leader>>n[i];
-//    }
-//    if( leader ){
-//        getline( leader, n );
-//        while( leader ){
-//            cout << n << endl;
-//            getline( leader, n );
-//        }
-//    }   
-//    for (int i=0;i<strlen(name);i++){
-//        cout<<name[i]<<endl;
-//    }
-}
+

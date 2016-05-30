@@ -9,14 +9,16 @@
 #define COMCOLOR_H
 #include "Color.h"
 #include <string>
+#include <fstream>
 using namespace std;
 
 class ComColor : public Color 
 {
     protected:
-        
     public:
         ComColor();
+        void lder();
+        void markSrt(int*,int);
         
 };
 
