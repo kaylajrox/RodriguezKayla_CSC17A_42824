@@ -22,4 +22,4 @@ void Color::setSpot(int x){
 int Color::getSpot(){
     return spot;
 }
-
+  

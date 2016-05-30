@@ -4,7 +4,12 @@
  * file opening was used on notepad and the format outputs the way it should
  * on notepad
  */
-
+/*concerns:
+ Run failed, I do not know where my error is
+ only around 490 lines including all the .cpp and .h file lines
+ Need to come up with more ways to add lines
+ Fix leade rboard
+ Add a Sort function to sort the leader board*/
 //System Libraries
 #include <iostream>
 #include <string>
@@ -30,12 +35,10 @@ void switchH(UserColor[],ComColor[],int,const int);
 void reppic(char[],char[],int &,const char,const int ,vector<string>&);
 void results(UserColor[],int&,const char,const char,int,char[],char[]);
 string aryToStr(char [],int);//converts a character array to a string
-void hints1();
-void hints2();
-void hints3();
 void  writeFile(fstream& ,int& ,const char, UserColor[],ComColor[],vector<string>&);
 void readFile(fstream& ,string);
 char *input2(UserColor[],const int,char[],string[]);
+void lder(ofstream&);
 
 //Execution Begins Here
 int main(int argc, char** argv) {
@@ -61,17 +64,22 @@ int main(int argc, char** argv) {
     char *userChar;//User's colors in character representation
     int nTrys=0;//number of tries counter
     char choice; //choice on whether or not to increment turns
-    UserColor limit;
+    UserColor limit; //object to be incremented using overloaded operator
+    ofstream leader; //file to hold leader board results
+    
     //Open the Files
-    infile.open("instructions.txt", ios::in);//|ios::binary);
+    infile.open("instructions.txt", ios::in|ios::binary);
     out.open("results.txt",ios::out|ios::binary);
+    leader.open("leader.txt");
     
     //Read the File
     readFile(infile,instr);
     
     //computer's colors in character representation
     char *comChar = compic(cColor,options,optChar,SIZE);
-    
+    for(int i=0;i<SIZE;i++){
+        cout<<comChar[i];
+    }
     //for loop allows player to play until the limit is hit
     for(int n=1;n<=limit.getTurn();n++){
         clrPick=input(order,SIZE,optChar,options);   
@@ -81,6 +89,7 @@ int main(int argc, char** argv) {
         if(nTrys<=GMELMT&&userChar[0]==comChar[0]&&userChar[1]==comChar[1]&&
                 userChar[2]==comChar[2]&&userChar[3]==comChar[3]){
             nTrys=limit.getTurn();
+            lder(leader);
         }
         else if(nTrys==GMELMT){
             cout<<"You have reached the game limit and still have not guessed ";
@@ -109,6 +118,7 @@ int main(int argc, char** argv) {
     //close the files
     infile.close();
     out.close();
+    leader.close();
     return 0;
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
@@ -291,58 +301,75 @@ void switchH(UserColor color[],ComColor pick[],int nTrys,const int SIZE){
             if(color[i].getColor()==pick[i].getColor())
                 counter++;
         }
-    if (counter==1){
-        cout<<"One color is in the correct spot."<<endl;
-        check=true;
-        
-    }else if (counter==2){
-        cout<<"Two colors are in the correct spot."<<endl;
-        check=true;
-    }else if (counter==3){
-        cout<<"Three colors are in the correct spot."<<endl;
-        check=true;
-    }
-    else if (counter==4){
-        cout<<"You guessed all the colors correctly."<<endl;
-        check=true;
-    }
-    for(int j=0;j<SIZE;j++){
-        for(int i=0;i<SIZE;i++){
-            if(color[i].getColor()==pick[j].getColor()&&i!=j){
-                count++;
+    do{
+        if (counter==1){
+            cout<<"One color is in the correct spot."<<endl;
+            check=true;
+
+        }else if (counter==2){
+            cout<<"Two colors are in the correct spot."<<endl;
+            check=true;
+        }else if (counter==3){
+            cout<<"Three colors are in the correct spot."<<endl;
+            check=true;
+        }
+        else if (counter==4){
+            cout<<"You guessed all the colors correctly."<<endl;
+            check=true;
+        }
+        for(int j=0;j<SIZE;j++){
+            for(int i=0;i<SIZE;i++){
+                if(color[i].getColor()==pick[j].getColor()&&i!=j){
+                    count++;
+                }
             }
         }
-    }
-     if (count==1){
-        cout<<"One color is correct, but it is not in the correct spot."<<endl;
-        check=true;
-        
-    }else if (count==2){
-        cout<<"Two colors are correct,but they are not in the correct spot."<<endl;
-        check=true;
-    }else if (count==3){
-        cout<<"Three colors are correct, but they are not in the correct spot."<<endl;
-        check=true;
-    }else if (count==4){
-        cout<<"Four colors are correct, but they are not in the correct spot."<<endl;
-        check=true;
-    }else{
-        cout<<"None of these color choices are correct or in the  "; 
-        cout<<"right spot."<<endl<<"Try something different."<<endl
-                                                             <<endl;
-    }
+         if (count==1){
+            cout<<"One color is correct, but it is not in the correct spot."<<endl;
+            check=true;
+
+        }else if (count==2){
+            cout<<"Two colors are correct,but they are not in the correct spot."<<endl;
+            check=true;
+        }else if (count==3){
+            cout<<"Three colors are correct, but they are not in the correct spot."<<endl;
+            check=true;
+        }else if (count==4){
+            cout<<"Four colors are correct, but they are not in the correct spot."<<endl;
+            check=true;
+        }else{
+            cout<<"None of these color choices are correct or in the  "; 
+            cout<<"right spot."<<endl<<"Try something different."<<endl
+                                                                 <<endl;
+        }
+    }while(check=false);
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
-/*                         Leader board Function                              */
+/*                         Leader board Function  
+ * This function should read in the contents of the leader file and sort them
+ * and then output the leader board with the new name on it                   */
 /******************************************************************************/
-void leader(int nameN){
+void lder(ofstream& leader){
     char *name;
+    string n; 
     for (int i=0;i<strlen(name);i++){
         cout<<"Please enter a username to be put onto the Leader board "<<endl;
         cin>>name[i];
-    }cout<<"Top Ten on the Leader board "<<endl;
-    for (int i=0;i<strlen(name);i++){
-        cout<<i+1<<"       "<<name[i]<<endl;
     }
-} 
+//        leader>>name[i];
+//    }cout<<"Top Ten on the Leader board "<<endl;
+//    for(int i=0;i<n.length();i++){
+//        leader>>n[i];
+//    }
+//    if( leader ){
+//        getline( leader, n );
+//        while( leader ){
+//            cout << n << endl;
+//            getline( leader, n );
+//        }
+//    }   
+//    for (int i=0;i<strlen(name);i++){
+//        cout<<name[i]<<endl;
+//    }
+}

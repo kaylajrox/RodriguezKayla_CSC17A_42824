@@ -1,0 +1,13 @@
+Color Choices	Turn Number
+----------------------------
+RGYW              1
+GRYW              2
+KNWY              3
+YYYY              4
+WWWW              5
+RRRR              6
+RRWW              7
+BNWR              8
+KOWR              9
+NWWW             10
+You lose. You could not guess in 10 tries or less.
