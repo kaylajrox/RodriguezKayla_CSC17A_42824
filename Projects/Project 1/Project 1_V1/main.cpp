@@ -277,31 +277,7 @@ void results(UserColor color[],int &nTrys,const char CNVPERC,
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
 /*                        Switch Hints Function                               */
 /******************************************************************************/
-void switchH(UserColor color[],ComColor pick[],int nTrys,int &limit,const int SIZE){ 
-//    int counter=0;
-//    bool check=false;
-//        for(int i=0;i<SIZE;i++){
-//            if(color[i].color==pick[i].getColor())
-//                counter++;
-//        }
-//    if (counter==1){
-//        cout<<"One color is in the correct spot."<<endl;
-//        check=true;
-//        
-//    }else if (counter==2){
-//        cout<<"Two color is in the correct spot."<<endl;
-//        check=true;
-//    }else if (counter==3){
-//        cout<<"Three color is in the correct spot."<<endl;
-//        check=true;
-//    }
-//    for(int j=0;j<SIZE;j++){
-//        for(int i=0;i<SIZE;i++){
-////            if(color[i].color==pick[j].getColor())
-//        }
-//    }
-//    
-//    
+void switchH(UserColor color[],ComColor pick[],int nTrys,int &limit,const int SIZE){     
 //Two in the correct spot
 if (color[0].color==pick[0].getColor()&&
         color[1].color==pick[1].getColor()&&
