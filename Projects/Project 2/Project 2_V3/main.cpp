@@ -13,6 +13,7 @@
 #include <ctime>
 #include <fstream> //File I/O
 #include <vector> //vector library
+#include <iomanip> //Formatting
 using namespace std;
  
 //User Libraries
@@ -21,7 +22,6 @@ using namespace std;
 
 //Global Constant
 const char CNVPERC=100;
-#include <iomanip> //Formatting
 
 //Function Prototypes
 char *compic(ComColor[],string[],char[],int);

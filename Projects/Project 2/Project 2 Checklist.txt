@@ -14,6 +14,7 @@ Chap Checklist:
 14 classes++
 15 inheritance/polymorhism
 16 templates
+-exceptions (try catch)
 
 Need:
 exceptions
