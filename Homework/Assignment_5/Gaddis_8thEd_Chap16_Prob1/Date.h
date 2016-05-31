@@ -1,20 +1,25 @@
-/* 
- * File:   Date.h
- * Author: rcc
- *
- * Created on May 31, 2016, 2:23 PM
- */
-
 #ifndef DATE_H
 #define	DATE_H
+#include <string>
 
 class Date {
+private:
+    int month;
+    int day;
+    std::string year;
 public:
     Date();
-    Date(const Date& orig);
-    virtual ~Date();
-private:
-
+    void setMonth(int);
+    void setDay(int);
+    void setYear(std::string);
+    int getMonth()const;
+    int getDay()const;
+    std::string getYear()const;
+    void prntMonth();
+    void slashForm();
+    void cmaForm();
+    void mlaForm();
+    class EmpClass{};
 };
 
 #endif	/* DATE_H */
