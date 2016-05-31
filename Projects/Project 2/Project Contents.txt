@@ -1,0 +1,9 @@
+Project 2
+V1 -doesn't run
+V2 -doesn't run
+V2N (working adn runs)
+	Things Added:
+	overloaded ++operator
+	derived class (inheritance)
+V3 -version started off as a copy of V2N
+	*STILL IN PROGRESS*
