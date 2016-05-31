@@ -1,0 +1,23 @@
+Welcome to a game of Mastermind!
+
+Mastermind is a code breaking game for users to try and guess four different 
+colors the computer picked by random. The user uses hints given by the computer
+telling them whether their color is in the right spot, or how many of the colors 
+are correct. The user inputs how any attempts they are willing to play, and to win
+they must guess the correct colors before 
+10 tries. 
+
+Please pick four colors and press enter to continue. You must write
+out the full color name to pick that color. After you write out the
+color the computer will ask you for the spot number. This means what
+spot do you want your color to go in(first,second,third,fourth)
+you will input this as either one of the four numbers (1,2,3,4).
+The available colors are red, green, blue, yellow, brown, orange,
+black, and white.The computer might does not pick any color more than
+once. If you can guess in 10 tries or less, you win. At the begining you 
+will be asked for a game limit, this allows you to play after the 10 tries to
+win, you can choose this limit but the limit must be over 10. If it is not,
+the program will modify your limit to 10.
+Your colors will be displayed in a table as single characters as:
+red= r, green=g, blue=b, brown=n, black=k,
+yellow=y, orange=o, and white = w.
