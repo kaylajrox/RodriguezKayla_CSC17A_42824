@@ -4,7 +4,7 @@
  *
  * Created on April 30, 2016, 3:25 PM
  */
-
+/*Template class that will print game over */
 #ifndef COMCOLOR_H
 #define COMCOLOR_H
 #include "Color.h"
@@ -15,12 +15,10 @@ using namespace std;
 class ComColor : public Color 
 {
     protected:
-        fstream out;
+       
     public:
         ComColor() : Color(){}
-        void lder();
-        void markSrt(int*,int);
-        void readLdr();
+        
 };
 
 #endif /* COMCOLOR_H */
