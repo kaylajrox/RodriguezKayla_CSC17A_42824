@@ -11,8 +11,5 @@
 #include <cstring>
 using namespace std;
 
-//declare variables
-ofstream leader; //file to hold leader board results
-//open the files
 
 

@@ -6,14 +6,13 @@
  */
 
 #include "ComColor.h"
+#include <string>
+#include <iostream>
+#include <cstring>
+using namespace std;
 
-ComColor::ComColor() {
-    color="";
-    spot=0;
-}
-void ComColor::setColor(string x) {
-    color=x;
-}
-string ComColor::getColor() {
-    return color;
-}
+//declare variables
+ofstream leader; //file to hold leader board results
+//open the files
+
+

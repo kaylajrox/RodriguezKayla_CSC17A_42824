@@ -7,19 +7,20 @@
 
 #ifndef COMCOLOR_H
 #define COMCOLOR_H
+#include "Color.h"
 #include <string>
+#include <fstream>
 using namespace std;
 
-class ComColor {
-private:
-    string color;
-    int spot;
-public:
-    ComColor();
-    //Accessor and Mutator Functions
-    void setColor(string);
-    string getColor();
+class ComColor : public Color 
+{
+    protected:
+        fstream out;
+    public:
+        ComColor() : Color(){}
+        void lder();
+        void markSrt(int*,int);
+        void readLdr();
 };
 
 #endif /* COMCOLOR_H */
-

@@ -1,23 +1,21 @@
 /* 
  * File:   UserColor.h
- * Author: Kayla
- *
- * Created on May 30, 2016, 4:49 PM
+ * Specification file containing user color information derived from the base
+ * Color class
  */
 
 #ifndef USERCOLOR_H
 #define USERCOLOR_H
-#include <string>
-using namespace std;
-class UserColor{    
-private:
-    string color;
-    int spot;
-public:
-    void setColor(string);
-    string getColor();
-    void setSpot(int);
-    int getSpot();
+#include "Color.h"
+class UserColor : public Color {
+    protected:
+        int turn; 
+    public:
+        UserColor();
+        UserColor operator ++();//overloading the ++ operator
+        void setTurn(int);
+        int getTurn();
+        
 };
 
 #endif /* USERCOLOR_H */
