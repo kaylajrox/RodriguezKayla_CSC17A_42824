@@ -39,7 +39,9 @@ int main(int argc, char** argv) {
     string hireDate; //hire date of the employee
     int shift; //the shift of the employee (shift 1 or shift 2)
     float rate; //employee rate of pay
+    bool v=true;//validation for shift
     ProductionWorker emp;
+    
     //input information
     cout<<"What is the name of the employee? "<<endl;
     getline(cin,name);
@@ -50,12 +52,18 @@ int main(int argc, char** argv) {
     cout<<"What was the hire date of the employee? (mm/dd/yy) "<<endl;
     cin>>hireDate;
     emp.setHireD(hireDate);
-    do{
-        cout<<"What is the employee's shift? Enter 1 for shift 1, 2 for shift 2"<<endl;
-        cin>>shift;
-        if(shift<1||shift>2)cout<<"Invalid shift number"<<endl;
-    }while(shift<1||shift>2);
-    emp.setShift(shift);
+    cout<<"What is the employee's shift? Enter 1 for shift 1, 2 for shift 2"<<endl;
+    cin>>shift;
+    while(v){
+        try{
+            //call set function
+            emp.setShift(shift);
+            v=false;
+        }catch(ProductionWorker::EmpClass){
+            cout<<"Invalid Entry. Shift must be 1 or 2"<<endl;
+            cin>>shift;
+        }
+    }
     cout<<"What is the employee's rate of pay? "<<endl;
     cin>>rate;
     emp.setRate(rate);

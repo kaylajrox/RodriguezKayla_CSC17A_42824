@@ -10,7 +10,11 @@ ProductionWorker::ProductionWorker() : Employee() {
 }
 //mutator functions
 void ProductionWorker::setShift(int x){
-    shift=x;
+    if(shift==1||shift==2){
+        shift=x;
+    }else{
+        throw EmpClass();
+    }
 }
 int ProductionWorker::getShift(){
     return shift;
@@ -21,4 +25,5 @@ void ProductionWorker::setRate(float x){
 float ProductionWorker::getRate(){
     return rate;
 }
+
 

@@ -17,6 +17,7 @@ class ProductionWorker : public Employee
         int getShift();
         void setRate(float);
         float getRate();
+        class EmpClass{};
 };
 
 #endif	/* PRODUCTIONWORKER_H */
