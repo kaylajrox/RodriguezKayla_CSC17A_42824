@@ -5,14 +5,17 @@
 #ifndef COLOR_H
 #define COLOR_H
 #include <string>
+
+using namespace std; 
+
 class Color {
     private:
         int spot;
-        std::string color;
+        string color;
     public:
         Color();
-        void setColor(std::string);
-        std::string getColor();
+        void setColor(string);
+        string getColor();
         void setSpot(int);
         int getSpot();
 };

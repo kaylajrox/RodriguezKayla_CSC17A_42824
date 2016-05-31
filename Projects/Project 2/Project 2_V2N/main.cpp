@@ -4,12 +4,7 @@
  * file opening was used on notepad and the format outputs the way it should
  * on notepad
  */
-/*concerns:
- Run failed, I do not know where my error is
- only around 490 lines including all the .cpp and .h file lines
- Need to come up with more ways to add lines
- Fix leader board
- Add a Sort function to sort the leader board*/
+
 //System Libraries
 #include <iostream>
 #include <string>
@@ -38,6 +33,10 @@ string aryToStr(char [],int);//converts a character array to a string
 void  writeFile(fstream& ,int& ,const char, UserColor[],ComColor[],vector<string>&);
 void readFile(fstream& ,string);
 char *input2(UserColor[],const int,char[],string[]);
+void markSrt(int *,int);
+void readLdr(fstream&,string);
+void lder(string,int,fstream&);
+void lderOutput(string,int);
 
 //Execution Begins Here
 int main(int argc, char** argv) {
@@ -49,31 +48,41 @@ int main(int argc, char** argv) {
     srand(static_cast<unsigned int>(time(0)));
 
     //Declare and initialize variables
+    //constants
     const int SIZE=4;  //Size of array used to keep track of color choices    
-    UserColor *clrPick;  //User Inputs
+    char gmelmt=10; //Number limit which determines win or loss
+    
+    //Arrays, Pointers,Vectors
     string order[SIZE]={"first","second","third","fourth"}; //User Order Inputs
-    //Options for computer and user 
     string options[8]={"red","green","blue","brown","black","yellow","orange","white"};
-    ComColor *cColor; //Computer generated random pick
-    const char GMELMT=10; //Number limit which determines win or loss
-    vector<string>list; //vector which converts characters to one condensed string
     char optChar[8]={'R','G','B','N','K','Y','O','W'};//character options
+    char *userChar;//User's colors in character representation
+    UserColor *clrPick;  //User Inputs
+    vector<string>list; //vector which converts characters to one condensed string
+    
+    //File Variables
     fstream infile; //in file instructions
     string instr; //file instructions
     fstream out;//output file
-    char *userChar;//User's colors in character representation
+    fstream leader; //file to hold leader board results
+    
+    //Counters and Object variables
     int nTrys=0;//number of tries counter
     char choice; //choice on whether or not to increment turns
     UserColor limit; //object to be incremented using overloaded operator
-    ofstream leader; //file to hold leader board results
-//    ComColor lead; 
+    string name;
+    int score;
+    
     //Open the Files
     infile.open("instructions.txt", ios::in|ios::binary);
     out.open("results.txt",ios::out|ios::binary);
-    leader.open("leader.txt");
+    leader.open("leader.txt",ios::in|ios::out);
     
     //Read the File
     readFile(infile,instr);
+    
+    //Allocate Memory for computer colors
+    ComColor *cColor = new ComColor[SIZE]; //Computer generated random pick
     
     //computer's colors in character representation
     char *comChar = compic(cColor,options,optChar,SIZE);
@@ -81,40 +90,51 @@ int main(int argc, char** argv) {
         cout<<comChar[i];
     }
     //for loop allows player to play until the limit is hit
-    for(int n=1;n<=limit.getTurn();n++){
+    for(int n=1;n<=gmelmt;n++){
         clrPick=input(order,SIZE,optChar,options);   
         userChar=input2(clrPick,SIZE,optChar,options);
-        reppic(userChar,comChar,nTrys,GMELMT,SIZE,list);
+        reppic(userChar,comChar,nTrys,gmelmt,SIZE,list);
         nTrys++; 
-        if(nTrys<=GMELMT&&userChar[0]==comChar[0]&&userChar[1]==comChar[1]&&
+        if(nTrys<=gmelmt&&userChar[0]==comChar[0]&&userChar[1]==comChar[1]&&
                 userChar[2]==comChar[2]&&userChar[3]==comChar[3]){
-            nTrys=limit.getTurn();
-//            lead.lder();
+            cout<<"You win! "<<endl;
+            cout<<"Please enter a username to be put onto the Leader board "<<endl;
+            cin>>name; 
+            lderOutput(name,nTrys); //Outputs what is on the leader board
+            readLdr(leader,name); //reads the leader file
+            lder(name,nTrys,leader);//writes onto the leader file
+            break;
         }
-        else if(nTrys==GMELMT){
+        else if(nTrys==gmelmt){
             cout<<"You have reached the game limit and still have not guessed ";
             cout<<"the correct colors, which means you have lost the game. "<<endl;
             cout<<"Would you like to keep guessing anyway and increment your ";
             cout<<"turn number? Enter y for yes and anything else for no."<<endl;
-            cin>>choice;  
+            
+            cin>>choice;//gets user input for color
+            
             choice=tolower(choice);
             if (choice=='y'){
+                limit.setTurn(nTrys);
                 ++limit; //increment the number of turns user is allowed
+                gmelmt=limit.getTurn();
             }
         }
         switchH(clrPick,cColor,nTrys,SIZE);
     }
     
     //Print results of the game
-    results(clrPick,nTrys,CNVPERC,GMELMT,SIZE,userChar,comChar);
+    results(clrPick,nTrys,CNVPERC,gmelmt,SIZE,userChar,comChar);
     
     //Write the Output Results File
-    writeFile(out,nTrys,GMELMT,clrPick,cColor,list);
+    writeFile(out,nTrys,gmelmt,clrPick,cColor,list);
     
     //free allocated memory
+    delete[] cColor;
     delete[] comChar;
     delete[] userChar;
     delete[] clrPick;
+    
     //close the files
     infile.close();
     out.close();
@@ -156,7 +176,6 @@ void writeFile(fstream& out,int &nTrys,const char GMELMT,
         out<<"You attempted "<<nTrys<<" out of the maximum ten tries to win. \r"<<endl;
         out<<"Which means the percentage of the board you got through is ";
         out<<(float)(nTrys)/(10.0f)*CNVPERC<<"% "<<endl;
-        
     }else
         out<<"You lose. You could not guess in 10 tries or less."<<endl;
 }    
@@ -210,11 +229,11 @@ UserColor *input(string *order,const int SIZE,char optChar[],string options[]){
             //pick spot
             cout<<"What spot would you like this color in?"<<endl;
             cin>>spot;
-            clrPick->setSpot(spot);
+            clrPick[i].setSpot(spot);
             }while(set[clrPick[i].getSpot()-1]);
             set[clrPick[i].getSpot()-1]=true;
             //input to that index
-            clrPick[clrPick[i].getSpot()-1].getColor()=color;
+            clrPick[clrPick[i].getSpot()-1].setColor( color );
     } 
    return clrPick; 
 }
@@ -281,7 +300,6 @@ void results(UserColor color[],int &nTrys,const char CNVPERC,
                 userChar[2]==comChar[2]&&userChar[3]==comChar[3]){
         //Tries Percentage if won 
         cout<<fixed<<setprecision(1);
-        cout<<"You win!"<<endl;
         cout<<"Your number of tries is "<<nTrys<<endl;
         cout<<"The percentage of the board you got through is ";
         cout<<(float)(nTrys)/(10.0f)*CNVPERC<<"% "<<endl;
@@ -301,7 +319,6 @@ void switchH(UserColor color[],ComColor pick[],int nTrys,const int SIZE){
             if(color[i].getColor()==pick[i].getColor())
                 counter++;
         }
-//    do{
         if (counter==1){
             cout<<"One color is in the correct spot."<<endl;
             check=true;
@@ -342,6 +359,62 @@ void switchH(UserColor color[],ComColor pick[],int nTrys,const int SIZE){
             cout<<"right spot."<<endl<<"Try something different."<<endl
                                                                  <<endl;
         }
-//    }while(check==false);
+}
+//000000001111111112222222222333333333344444444445555555555666666666677777777778
+//345678901234567890123456789012345678901234567890123456789012345678901234567890
+/*                         Leader board Function  
+ * Function allows for user to enter their name to be sorted onto a leader
+ * board, writes the leader file                                              */
+/******************************************************************************/
+void lder(string name,int score,fstream& out){ 
+    out>>name;
+    out<<"Top Ten On the Leader board\r"<<endl;
+    out<<"UserName\tNumber of Tries\r"<<endl;
+    out<<name<<"\t"<< score<<"\r"<<endl;
+}
+//000000001111111112222222222333333333344444444445555555555666666666677777777778
+//345678901234567890123456789012345678901234567890123456789012345678901234567890
+/*                         Leader board Function  
+ * Function allows for user to enter their name to be sorted onto a leader
+ * board, writes the leader file                                              */
+/******************************************************************************/
+void lderOutput(string name,int score){ 
+    cout<<"Top Ten On the Leader board"<<endl;
+    cout<<"UserName\tNumber of Tries"<<endl;
+    cout<<name<<"\t\t"<< score<<endl;
+}
+//000000001111111112222222222333333333344444444445555555555666666666677777777778
+//345678901234567890123456789012345678901234567890123456789012345678901234567890
+/*                         Leader board Function  
+ *   This function reads the contents of the Leader board file                */
+/******************************************************************************/
+void readLdr(fstream& leader,string n){
+    if( leader ){
+        getline( leader, n );
+        while( leader ){
+            cout << n << endl;
+            getline( leader, n );
+        }
+    }  
+}
+//000000011111111112222222222333333333344444444445555555555666666666677777777778
+//345678901234567890123456789012345678901234567890123456789012345678901234567890
+//                               Sort the Array
+//Inputs
+//     n->Size of the array
+//     a->Array
+//Output
+//     a->The sorted array
+////////////////////////////////////////////////////////////////////////////////
+void markSrt(int *a,int n){
+    for(int pos=0;pos<n-1;pos++){
+        for(int row=pos+1;row<n;row++){
+            if(*(a+pos)>*(a+row)){
+                *(a+pos)=*(a+pos)^*(a+row);
+                a[row]=a[pos]^a[row];
+                *(a+pos)=*(a+pos)^*(a+row);
+            }
+        }
+    }
 }
 

@@ -15,11 +15,12 @@ using namespace std;
 class ComColor : public Color 
 {
     protected:
+        fstream out;
     public:
-        ComColor();
+        ComColor() : Color(){}
         void lder();
         void markSrt(int*,int);
-        
+        void readLdr();
 };
 
 #endif /* COMCOLOR_H */
