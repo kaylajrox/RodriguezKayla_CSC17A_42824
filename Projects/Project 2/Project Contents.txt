@@ -6,4 +6,8 @@ V2N (working adn runs)
 	overloaded ++operator
 	derived class (inheritance)
 V3 -version started off as a copy of V2N
-	*STILL IN PROGRESS*
+	is no longer running since I put it in a menu
+	-exceptions
+ 	-put everything in a menu
+V4 -version started off as a copy of V3
+*IN PROGRESS*
