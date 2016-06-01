@@ -4,7 +4,13 @@
  * file opening was used on notepad and the format outputs the way it should
  * on notepad
  */
-
+/*Concerns: run is failing again, I need help with the leader board functions
+ when i press 1 it shows the instructions, but once it is back in the menu
+ it doesn't redisplay the instructions, need a more efficient way to code the 
+ leader board functions.
+ Things I added in this Version:
+ -exceptions
+ -put everything in a menu*/
 //System Libraries
 #include <iostream>
 #include <string>
@@ -37,16 +43,75 @@ void markSrt(int *,int);
 void readLdr(fstream&,string);
 void lder(string,int,fstream&);
 void lderOutput(string,int);
+void game(fstream&,fstream&,fstream&);
+void leader(string,int,fstream);
+void Menu();
+void def(int);
+int getN();
 
 //Execution Begins Here
 int main(int argc, char** argv) {
     //The Problem to solve
-    cout<<endl<<"Project 1"<<endl;
+    cout<<endl<<"Project 2"<<endl;
     cout<<endl<<"Mastermind Problem "<<endl;
     
     //Set the random number seed
     srand(static_cast<unsigned int>(time(0)));
+    
+    //Declare variables
+    //file instructions
+    fstream infile; //in file instructions
+    string instr; //file instructions
+    fstream out;//output file
+    fstream leader; //file to hold leader board results
+    
+    //menu variables
+    int inN;
+    bool reDsply=true;
+    
+    //Open the Files
+    infile.open("instructions.txt", ios::in|ios::binary);
+    out.open("results.txt",ios::out|ios::binary);
+    leader.open("leader.txt",ios::in|ios::out);
+    
+    do{
+        Menu();
+        inN=getN();
+        switch(inN){
+        case 1:    //Read the File and Output its contents (the introduction)
+                   readFile(infile,instr);break;
+        case 2:    game(infile,out,leader);break;
+//        case 3:    problem3();break; //fix this to output just the contents of leader board file      
+        default:   {def(inN);
+                    reDsply=false;}
+        }
+    }while(reDsply);
+    
+    //close the files
+    infile.close();
+    out.close();
+    leader.close();
+    return 0;//If midterm not perfect, return something other than 1
+}
 
+void Menu(){
+    cout<<"\nMenu for Mastermind"<<endl;
+    cout<<"Type 1 for the instructions"<<endl;
+    cout<<"Type 2 for to play the game"<<endl;
+    cout<<"Type 3 to see the contents of the leader board"<<endl;
+    cout<<"Type anything else to exit \n"<<endl;
+}
+
+int getN(){
+        int inN;
+        cin>>inN;
+        return inN;
+}
+//000000001111111112222222222333333333344444444445555555555666666666677777777778
+//345678901234567890123456789012345678901234567890123456789012345678901234567890
+/*                                Play Mastermind                             */
+/******************************************************************************/   
+void game(fstream& infile,fstream& out,fstream& leader){
     //Declare and initialize variables
     //constants
     const int SIZE=4;  //Size of array used to keep track of color choices    
@@ -60,27 +125,18 @@ int main(int argc, char** argv) {
     UserColor *clrPick;  //User Inputs
     vector<string>list; //vector which converts characters to one condensed string
     
-    //File Variables
-    fstream infile; //in file instructions
-    string instr; //file instructions
-    fstream out;//output file
-    fstream leader; //file to hold leader board results
-    
     //Counters and Object variables
     int nTrys=0;//number of tries counter
     char choice; //choice on whether or not to increment turns
     UserColor limit; //object to be incremented using overloaded operator
-    string name;
-    int score;
+    string name; //variable to store the name written in the file
     
     //Open the Files
     infile.open("instructions.txt", ios::in|ios::binary);
     out.open("results.txt",ios::out|ios::binary);
     leader.open("leader.txt",ios::in|ios::out);
-    
-    //Read the File
-    readFile(infile,instr);
-    
+        
+        
     //Allocate Memory for computer colors
     ComColor *cColor = new ComColor[SIZE]; //Computer generated random pick
     
@@ -98,11 +154,7 @@ int main(int argc, char** argv) {
         if(nTrys<=gmelmt&&userChar[0]==comChar[0]&&userChar[1]==comChar[1]&&
                 userChar[2]==comChar[2]&&userChar[3]==comChar[3]){
             cout<<"You win! "<<endl;
-            cout<<"Please enter a username to be put onto the Leader board "<<endl;
-            cin>>name; 
-            lderOutput(name,nTrys); //Outputs what is on the leader board
-            readLdr(leader,name); //reads the leader file
-            lder(name,nTrys,leader);//writes onto the leader file
+//            leader(name,nTrys,leader);
             break;
         }
         else if(nTrys==gmelmt){
@@ -134,12 +186,7 @@ int main(int argc, char** argv) {
     delete[] comChar;
     delete[] userChar;
     delete[] clrPick;
-    
-    //close the files
-    infile.close();
-    out.close();
-    leader.close();
-    return 0;
+          
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
@@ -204,6 +251,7 @@ char *compic(ComColor cColor[],string options[],char optChar[],int SIZE){
 UserColor *input(string *order,const int SIZE,char optChar[],string options[]){
     UserColor * clrPick=new UserColor[SIZE];
     bool set[SIZE];
+    bool v=true; //validation
     int spot;
     for(int i = 0; i < SIZE; i++)
     {
@@ -211,20 +259,20 @@ UserColor *input(string *order,const int SIZE,char optChar[],string options[]){
     }
     for (int i=0;i<SIZE;i++){
         string color;
-        do{
-            cout<<"Pick your "<<*(order+i)<<" color"<<endl;
-            cin>>color;
-            for (int i=0;i<color.size();i++){
-                color[i]=tolower(color[i]);
-            }
-            if(!(color==options[0]||color==options[1]||color==options[2]||
-                color==options[3]||color==options[4]||color==options[5]||
-                    color==options[6]||color==options[7]))
+        cout<<"Pick your "<<*(order+i)<<" color"<<endl;
+        cin>>color;
+        for (int j=0;j<color.size();j++){
+            color[j]=tolower(color[j]);
+        }
+        //utilizing an exception to check the color
+        while(v){
+           try{
+                clrPick[i].setColor(color);
+           }catch(UserColor::EmpClass){
                 cout<<"Invalid color. Enter again."<<endl;
-        }while(!(color==options[0]||color==options[1]||
-                color==options[2]||color==options[3]||
-                color==options[4]||color==options[5]||
-                color==options[6]||color==options[7]));
+                cin>>color;
+           }
+        }
     do{    
             //pick spot
             cout<<"What spot would you like this color in?"<<endl;
@@ -233,7 +281,7 @@ UserColor *input(string *order,const int SIZE,char optChar[],string options[]){
             }while(set[clrPick[i].getSpot()-1]);
             set[clrPick[i].getSpot()-1]=true;
             //input to that index
-            clrPick[clrPick[i].getSpot()-1].setColor( color );
+            clrPick[clrPick[i].getSpot()-1].getColor()=color;
     } 
    return clrPick; 
 }
@@ -397,6 +445,17 @@ void readLdr(fstream& leader,string n){
         }
     }  
 }
+//000000001111111112222222222333333333344444444445555555555666666666677777777778
+//345678901234567890123456789012345678901234567890123456789012345678901234567890
+/*                           Leader board Function Calls                      */
+/******************************************************************************/
+void leader(string name,int nTrys,fstream leader){
+    cout<<"Please enter a username to be put onto the Leader board "<<endl;
+    cin>>name; 
+    lderOutput(name,nTrys); //Outputs what is on the leader board
+    readLdr(leader,name); //reads the leader file
+    lder(name,nTrys,leader);//writes onto the leader file   
+}
 //000000011111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
 //                               Sort the Array
@@ -417,4 +476,10 @@ void markSrt(int *a,int n){
         }
     }
 }
-
+//000000001111111112222222222333333333344444444445555555555666666666677777777778
+//345678901234567890123456789012345678901234567890123456789012345678901234567890
+/*                           Exits the Menu of the Game                       */
+/******************************************************************************/
+void def(int inN){
+        cout<<"You typed "<<inN<<" to exit the program"<<endl;
+}

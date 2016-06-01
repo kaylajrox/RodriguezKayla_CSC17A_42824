@@ -3,7 +3,8 @@
  * Implementation file containing user color information derived from the base
  * Color class
  */
-
+#include <string>
+using namespace std;
 #include "UserColor.h"
 
 UserColor::UserColor() : Color() {

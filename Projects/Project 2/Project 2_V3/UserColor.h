@@ -6,6 +6,9 @@
 
 #ifndef USERCOLOR_H
 #define USERCOLOR_H
+#include <string>
+using namespace std;
+
 #include "Color.h"
 class UserColor : public Color {
     protected:
@@ -15,7 +18,6 @@ class UserColor : public Color {
         UserColor operator ++();//overloading the ++ operator
         void setTurn(int);
         int getTurn();
-        
 };
 
 #endif /* USERCOLOR_H */

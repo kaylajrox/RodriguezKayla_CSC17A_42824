@@ -12,12 +12,15 @@ class Color {
     private:
         int spot;
         string color;
+        static const int SIZE=8;
+        static string options[SIZE];
     public:
         Color();
         void setColor(string);
         string getColor();
         void setSpot(int);
         int getSpot();
+        class EmpClass{};
 };
 
 #endif /* COLOR_H */
