@@ -8,9 +8,7 @@
  when i press 1 it shows the instructions, but once it is back in the menu
  it doesn't redisplay the instructions, need a more efficient way to code the 
  leader board functions.
- Things I added in this Version:
- -exceptions
- -put everything in a menu*/
+-case 2 doesn't run, the program runs but not case 2 it just says run failed*/
 //System Libraries
 #include <iostream>
 #include <string>
@@ -25,6 +23,7 @@ using namespace std;
 //User Libraries
 #include "UserColor.h"
 #include "ComColor.h"
+#include "ComMge.h"
 
 //Global Constant
 const char CNVPERC=100;
@@ -43,11 +42,12 @@ void markSrt(int *,int);
 void readLdr(fstream&,string);
 void lder(string,int,fstream&);
 void lderOutput(string,int);
-void game(fstream&,fstream&,fstream&);
+void game(fstream&,fstream&,fstream&,string&);
 void leader(string,int,fstream);
 void Menu();
 void def(int);
 int getN();
+void endGme(); //displays end game message
 
 //Execution Begins Here
 int main(int argc, char** argv) {
@@ -64,6 +64,7 @@ int main(int argc, char** argv) {
     string instr; //file instructions
     fstream out;//output file
     fstream leader; //file to hold leader board results
+    string name; //holds contents of leader file 
     
     //menu variables
     int inN;
@@ -80,8 +81,9 @@ int main(int argc, char** argv) {
         switch(inN){
         case 1:    //Read the File and Output its contents (the introduction)
                    readFile(infile,instr);break;
-        case 2:    game(infile,out,leader);break;
-//        case 3:    problem3();break; //fix this to output just the contents of leader board file      
+        case 2:    game(infile,out,leader,name);break; //doesn't work
+        case 3:     //reads the leader board and outputs its contents
+                    readLdr(leader,name);break;
         default:   {def(inN);
                     reDsply=false;}
         }
@@ -93,7 +95,9 @@ int main(int argc, char** argv) {
     leader.close();
     return 0;//If midterm not perfect, return something other than 1
 }
-
+/*******************************************************************************
+ *       Menu Function- Displays Options to Choose from in the game
+ ******************************************************************************/
 void Menu(){
     cout<<"\nMenu for Mastermind"<<endl;
     cout<<"Type 1 for the instructions"<<endl;
@@ -101,7 +105,9 @@ void Menu(){
     cout<<"Type 3 to see the contents of the leader board"<<endl;
     cout<<"Type anything else to exit \n"<<endl;
 }
-
+/*******************************************************************************
+ *                  Integer response to the Menu
+ ******************************************************************************/
 int getN(){
         int inN;
         cin>>inN;
@@ -111,7 +117,7 @@ int getN(){
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
 /*                                Play Mastermind                             */
 /******************************************************************************/   
-void game(fstream& infile,fstream& out,fstream& leader){
+void game(fstream& infile,fstream& out,fstream& leader,string& name){
     //Declare and initialize variables
     //constants
     const int SIZE=4;  //Size of array used to keep track of color choices    
@@ -124,69 +130,83 @@ void game(fstream& infile,fstream& out,fstream& leader){
     char *userChar;//User's colors in character representation
     UserColor *clrPick;  //User Inputs
     vector<string>list; //vector which converts characters to one condensed string
+    ComColor *cColor; //pointer of computer colors
+    char *comChar; //pointer of computer colors written in characters
     
     //Counters and Object variables
     int nTrys=0;//number of tries counter
     char choice; //choice on whether or not to increment turns
     UserColor limit; //object to be incremented using overloaded operator
-    string name; //variable to store the name written in the file
+    char repeat; //allows the user to play again
     
     //Open the Files
     infile.open("instructions.txt", ios::in|ios::binary);
     out.open("results.txt",ios::out|ios::binary);
     leader.open("leader.txt",ios::in|ios::out);
         
-        
-    //Allocate Memory for computer colors
-    ComColor *cColor = new ComColor[SIZE]; //Computer generated random pick
-    
-    //computer's colors in character representation
-    char *comChar = compic(cColor,options,optChar,SIZE);
-    for(int i=0;i<SIZE;i++){
-        cout<<comChar[i];
-    }
-    //for loop allows player to play until the limit is hit
-    for(int n=1;n<=gmelmt;n++){
-        clrPick=input(order,SIZE,optChar,options);   
-        userChar=input2(clrPick,SIZE,optChar,options);
-        reppic(userChar,comChar,nTrys,gmelmt,SIZE,list);
-        nTrys++; 
-        if(nTrys<=gmelmt&&userChar[0]==comChar[0]&&userChar[1]==comChar[1]&&
-                userChar[2]==comChar[2]&&userChar[3]==comChar[3]){
-            cout<<"You win! "<<endl;
-//            leader(name,nTrys,leader);
-            break;
+    do{      
+        //Allocate Memory for computer colors
+        cColor = new ComColor[SIZE]; //Computer generated random pick
+
+        //computer's colors in character representation
+        comChar = compic(cColor,options,optChar,SIZE);//allocate memory
+        for(int i=0;i<SIZE;i++){
+            cout<<comChar[i];
         }
-        else if(nTrys==gmelmt){
-            cout<<"You have reached the game limit and still have not guessed ";
-            cout<<"the correct colors, which means you have lost the game. "<<endl;
-            cout<<"Would you like to keep guessing anyway and increment your ";
-            cout<<"turn number? Enter y for yes and anything else for no."<<endl;
-            
-            cin>>choice;//gets user input for color
-            
-            choice=tolower(choice);
-            if (choice=='y'){
-                limit.setTurn(nTrys);
-                ++limit; //increment the number of turns user is allowed
-                gmelmt=limit.getTurn();
+        //for loop allows player to play until the limit is hit
+        for(int n=1;n<=gmelmt;n++){
+            clrPick=input(order,SIZE,optChar,options);   
+            userChar=input2(clrPick,SIZE,optChar,options);
+            reppic(userChar,comChar,nTrys,gmelmt,SIZE,list);
+            nTrys++; 
+            if(nTrys<=gmelmt&&userChar[0]==comChar[0]&&userChar[1]==comChar[1]&&
+                    userChar[2]==comChar[2]&&userChar[3]==comChar[3]){
+                cout<<"You win! "<<endl;
+                cout<<"Please enter a username to be put onto the Leader board "<<endl;
+                cin>>name; 
+                lderOutput(name,nTrys); //Outputs what is on the leader board
+                readLdr(leader,name); //reads the leader file
+                lder(name,nTrys,leader);//writes onto the leader file   
+                break;
             }
+            else if(nTrys==gmelmt){
+                cout<<"You have reached the game limit and still have not guessed ";
+                cout<<"the correct colors, which means you have lost the game. "<<endl;
+                cout<<"Would you like to keep guessing anyway and increment your ";
+                cout<<"turn number? Enter y for yes and anything else for no."<<endl;
+
+                //determines whether the game limit will be incremented
+                cin>>choice;//gets user input for color
+
+                choice=tolower(choice);
+                if (choice=='y'){
+                    limit.setTurn(nTrys);
+                    ++limit; //increment the number of turns user is allowed
+                    gmelmt=limit.getTurn();
+                }
+            }
+            switchH(clrPick,cColor,nTrys,SIZE);
         }
-        switchH(clrPick,cColor,nTrys,SIZE);
-    }
-    
-    //Print results of the game
-    results(clrPick,nTrys,CNVPERC,gmelmt,SIZE,userChar,comChar);
-    
-    //Write the Output Results File
-    writeFile(out,nTrys,gmelmt,clrPick,cColor,list);
+
+        //Print results of the game
+        results(clrPick,nTrys,CNVPERC,gmelmt,SIZE,userChar,comChar);
+
+        //Write the Output Results File
+        writeFile(out,nTrys,gmelmt,clrPick,cColor,list);
+
+        //End the Game Message
+        endGme();
+        cout<<"Would you like to play again? Type y for yes and anything else";
+        cout<<" for no."<<endl;
+        cin>>repeat;
+        repeat=tolower(repeat);
+    }while(repeat=='y');
     
     //free allocated memory
     delete[] cColor;
     delete[] comChar;
     delete[] userChar;
     delete[] clrPick;
-          
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
@@ -273,15 +293,15 @@ UserColor *input(string *order,const int SIZE,char optChar[],string options[]){
                 cin>>color;
            }
         }
-    do{    
+        do{    
             //pick spot
             cout<<"What spot would you like this color in?"<<endl;
             cin>>spot;
             clrPick[i].setSpot(spot);
-            }while(set[clrPick[i].getSpot()-1]);
-            set[clrPick[i].getSpot()-1]=true;
-            //input to that index
-            clrPick[clrPick[i].getSpot()-1].getColor()=color;
+        }while(set[clrPick[i].getSpot()-1]);
+        set[clrPick[i].getSpot()-1]=true;
+        //input to that index
+        clrPick[clrPick[i].getSpot()-1].getColor()=color;
     } 
    return clrPick; 
 }
@@ -475,6 +495,16 @@ void markSrt(int *a,int n){
             }
         }
     }
+}
+//000000001111111112222222222333333333344444444445555555555666666666677777777778
+//345678901234567890123456789012345678901234567890123456789012345678901234567890
+/*                          Print a End Game Message
+ *  Purpose: Demonstrate template Using a string to output a message          */
+/******************************************************************************/
+void endGme(){
+    //set the variable in the template
+    ComMge <string>mge("You have reached the end of the game, thanks for playing!");
+    cout<<mge.prntMge();
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
