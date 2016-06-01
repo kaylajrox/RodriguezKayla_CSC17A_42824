@@ -10,5 +10,6 @@ V3 -version started off as a copy of V2N
 	-exceptions
  	-put everything in a menu
 V4 -version started off as a copy of V3
-	-template
-	-does not run
+	-RUNS!
+	-added static variables
+	-template variables

@@ -8,7 +8,7 @@
  when i press 1 it shows the instructions, but once it is back in the menu
  it doesn't redisplay the instructions, need a more efficient way to code the 
  leader board functions.
--case 2 doesn't run, the program runs but not case 2 it just says run failed*/
+Added: static variables */
 //System Libraries
 #include <iostream>
 #include <string>
@@ -31,7 +31,7 @@ const char CNVPERC=100;
 
 //Function Prototypes
 char *compic(ComColor*,string[],char[],int);
-UserColor *input(string *,const int,char[],string[]);
+UserColor *input(string[],const int,char[],string[]);
 void switchH(UserColor[],ComColor[],int,const int);
 void reppic(char[],char[],int &,const char,const int ,vector<string>&);
 void results(UserColor[],int&,const char,const char,int,char[],char[]);
@@ -154,6 +154,7 @@ void game(fstream& infile,fstream& out,fstream& leader,string& name){
     do{      
         //Allocate Memory for computer colors
         cColor = new ComColor[SIZE]; //Computer generated random pick
+        
         //computer's colors in character representation
         comChar = compic(cColor,options,optChar,SIZE);//allocate memory
         for(int i=0;i<SIZE;i++){
@@ -260,7 +261,6 @@ void writeFile(fstream& out,int &nTrys,const char GMELMT,
 char *compic(ComColor *cColor,string options[],char optChar[],int SIZE){
     char *temp = new char[SIZE];
     vector<bool> cPick(8,0);
-//    bool cPick[8] = {0};
     for(int j=0;j<SIZE;j++){
         int index=rand()%8;
         while(cPick[index]==true)
@@ -275,18 +275,18 @@ char *compic(ComColor *cColor,string options[],char optChar[],int SIZE){
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
 /*                       Input colors Function                                */
 /******************************************************************************/
-UserColor *input(string *order,const int SIZE,char optChar[],string options[]){
+UserColor *input(string order[],const int SIZE,char optChar[],string options[]){
     UserColor * clrPick=new UserColor[SIZE];
     bool set[SIZE];
     bool v=true; //validation
     int spot;
+    string color;
     for(int i = 0; i < SIZE; i++)
     {
         set[i] = false;
     }
     for (int i=0;i<SIZE;i++){
-        string color;
-        cout<<"Pick your "<<*(order+i)<<" color"<<endl;
+        cout<<"Pick your "<<order[i]<<" color"<<endl;
         cin>>color;
         for (int j=0;j<color.size();j++){
             color[j]=tolower(color[j]);
@@ -295,6 +295,7 @@ UserColor *input(string *order,const int SIZE,char optChar[],string options[]){
         while(v){
            try{
                 clrPick[i].setColor(color);
+                v=false;
            }catch(UserColor::EmpClass){
                 cout<<"Invalid color. Enter again."<<endl;
                 cin>>color;
@@ -518,7 +519,7 @@ void endGme(){
 /*                             Print Mastermind Logo                          */
 /******************************************************************************/
 void message(){
-    //set the variable in the template
+    //declare template variables
     Mastermind_Mge <string>mgeM("****            ****\n*****          *****\n"
     "******        ******\n*******      *******\n********    ********\n"
     "****  ***  ***  ****\n****    ****    ****\n****     **     ****\n"
@@ -526,14 +527,34 @@ void message(){
     Mastermind_Mge <string>mgeA("****************\n****************\n******    ******\n"
     "******    ******\n****************\n****************\n******    ******\n"
     "******    ******\n******    ******\n******    ******\n");
-    cout<<mgeM.prntMge()<<endl<<mgeA.prntMge();
-    
-//    cout<<"    ********    \n";
-//    cout<<"   **********   \n";
-//    cout<<"  ************  \n";
-//    cout<<"****************\n";
-
-
+    Mastermind_Mge <string>mgeS("  ************  \n ************** \n****************\n"
+    "****        ****\n****            \n**************  \n ************** \n  **************\n            ****\n"
+    "****        ****\n****************\n ************** \n  ************  \n");
+    Mastermind_Mge <string>mgeT("****************\n****************\n****************\n"
+    "     *****      \n     *****      \n     *****      \n     *****      \n     *****      \n"
+    "     *****      \n     *****      \n     *****      \n");
+    Mastermind_Mge <string>mgeE("****************\n****************\n****************\n"
+    "*****           \n************    \n************    \n************    \n"
+    "*****           \n****************\n****************\n****************\n");
+    Mastermind_Mge <string>mgeR("****************\n****************\n****************\n"
+    "*****      *****\n*****      *****\n*************** \n**************  \n"
+    "*****   ******  \n*****    ****** \n*****    ****** \n*****      *****\n"
+    "*****       ****\n");
+    Mastermind_Mge <string>mgeI("****************\n****************\n****************\n"
+    "     ******     \n     ******     \n     ******     \n     ******     \n"
+    "****************\n****************\n****************\n");
+    Mastermind_Mge <string>mgeN("*****       ****\n******      ****\n*******     ****\n"
+    "********    ****\n**** ****   ****\n**** *****  ****\n****  ***** ****\n"
+    "****   *********\n****    ********\n*****    *******\n");
+    Mastermind_Mge <string>mgeD(" ************\n*****************   \n******************    \n"
+    "*****         ******   \n*****          *******  \n*****           ******* \n"
+    "*****           *******\n*****          ********\n*****         ********* \n"
+    "*****        ********  \n*****       *******   \n******************    \n"
+    "*****************\n ************\n");
+    cout<<mgeM.prntMge()<<endl<<mgeA.prntMge()<<endl<<mgeS.prntMge()<<endl;
+    cout<<mgeT.prntMge()<<endl<<mgeE.prntMge()<<endl<<mgeR.prntMge()<<endl;
+    cout<<mgeM.prntMge()<<endl<<mgeI.prntMge()<<endl<<mgeN.prntMge()<<endl;
+    cout<<mgeD.prntMge();   
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890

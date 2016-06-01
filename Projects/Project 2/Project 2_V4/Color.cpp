@@ -17,11 +17,7 @@ Color::Color(){
     spot=0;
 }
 void Color::setColor(string x) {
-    for(int i=0;i<SIZE;i++){
-        if(x==options[i]){
-            color=x;
-        }
-    }
+    color=x;
 }
 string Color::getColor() {
     return color;
