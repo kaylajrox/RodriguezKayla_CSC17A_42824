@@ -21,7 +21,7 @@ FC=gfortran
 AS=as
 
 # Macros
-CND_PLATFORM=Cygwin-Windows
+CND_PLATFORM=Cygwin_4.x-Windows
 CND_DLIB_EXT=dll
 CND_CONF=Release
 CND_DISTDIR=dist
@@ -37,6 +37,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/Color.o \
 	${OBJECTDIR}/ComColor.o \
+	${OBJECTDIR}/ComMge.o \
+	${OBJECTDIR}/Mastermind_Mge.o \
 	${OBJECTDIR}/UserColor.o \
 	${OBJECTDIR}/main.o
 
@@ -74,6 +76,16 @@ ${OBJECTDIR}/ComColor.o: ComColor.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ComColor.o ComColor.cpp
+
+${OBJECTDIR}/ComMge.o: ComMge.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ComMge.o ComMge.cpp
+
+${OBJECTDIR}/Mastermind_Mge.o: Mastermind_Mge.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Mastermind_Mge.o Mastermind_Mge.cpp
 
 ${OBJECTDIR}/UserColor.o: UserColor.cpp 
 	${MKDIR} -p ${OBJECTDIR}

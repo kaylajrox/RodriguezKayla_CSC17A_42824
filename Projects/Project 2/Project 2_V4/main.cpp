@@ -24,6 +24,7 @@ using namespace std;
 #include "UserColor.h"
 #include "ComColor.h"
 #include "ComMge.h"
+#include "Mastermind_Mge.h"
 
 //Global Constant
 const char CNVPERC=100;
@@ -48,6 +49,7 @@ void Menu();
 void def(int);
 int getN();
 void endGme(); //displays end game message
+void message();//Game Logo
 
 //Execution Begins Here
 int main(int argc, char** argv) {
@@ -80,11 +82,14 @@ int main(int argc, char** argv) {
         Menu();
         inN=getN();
         switch(inN){
-        case 1:    //Read the File and Output its contents (the introduction)
-                   readFile(infile,instr);break;
-        case 2:    game(infile,out,leader,name);break; //doesn't work
-        case 3:     //reads the leader board and outputs its contents
-                    readLdr(leader,name);break;
+            case 1:    //Read the File and Output its contents (the introduction)
+                       readFile(infile,instr);break; 
+            case 2:    game(infile,out,leader,name);break; //doesn't work
+            case 3:{     //reads the leader board and outputs its contents
+                cout<<"LeaderBoard"<<endl<<endl;
+                cout<<"Username\tScore"<<endl;
+                readLdr(leader,name);break;}
+            case 4:    message();break;
         default:   {def(inN);
                     reDsply=false;}
         }
@@ -104,6 +109,7 @@ void Menu(){
     cout<<"Type 1 for the instructions"<<endl;
     cout<<"Type 2 for to play the game"<<endl;
     cout<<"Type 3 to see the contents of the leader board"<<endl;
+    cout<<"Type 4 to see the Mastermind Picture"<<endl;
     cout<<"Type anything else to exit \n"<<endl;
 }
 /*******************************************************************************
@@ -507,6 +513,28 @@ void endGme(){
     //set the variable in the template
     ComMge <string>mge("You have reached the end of the game, thanks for playing!");
     cout<<mge.prntMge();
+}
+//000000001111111112222222222333333333344444444445555555555666666666677777777778
+//345678901234567890123456789012345678901234567890123456789012345678901234567890
+/*                             Print Mastermind Logo                          */
+/******************************************************************************/
+void message(){
+    //set the variable in the template
+    Mastermind_Mge <string>mgeM("****            ****\n*****          *****\n"
+    "******        ******\n*******      *******\n********    ********\n"
+    "****  ***  ***  ****\n****    ****    ****\n****     **     ****\n"
+    "****            ****\n");
+    Mastermind_Mge <string>mgeA("****************\n****************\n******    ******\n"
+    "******    ******\n****************\n****************\n******    ******\n"
+    "******    ******\n******    ******\n******    ******\n");
+    //cout<<mgeM.prntMge()<<endl<<mgeA.prntMge();
+    
+    cout<<"    ********    \n";
+    cout<<"   **********   \n";
+    cout<<"  ************  \n";
+    cout<<"****************\n";
+
+
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890

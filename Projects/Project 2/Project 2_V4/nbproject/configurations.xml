@@ -6,6 +6,8 @@
                    projectFiles="true">
       <itemPath>Color.h</itemPath>
       <itemPath>ComColor.h</itemPath>
+      <itemPath>ComMge.h</itemPath>
+      <itemPath>Mastermind_Mge.h</itemPath>
       <itemPath>UserColor.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -17,6 +19,8 @@
                    projectFiles="true">
       <itemPath>Color.cpp</itemPath>
       <itemPath>ComColor.cpp</itemPath>
+      <itemPath>ComMge.cpp</itemPath>
+      <itemPath>Mastermind_Mge.cpp</itemPath>
       <itemPath>UserColor.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
@@ -49,6 +53,14 @@
       <item path="ComColor.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ComColor.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ComMge.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ComMge.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Mastermind_Mge.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Mastermind_Mge.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="UserColor.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -84,6 +96,14 @@
       <item path="ComColor.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ComColor.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ComMge.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ComMge.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Mastermind_Mge.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Mastermind_Mge.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="UserColor.cpp" ex="false" tool="1" flavor2="0">
       </item>
