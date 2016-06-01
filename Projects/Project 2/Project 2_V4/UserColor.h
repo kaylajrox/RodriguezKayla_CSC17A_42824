@@ -18,6 +18,16 @@ class UserColor : public Color {
         UserColor operator ++();//overloading the ++ operator
         void setTurn(int);
         int getTurn();
+        
+        void setColor(string x) {
+            for(int i=0;i<SIZE;i++){
+                if(x==options[i]){
+                    color=x;
+                    return ;
+                }
+            }
+            throw EmpClass();
+        }
 };
 
 #endif /* USERCOLOR_H */

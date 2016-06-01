@@ -18,11 +18,8 @@ Color::Color(){
 }
 void Color::setColor(string x) {
     for(int i=0;i<SIZE;i++){
-        if(x!=options[i]){
+        if(x==options[i]){
             color=x;
-        }
-        else{
-            throw EmpClass();
         }
     }
 }

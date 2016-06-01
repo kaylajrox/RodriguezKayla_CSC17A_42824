@@ -9,7 +9,7 @@
 using namespace std; 
 
 class Color {
-    private:
+    protected:
         int spot;
         string color;
         static const int SIZE=8;

@@ -30,7 +30,7 @@ using namespace std;
 const char CNVPERC=100;
 
 //Function Prototypes
-char *compic(ComColor[],string[],char[],int);
+char *compic(ComColor*,string[],char[],int);
 UserColor *input(string *,const int,char[],string[]);
 void switchH(UserColor[],ComColor[],int,const int);
 void reppic(char[],char[],int &,const char,const int ,vector<string>&);
@@ -150,12 +150,10 @@ void game(fstream& infile,fstream& out,fstream& leader,string& name){
     infile.open("instructions.txt", ios::in|ios::binary);
     out.open("results.txt",ios::out|ios::binary);
     leader.open("leader.txt",ios::in|ios::out);
-    
     //repeat the game if user wishes
     do{      
         //Allocate Memory for computer colors
         cColor = new ComColor[SIZE]; //Computer generated random pick
-
         //computer's colors in character representation
         comChar = compic(cColor,options,optChar,SIZE);//allocate memory
         for(int i=0;i<SIZE;i++){
@@ -259,9 +257,10 @@ void writeFile(fstream& out,int &nTrys,const char GMELMT,
 /*                       Computer picks its colors                            */
 /******************************************************************************/
 //Computer Generated Pick of Colors User Tries to Guess
-char *compic(ComColor cColor[],string options[],char optChar[],int SIZE){
+char *compic(ComColor *cColor,string options[],char optChar[],int SIZE){
     char *temp = new char[SIZE];
-    bool cPick[8] = {0};
+    vector<bool> cPick(8,0);
+//    bool cPick[8] = {0};
     for(int j=0;j<SIZE;j++){
         int index=rand()%8;
         while(cPick[index]==true)
@@ -527,12 +526,12 @@ void message(){
     Mastermind_Mge <string>mgeA("****************\n****************\n******    ******\n"
     "******    ******\n****************\n****************\n******    ******\n"
     "******    ******\n******    ******\n******    ******\n");
-    //cout<<mgeM.prntMge()<<endl<<mgeA.prntMge();
+    cout<<mgeM.prntMge()<<endl<<mgeA.prntMge();
     
-    cout<<"    ********    \n";
-    cout<<"   **********   \n";
-    cout<<"  ************  \n";
-    cout<<"****************\n";
+//    cout<<"    ********    \n";
+//    cout<<"   **********   \n";
+//    cout<<"  ************  \n";
+//    cout<<"****************\n";
 
 
 }
