@@ -75,6 +75,7 @@ int main(int argc, char** argv) {
     out.open("results.txt",ios::out|ios::binary);
     leader.open("leader.txt",ios::in|ios::out);
     
+    //redisplay menu if user chooses to
     do{
         Menu();
         inN=getN();
@@ -143,7 +144,8 @@ void game(fstream& infile,fstream& out,fstream& leader,string& name){
     infile.open("instructions.txt", ios::in|ios::binary);
     out.open("results.txt",ios::out|ios::binary);
     leader.open("leader.txt",ios::in|ios::out);
-        
+    
+    //repeat the game if user wishes
     do{      
         //Allocate Memory for computer colors
         cColor = new ComColor[SIZE]; //Computer generated random pick
