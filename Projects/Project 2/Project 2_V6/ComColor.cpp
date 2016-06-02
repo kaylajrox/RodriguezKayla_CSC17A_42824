@@ -37,5 +37,16 @@ int ComColor::getWin(){
 int ComColor::getLose(){
     return lose;
 }
+string ComColor::getName(){
+    return name;
+}
+
+void ComColor::print2(){
+    cout<<"Player Stats: "<<endl;
+    cout<<"Username: "<<getName()<<endl;
+    cout<<"Games Played: "<<getGames()<<endl;
+    cout<<"Wins: "<<getWin()<<endl;
+    cout<<"Losses: "<<getLose()<<endl;
+}
 
 

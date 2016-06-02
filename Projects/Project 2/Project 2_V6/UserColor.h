@@ -20,12 +20,13 @@ class UserColor : public Color {
         int getTurn();
         
         void setColor(string x) {
-                if(x==options[0]||x==options[1]||x==options[2]||x==options[3]||
+            if(x==options[0]||x==options[1]||x==options[2]||x==options[3]||
                         x==options[4]||x==options[5]||x==options[6]||x==options[7]){
                     color=x;
-                    return;
-                }
-            throw EmpClass();
+            }
+            else{
+                throw EmpClass();
+            }
         }
 };
 

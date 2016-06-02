@@ -9,7 +9,8 @@
 #ifndef COMCOLOR_H
 #define COMCOLOR_H
 #include "Color.h"
-
+#include <string>
+using namespace std;
 class ComColor : public Color 
 {
     private:
@@ -26,6 +27,8 @@ class ComColor : public Color
         int getGames();
         int getWin();
         int getLose();
+        string getName();
+        void print2();
 };
 
 #endif /* COMCOLOR_H */
