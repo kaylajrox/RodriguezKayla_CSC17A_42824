@@ -28,4 +28,6 @@ V5 -started off as a copy of V4
 	and then produces the data that is stored
 	in the file
 V6 -started off as a copy of V5
-	*IN PROGRESS*
+	-added more file functions
+	-trying to add player data onto a file to be read in
+V7 *RENAME PROJECT*
