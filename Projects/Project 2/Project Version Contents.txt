@@ -14,3 +14,18 @@ V4 -version started off as a copy of V3
 	-added static variables
 	-template variables
 V5 -started off as a copy of V4
+	RUNS!
+	added a search function
+	added stuff to ComColor (data on
+	each player) will store the wins,
+	loses, and number of games that 
+	any certain username has played
+	-want to search the file for a username
+	-produce the data on each player in case 5
+	of the menu 
+	So, they search the username, the thing
+	produces "this is a valid username"
+	and then produces the data that is stored
+	in the file
+V6 -started off as a copy of V5
+	*IN PROGRESS*
