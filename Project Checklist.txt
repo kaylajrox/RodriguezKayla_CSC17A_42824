@@ -22,6 +22,8 @@ Objective: Dynamic array of Templated objects created from abstract base class u
 -structures with pointers 
 -final will contain pieces of this
 
+Write-Up
+Add in sample outputs
 
 
 

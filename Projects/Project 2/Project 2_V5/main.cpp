@@ -4,7 +4,8 @@
  * file opening was used on notepad and the format outputs the way it should
  * on notepad
  */
-/*Concerns: run is failing again, I need help with the leader board functions
+/*
+ * Concerns: run is failing again, I need help with the leader board functions
  when i press 1 it shows the instructions, but once it is back in the menu
  it doesn't redisplay the instructions, need a more efficient way to code the 
  leader board functions.
@@ -551,6 +552,8 @@ void message(){
     "*****           *******\n*****          ********\n*****         ********* \n"
     "*****        ********  \n*****       *******   \n******************    \n"
     "*****************\n ************\n");
+    
+    //Output the Mastermind Display Message
     cout<<mgeM.prntMge()<<endl<<mgeA.prntMge()<<endl<<mgeS.prntMge()<<endl;
     cout<<mgeT.prntMge()<<endl<<mgeE.prntMge()<<endl<<mgeR.prntMge()<<endl;
     cout<<mgeM.prntMge()<<endl<<mgeI.prntMge()<<endl<<mgeN.prntMge()<<endl;
