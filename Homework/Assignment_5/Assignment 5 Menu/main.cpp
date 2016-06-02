@@ -2,7 +2,7 @@
 /*Need: One more template
  Includes: classes in all of them
  2 exceptions
- one template
+ two template
  Fix: problems 1-3 where the user enter their name*/
 //Library includes Here
 #include <iostream>
@@ -22,6 +22,7 @@ const float PI=3.1415926;
 #include "TeamLeader.h"
 #include "Date.h"
 #include "AbsValue.h"
+#include "TimeClock.h"
 
 //Function Prototypes
 void Menu();
@@ -32,6 +33,7 @@ void problem2();
 void problem3();
 void problem4();
 void problem5();
+void problem6();
 
 //Begin Execution Here!!!
 int main(int argv,char *argc[]){
@@ -45,7 +47,8 @@ int main(int argv,char *argc[]){
         case 2:    problem2();break;
         case 3:    problem3();break;
         case 4:    problem4();break;
-        case 5:    problem5();break;        
+        case 5:    problem5();break; 
+        case 6:    problem6();break;
         default:   {def(inN);
                     reDsply=false;}
         }
@@ -60,6 +63,7 @@ void Menu(){
     cout<<"Type 3 for Gaddis_8thEd_Chap15_Prob3"<<endl;
     cout<<"Type 4 for Gaddis_8thEd_Chap16_Prob1"<<endl;
     cout<<"Type 5 for Gaddis_8thEd_Chap16_Prob4"<<endl;
+    cout<<"Type 6 for Gaddis_8thEd_Chap15_Prob4"<<endl;
     cout<<"Type anything else to exit \n"<<endl;
 }
 
@@ -86,9 +90,10 @@ void problem1(){
     //input information
     cout<<"\nInput the following employee information"<<endl;
     //this part not working
-//    cout<<"What is the name of the employee? "<<endl;
-//    getline(cin,name);
-//    emp.setName(name);
+    cout<<"What is the name of the employee? "<<endl;
+    cin.ignore();
+    getline(cin,name);
+    emp.setName(name);
     cin.ignore();
     do{
         cout<<"What is the employee's id number? Enter a four digit number"<<endl;
@@ -145,8 +150,8 @@ void problem2(){
     
     //input information
     cout<<"What is the name of the employee? "<<endl;
-    getline(cin,name);
     cin.ignore();
+    getline(cin,name);
     emp.setName(name);
     cout<<"What is the employee's id number? "<<endl;
     cin>>empNum;
@@ -285,6 +290,56 @@ void problem5(){
     num.setAbs(number);
     
     cout<<num.findAbs(); 
+}
+void problem6(){
+    cout<<"In Gaddis_8thEd_Chap15_Prob4"<<endl<<endl;
+    cout<<"TimeClock Template"<<endl;
+    
+    //declare variables
+    int mhr;
+    int mSec;
+    int mSec2;
+    
+    //declare instances
+    TimeClock <int>time;
+    cout<<"This program changes military time to standard time."<<endl;
+    do{
+        cout<<"Enter the time in this form (XXXX) must be between 2359 and 0000\n";
+        cin>>mhr;
+    }while(mhr>2359||mhr<0000);
+    do{
+        cout<<"Enter the number of seconds"<<endl;
+        cin>>mSec;
+    }while(mSec>59||mSec<0);
+    do{
+        cout << "Enter the seconds2:(Must be between 59 and 0)\n";
+        cin >> mSec2;
+    }while(mSec>59||mSec<0);
+    
+     time.setTime(mhr,mSec,mSec2);
+    
+    cout << "Military time: ";
+    if(time.getHour()==0)
+        cout << "0000";
+    else if(time.getHour()<900){
+        cout << "0" << time.getHour();
+    }
+    else
+     cout << time.getHour();
+
+    cout <<endl;
+    cout << "Standard time: ";
+    if(time.getHour()==0)
+        cout << "1200";
+    else if(time.getHour()<900){
+        cout << "0" << time.getHour();
+    }
+    else
+     cout << time.getHour();
+    
+    cout<< "\nSeconds: ";
+    cout << time.bigger();
+    cout<< endl<<endl;
 }
 void def(int inN){
         cout<<"You typed "<<inN<<" to exit the program"<<endl;

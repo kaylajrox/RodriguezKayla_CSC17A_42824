@@ -40,6 +40,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/ProductionWorker.o \
 	${OBJECTDIR}/ShiftSupervisor.o \
 	${OBJECTDIR}/TeamLeader.o \
+	${OBJECTDIR}/TimeClock.o \
 	${OBJECTDIR}/main.o
 
 
@@ -91,6 +92,11 @@ ${OBJECTDIR}/TeamLeader.o: TeamLeader.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TeamLeader.o TeamLeader.cpp
+
+${OBJECTDIR}/TimeClock.o: TimeClock.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TimeClock.o TimeClock.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
