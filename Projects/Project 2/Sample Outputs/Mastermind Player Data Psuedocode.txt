@@ -1,0 +1,25 @@
+if username infile, 
+//declare
+
+read the file,
+parace the file to have the separate usernames
+find the username with a search function
+
+
+
+
+read it in from a file,
+identity how many times a player
+has won or lost flag the win or lost with
+a boolean and then increment
+
+
+bool gmeOutme; //boolean variable true=win, false=lose
+int win;
+int lose'
+
+if (player==lose){
+	lose++
+}else (player==win){
+	win++
+}

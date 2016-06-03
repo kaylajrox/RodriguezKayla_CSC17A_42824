@@ -87,12 +87,11 @@ int main(int argc, char** argv)
     string name; //holds contents of leader file 
     
      //other variables
-     int nTrys=0;//number of trys
-  
-     UserColor *clrPick;//user color picks array
-     char *userChar;//user colors represented in characters
-     char *comChar;//computer colors represented as characters
-     ComColor data; //player data
+    int nTrys=0;//number of trys
+    UserColor *clrPick;//user color picks array
+    char *userChar;//user colors represented in characters
+    char *comChar;//computer colors represented as characters
+    ComColor data; //player data
     
     //menu variables
     int inN;

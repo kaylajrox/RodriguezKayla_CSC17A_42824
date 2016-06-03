@@ -14,10 +14,7 @@ spot do you want your color to go in(first,second,third,fourth)
 you will input this as either one of the four numbers (1,2,3,4).
 The available colors are red, green, blue, yellow, brown, orange,
 black, and white.The computer might does not pick any color more than
-once. If you can guess in 10 tries or less, you win. At the begining you 
-will be asked for a game limit, this allows you to play after the 10 tries to
-win, you can choose this limit but the limit must be over 10. If it is not,
-the program will modify your limit to 10.
+once. If you can guess in 10 tries or less, you win. 
 Your colors will be displayed in a table as single characters as:
 red= r, green=g, blue=b, brown=n, black=k,
 yellow=y, orange=o, and white = w.
