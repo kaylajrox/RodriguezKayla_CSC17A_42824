@@ -194,6 +194,8 @@ const int SIZE,UserColor *clrPick,char *userChar,char *comChar,ComColor& outcome
         }
         //for loop allows player to play until the limit is hit
         for(int n=1;n<=gmelmt;n++){
+            cout<<"\nRemember red= r, green=g, blue=b, brown=n, black=k,";
+            cout<<"yellow=y, orange=o, and white = w"<<endl;
             clrPick=input(order,SIZE,optChar,options);   
             userChar=input2(clrPick,SIZE,optChar,options);
             reppic(userChar,comChar,nTrys,gmelmt,SIZE,list);
@@ -225,6 +227,7 @@ const int SIZE,UserColor *clrPick,char *userChar,char *comChar,ComColor& outcome
                 }
             }
             switchH(clrPick,cColor,nTrys,SIZE);
+            cout<<"You have "<<(10-nTrys)<<" trys left"<<endl;
         }if (gmeOutcome==true)
         {
             win++;
