@@ -1,8 +1,7 @@
 Player Stats 
-Username: fsdf
-Games Played: 0
-Wins: 0
+Username: kaylaj
+Games Played: 1
+Wins: 1
 Losses: 0
 
 
-0

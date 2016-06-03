@@ -57,7 +57,7 @@ void plyerInfo(ComColor&);//play information
 void findPlyr(); //find the player
 void filePlyr(fstream,string); //display player file
 void read();
-void writeData(ComColor data);//write the player data to the file
+void writeData(ComColor&);//write the player data to the file
 void parce(string);
 
 //Execution Begins Here
@@ -127,14 +127,14 @@ int main(int argc, char** argv)
     //close the files
     // player.close();
     
-    return 0;//If midterm not perfect, return something other than 1
+    return 0;
 }
 /*******************************************************************************
  *       Menu Function- Displays Options to Choose from in the game
  ******************************************************************************/
 void Menu()
 {
-    cout<<"\nMenu for Mastermind"<<endl;
+    cout<<"\nGame Menu for Mastermind"<<endl;
     cout<<"Type 1 for the instructions"<<endl;
     cout<<"Type 2 for to play the game"<<endl;
     cout<<"Type 3 to see the contents of the leader board"<<endl;
@@ -156,7 +156,7 @@ int getN()
 /*                                Play Mastermind                             */
 /******************************************************************************/   
 void game(fstream& infile,fstream& out,fstream& leader,string& name,int& nTrys,char &gmelmt,
-const int SIZE,UserColor *clrPick,char *userChar,char *comChar,ComColor& data)
+const int SIZE,UserColor *clrPick,char *userChar,char *comChar,ComColor& outcome)
 {
     //Declare and initialize variables
     //Arrays, Pointers,Vectors
@@ -170,7 +170,6 @@ const int SIZE,UserColor *clrPick,char *userChar,char *comChar,ComColor& data)
     char choice; //choice on whether or not to increment turns
     UserColor limit; //object to be incremented using overloaded operator
     char repeat; //allows the user to play again
-    ComColor outcome; //game outcome stats
     int win=0; //win for the player
     int lose=0; //lose for the player
     int games=0;//number of games for the player
@@ -200,7 +199,7 @@ const int SIZE,UserColor *clrPick,char *userChar,char *comChar,ComColor& data)
                     userChar[2]==comChar[2]&&userChar[3]==comChar[3]){
                 cout<<"You win! "<<endl;
                 cout<<"Your name will be put onto the leader board!"<<endl;
-                lder(nTrys,leader,data);//writes onto the leader file 
+                lder(nTrys,leader,outcome);//writes onto the leader file 
                 gmeOutcome=true;
                 break;
             }
@@ -238,7 +237,7 @@ const int SIZE,UserColor *clrPick,char *userChar,char *comChar,ComColor& data)
        
         //write data function should go here
         //write the player data from the game
-        writeData(data);
+        writeData(outcome);
         
         //Print results of the game
         results(clrPick,nTrys,CNVPERC,gmelmt,SIZE,userChar,comChar);
@@ -569,7 +568,7 @@ void readLdr(fstream& leader,string n)
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
 /*                     Write the Player Data to A File                        */
 /******************************************************************************/
-void writeData(ComColor data)
+void writeData(ComColor& data)
 {
     //declare variables
     fstream out;
@@ -678,8 +677,12 @@ void def(int inN)
 /******************************************************************************/
 void plyerInfo(ComColor &plyrInfo)
 {
+    //declare variables
     string name; //player's username
+    
+    //input username for game reference
     cout<<"Enter your username "<<endl;
+    cout<<"This username is for the game's reference to track your stats"<<endl;
     cin>>name;
     plyrInfo.setName(name);
 }

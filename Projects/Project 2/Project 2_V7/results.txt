@@ -1,6 +1,6 @@
 Color Choices	Turn Number
 ----------------------------
-ORKW              1
+RKOY              1
 You win!
 You attempted 1 out of the maximum ten tries to win. 
 Which means the percentage of the board you got through is 10.0% 
