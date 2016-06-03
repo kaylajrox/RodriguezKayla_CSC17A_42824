@@ -45,7 +45,8 @@ void markSrt(int *,int);
 void readLdr(fstream&,string);
 void lder(int,fstream&,ComColor);
 void lderOutput(int,ComColor);
-void game(fstream&,fstream&,fstream&,string&,ComColor&);
+void game(fstream&,fstream&,fstream&,string&,int&,char &,const int,UserColor*,
+        char*,char*,ComColor&);
 void leader(string,int,fstream);
 void Menu();
 void def(int);
@@ -56,6 +57,8 @@ void plyerInfo(ComColor&);//play information
 void findPlyr(); //find the player
 void filePlyr(fstream,string); //display player file
 void read();
+void writeData(ComColor data);//write the player data to the file
+void parce(string);
 
 //Execution Begins Here
 int main(int argc, char** argv)
@@ -68,38 +71,52 @@ int main(int argc, char** argv)
     srand(static_cast<unsigned int>(time(0)));
     
     //Declare variables
+    //constants
+    char gmelmt=10; //Number limit which determines win or loss
+    const int SIZE=4;  //Size of array used to keep track of color choices 
+    
     //file instructions
     fstream infile; //in file instructions
     string instr; //file instructions
     fstream out;//output file
     fstream leader; //file to hold leader board results
     string name; //holds contents of leader file 
-    ComColor data;//holds username
+    
+     //other variables
+     int nTrys=0;//number of trys
+  
+     UserColor *clrPick;//user color picks array
+     char *userChar;//user colors represented in characters
+     char *comChar;//computer colors represented as characters
+     ComColor data; //player data
     
     //menu variables
     int inN;
     bool reDsply=true;
     
-    //Open the Files
-    read();
+    //Player inputs their information to be outputted on a file
+    plyerInfo(data);
+    
     //redisplay menu if user chooses to
     do{
         Menu();
         inN=getN();
         
-        //Player inputs their information to be outputted on a file
-        plyerInfo(data);
-    
+        //Menu with various game options
         switch(inN){
-            case 1:    //Read the File and Output its contents (the introduction)
-                       readFile(infile,instr);break; 
-            case 2:    game(infile,out,leader,name,data);break; //doesn't work
+            case 1:  {  //Read the File and Output its contents (the introduction)
+                       readFile(infile,instr);break; }
+            case 2:{game(infile,out,leader,name,nTrys,gmelmt,SIZE,clrPick,userChar,comChar,data);
+                break; 
+            }
             case 3:{     //reads the leader board and outputs its contents
                 cout<<"LeaderBoard"<<endl<<endl;
                 cout<<"Username\tScore"<<endl;
                 readLdr(leader,name);break;}
-            case 4:    message();break;
+            case 4:{message();break;}
             case 5:{
+                //read data function should go here   
+                //read();
                 data.print2();
             }
         default:   {def(inN);
@@ -138,31 +155,27 @@ int getN()
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
 /*                                Play Mastermind                             */
 /******************************************************************************/   
-void game(fstream& infile,fstream& out,fstream& leader,string& name,ComColor& data)
+void game(fstream& infile,fstream& out,fstream& leader,string& name,int& nTrys,char &gmelmt,
+const int SIZE,UserColor *clrPick,char *userChar,char *comChar,ComColor& data)
 {
     //Declare and initialize variables
-    //constants
-    const int SIZE=4;  //Size of array used to keep track of color choices    
-    char gmelmt=10; //Number limit which determines win or loss
-    
     //Arrays, Pointers,Vectors
     string order[SIZE]={"first","second","third","fourth"}; //User Order Inputs
     string options[8]={"red","green","blue","brown","black","yellow","orange","white"};
     char optChar[8]={'R','G','B','N','K','Y','O','W'};//character options
-    char *userChar;//User's colors in character representation
-    UserColor *clrPick;  //User Inputs
     vector<string>list; //vector which converts characters to one condensed string
     ComColor *cColor; //pointer of computer colors
-    char *comChar; //pointer of computer colors written in characters
     
     //Counters and Object variables
-    int nTrys=0;//number of tries counter
     char choice; //choice on whether or not to increment turns
     UserColor limit; //object to be incremented using overloaded operator
     char repeat; //allows the user to play again
     ComColor outcome; //game outcome stats
-    int win=1; //win for the player
-    int lose=1; //lose for the player
+    int win=0; //win for the player
+    int lose=0; //lose for the player
+    int games=0;//number of games for the player
+    bool gmeOutcome; //flags the game outcome as either win or loss
+    string username;//username for the player
     
     //Open the Files
     out.open("results.txt",ios::out|ios::binary);
@@ -187,14 +200,13 @@ void game(fstream& infile,fstream& out,fstream& leader,string& name,ComColor& da
                     userChar[2]==comChar[2]&&userChar[3]==comChar[3]){
                 cout<<"You win! "<<endl;
                 cout<<"Your name will be put onto the leader board!"<<endl;
-                lderOutput(nTrys,data); //Outputs what is on the leader board
-                readLdr(leader,name); //reads the leader file
                 lder(nTrys,leader,data);//writes onto the leader file 
-                outcome.setWin(win);
+                gmeOutcome=true;
                 break;
             }
             else if(nTrys==gmelmt){
-                outcome.setLose(lose);
+                gmeOutcome=false;
+               // outcome.setLose(lose);
                 cout<<"You have reached the game limit and still have not guessed ";
                 cout<<"the correct colors, which means you have lost the game. "<<endl;
                 cout<<"Would you like to keep guessing anyway and increment your ";
@@ -211,8 +223,23 @@ void game(fstream& infile,fstream& out,fstream& leader,string& name,ComColor& da
                 }
             }
             switchH(clrPick,cColor,nTrys,SIZE);
+        }if (gmeOutcome==true)
+        {
+            win++;
+            outcome.setWin(win);
+        }else
+        {
+            lose++;
+            outcome.setLose(lose);
         }
-
+        //increment and set the number of games the player has played
+        games++;
+        outcome.setGames(games);
+       
+        //write data function should go here
+        //write the player data from the game
+        writeData(data);
+        
         //Print results of the game
         results(clrPick,nTrys,CNVPERC,gmelmt,SIZE,userChar,comChar);
 
@@ -339,7 +366,7 @@ UserColor *input(string order[],const int SIZE,char optChar[],string options[])
         }
         v = true;
         do{    
-            //pick spot
+            //pick spot //stackdumps if i put a spot number like 23
             cout<<"What spot would you like this color in?"<<endl;
             cin>>spot;
             clrPick[i].setSpot(spot);
@@ -371,7 +398,10 @@ char *input2(UserColor clrPick[],const int SIZE,char optChar[],string options[])
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
-/*                      Representation of previous picks to user              */
+/*                 Representation of previous picks to user
+ * Purpose:                 
+ * This function produces a table of the color picks represented in color form
+ * Also says which try they made these choices                                */
 /******************************************************************************/
 void reppic(char color[],char pick[],int &nTrys,const char GMELMT,
      const int SIZE,vector<string>&list)
@@ -486,11 +516,8 @@ void switchH(UserColor color[],ComColor pick[],int nTrys,const int SIZE)
         {
             cout<<"Four colors are correct, but they are not in the correct spot."<<endl;
             check=true;
-        }else
-        {
-            cout<<"None of these color choices are correct or in the  "; 
-            cout<<"right spot."<<endl<<"Try something different."<<endl
-                                                                 <<endl;
+        }if(count==0&&counter==0){
+            cout<<"None of your colors are correct or in the correct spot. "<<endl;
         }
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
@@ -540,17 +567,26 @@ void readLdr(fstream& leader,string n)
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
-/*                           Leader board Function Calls                      */
+/*                     Write the Player Data to A File                        */
 /******************************************************************************/
-//void leader(string name,int nTrys,fstream leader)
-//{
-//    ComColor data;
-//    cout<<"Your name wil be put onto the leaderboard "<<endl;
-//    cin>>name; 
-//    lderOutput(name,nTrys); //Outputs what is on the leader board
-//    readLdr(leader,name); //reads the leader file
-//    lder(name,nTrys,leader);//writes onto the leader file   
-//}
+void writeData(ComColor data)
+{
+    //declare variables
+    fstream out;
+    
+    //open the file
+    out.open("playerStats.txt",ios::in|ios::out);
+    
+    //write the file
+    out<<"Player Stats \r"<<endl;
+    out<<"Username: "<<data.getName()<<"\r"<<endl;
+    out<<"Games Played: "<<data.getGames()<<"\r"<<endl;
+    out<<"Wins: "<<data.getWin()<<"\r"<<endl;
+    out<<"Losses: "<<data.getLose()<<"\r"<<endl;
+    
+    //close the file
+    out.close();
+}
 //000000011111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
 //                      Sort the Array-Used to Sort Scores
@@ -634,7 +670,7 @@ void message()
 /******************************************************************************/
 void def(int inN)
 {
-        cout<<"You typed "<<inN<<" to exit the program"<<endl;
+    cout<<"You typed "<<inN<<" to exit the program"<<endl;
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
@@ -660,9 +696,7 @@ void findPlyr()
     
     //find a username
     cout<<"Type in your username to search "<<endl;
-//    cin>>username;
-  //  selectS(string username);
-//    search=binaryS();
+
 }
 
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
@@ -671,13 +705,19 @@ void findPlyr()
 /******************************************************************************/
 void filePlyr(fstream infile,string instr)
 {
+    //open the file
+    infile.open("playerStats.txt",ios::in|ios::out);
+   
+    //read the file and output its contents
     if( infile ){
         getline( infile, instr );
         while( infile ){
             cout << instr << endl;
             getline( infile, instr );
         }
-    }   
+    }
+    //close the file
+    infile.close();
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
@@ -739,16 +779,16 @@ void dataInfile()
     
 }
 
-//******************************************************************************
-//                     Definition of Selection Sort
-//******************************************************************************
+////******************************************************************************
+////                     Definition of Selection Sort
+////******************************************************************************
 //void selectS(string names[]){
 //    //Declare Variables
 //    int strScan, mini; 
 //    string minval;
 //    
 //    //Scan for a certain username
-//    for (strScan=0;strScan < (NAMES-1); strScan++){
+//    for (strScan=0; strScan < names.size(); strScan++){
 //        mini=strScan;
 //        minval = names[mini];
 //        for (int i=strScan+1;i<NAMES;i++){
@@ -764,9 +804,9 @@ void dataInfile()
 //
 //    cout<<endl;
 //}
-//******************************************************************************
-//                  Definition of function Binary Sort
-//******************************************************************************
+////******************************************************************************
+////                  Definition of function Binary Sort
+////******************************************************************************
 //int binaryS(string names[],string sNames){
 //    //declare variables
 //    int pos = -1,first = 0,last = (NAMES-1);

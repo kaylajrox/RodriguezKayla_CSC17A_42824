@@ -35,11 +35,6 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/Color.o \
-	${OBJECTDIR}/ComColor.o \
-	${OBJECTDIR}/ComMge.o \
-	${OBJECTDIR}/Mastermind_Mge.o \
-	${OBJECTDIR}/UserColor.o \
 	${OBJECTDIR}/main.o
 
 
@@ -61,36 +56,11 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/project_2_v7.exe
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/project_2_tester.exe
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/project_2_v7.exe: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/project_2_tester.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/project_2_v7 ${OBJECTFILES} ${LDLIBSOPTIONS}
-
-${OBJECTDIR}/Color.o: Color.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Color.o Color.cpp
-
-${OBJECTDIR}/ComColor.o: ComColor.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ComColor.o ComColor.cpp
-
-${OBJECTDIR}/ComMge.o: ComMge.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ComMge.o ComMge.cpp
-
-${OBJECTDIR}/Mastermind_Mge.o: Mastermind_Mge.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Mastermind_Mge.o Mastermind_Mge.cpp
-
-${OBJECTDIR}/UserColor.o: UserColor.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/UserColor.o UserColor.cpp
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/project_2_tester ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -103,7 +73,7 @@ ${OBJECTDIR}/main.o: main.cpp
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/project_2_v7.exe
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/project_2_tester.exe
 
 # Subprojects
 .clean-subprojects:

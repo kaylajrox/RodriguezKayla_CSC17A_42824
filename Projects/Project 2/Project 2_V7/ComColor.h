@@ -13,7 +13,7 @@
 using namespace std;
 class ComColor : public Color 
 {
-    private:
+    protected:
         string name; //the user name
         int games; //number of games played
         int win; //number of times the user has won

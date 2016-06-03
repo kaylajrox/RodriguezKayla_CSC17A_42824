@@ -1,4 +1,8 @@
-kakakakaka
-5
-hbjkb
-10
+Player Stats 
+Username: fsdf
+Games Played: 0
+Wins: 0
+Losses: 0
+
+
+0

@@ -36,14 +36,14 @@ void switchH(UserColor[],ComColor[],int,const int);
 void reppic(char[],char[],int &,const char,const int ,vector<string>&);
 void results(UserColor[],int&,const char,const char,int,char[],char[]);
 string aryToStr(char [],int);//converts a character array to a string
-void  writeFile(fstream& ,int& ,const char, UserColor[],ComColor[],vector<string>&);
+void  writeFile(fstream& ,int& ,char, UserColor[],ComColor[],vector<string>&);
 void readFile(fstream& ,string);
 char *input2(UserColor[],const int,char[],string[]);
 void markSrt(int *,int);
 void readLdr(fstream&,string);
 void lder(string,int,fstream&);
 void lderOutput(string,int);
-void game(fstream&,fstream&,fstream&,string&);
+void game(fstream&,fstream&,fstream&,string&,int&,char &const int,UserColor*,char*,char*);
 void leader(string,int,fstream);
 void Menu();
 void def(int);
@@ -61,21 +61,26 @@ int main(int argc, char** argv) {
     srand(static_cast<unsigned int>(time(0)));
     
     //Declare variables
-    //file instructions
+    //constants
+    char gmelmt=10; //Number limit which determines win or loss
+    
+    //file variables
     fstream infile; //in file instructions
     string instr; //file instructions
-    fstream out;//output file
+    fstream out;//output file to results file
     fstream leader; //file to hold leader board results
     string name; //holds contents of leader file 
     
+    //other variables
+    int nTrys=0;//number of trys
+    const int SIZE=4;  //Size of array used to keep track of color choices   
+    UserColor *clrPick;//user color picks array
+    char *userChar;//user colors represented in characters
+    char *comChar;//computer colors represented as characters
+    ComColor data; //player data
     //menu variables
     int inN;
     bool reDsply=true;
-    
-    //Open the Files
-    infile.open("instructions.txt", ios::in|ios::binary);
-    out.open("results.txt",ios::out|ios::binary);
-    leader.open("leader.txt",ios::in|ios::out);
     
     //redisplay menu if user chooses to
     do{
@@ -84,21 +89,26 @@ int main(int argc, char** argv) {
         switch(inN){
             case 1:    //Read the File and Output its contents (the introduction)
                        readFile(infile,instr);break; 
-            case 2:    game(infile,out,leader,name);break; //doesn't work
+            case 2: {   
+                game(infile,out,leader,name,nTrys,&gmelmt,SIZE,clrPick,userChar,comChar);
+                break;}
             case 3:{     //reads the leader board and outputs its contents
                 cout<<"LeaderBoard"<<endl<<endl;
                 cout<<"Username\tScore"<<endl;
                 readLdr(leader,name);break;}
-            case 4:    message();break;
+            case 4:{message();break;}
+            case 5:{
+                data.print2();
+            }
+            case 6:{
+                results(clrPick,nTrys,CNVPERC,gmelmt,SIZE,userChar,comChar);
+            }
         default:   {def(inN);
                     reDsply=false;}
         }
     }while(reDsply);
     
-    //close the files
-    infile.close();
-    out.close();
-    leader.close();
+    //exit stage right
     return 0;//If midterm not perfect, return something other than 1
 }
 /*******************************************************************************
@@ -110,6 +120,8 @@ void Menu(){
     cout<<"Type 2 for to play the game"<<endl;
     cout<<"Type 3 to see the contents of the leader board"<<endl;
     cout<<"Type 4 to see the Mastermind Picture"<<endl;
+    cout<<"Type 5 to see your stats "<<endl;
+    cout<<"Type 6 to see your results"<<endl;
     cout<<"Type anything else to exit \n"<<endl;
 }
 /*******************************************************************************
@@ -124,32 +136,21 @@ int getN(){
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
 /*                                Play Mastermind                             */
 /******************************************************************************/   
-void game(fstream& infile,fstream& out,fstream& leader,string& name){
+void game(fstream& infile,fstream& out,fstream& leader,string& name,int& nTrys,char &gmelmt
+const int SIZE,UserColor *clrPick,char *userChar,char *comChar){
     //Declare and initialize variables
-    //constants
-    const int SIZE=4;  //Size of array used to keep track of color choices    
-    char gmelmt=10; //Number limit which determines win or loss
-    
     //Arrays, Pointers,Vectors
     string order[SIZE]={"first","second","third","fourth"}; //User Order Inputs
     string options[8]={"red","green","blue","brown","black","yellow","orange","white"};
     char optChar[8]={'R','G','B','N','K','Y','O','W'};//character options
-    char *userChar;//User's colors in character representation
-    UserColor *clrPick;  //User Inputs
     vector<string>list; //vector which converts characters to one condensed string
     ComColor *cColor; //pointer of computer colors
-    char *comChar; //pointer of computer colors written in characters
     
     //Counters and Object variables
-    int nTrys=0;//number of tries counter
     char choice; //choice on whether or not to increment turns
     UserColor limit; //object to be incremented using overloaded operator
     char repeat; //allows the user to play again
-    
-    //Open the Files
-    infile.open("instructions.txt", ios::in|ios::binary);
-    out.open("results.txt",ios::out|ios::binary);
-    leader.open("leader.txt",ios::in|ios::out);
+
     //repeat the game if user wishes
     do{      
         //Allocate Memory for computer colors
@@ -169,9 +170,7 @@ void game(fstream& infile,fstream& out,fstream& leader,string& name){
             if(nTrys<=gmelmt&&userChar[0]==comChar[0]&&userChar[1]==comChar[1]&&
                     userChar[2]==comChar[2]&&userChar[3]==comChar[3]){
                 cout<<"You win! "<<endl;
-                cout<<"Please enter a username to be put onto the Leader board "<<endl;
-                cin>>name; 
-                lderOutput(name,nTrys); //Outputs what is on the leader board
+                cout<<"Your name will be put onto the Leader board "<<endl;
                 readLdr(leader,name); //reads the leader file
                 lder(name,nTrys,leader);//writes onto the leader file   
                 break;
@@ -203,6 +202,8 @@ void game(fstream& infile,fstream& out,fstream& leader,string& name){
 
         //End the Game Message
         endGme();
+        
+        //repeat the game if the user chooses to
         cout<<"Would you like to play again? Type y for yes and anything else";
         cout<<" for no."<<endl;
         cin>>repeat;
@@ -220,20 +221,30 @@ void game(fstream& infile,fstream& out,fstream& leader,string& name){
 /*                         Read the instruction File                          */
 /******************************************************************************/
 void readFile(fstream& infile,string instr){
+    //opens the instructions file
+    infile.open("instructions.txt", ios::in|ios::binary);
+    
+    //reads and outputs its contents
     if( infile ){
         getline( infile, instr );
         while( infile ){
             cout << instr << endl;
             getline( infile, instr );
         }
-    }   
+    } 
+    //close the file
+    infile.close();
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
 /*                             Write the File                                 */
 /******************************************************************************/
-void writeFile(fstream& out,int &nTrys,const char GMELMT,
+void writeFile(fstream& out,int &nTrys,char GMELMT,
         UserColor clrPick[],ComColor cColor[],vector<string>&list){    
+    //open the results file   
+    out.open("results.txt",ios::out|ios::binary);
+    
+    //write to the results file
     out<<"Color Choices\tTurn Number\r"<<endl;
     out<<"----------------------------\r"<<endl;
     for(int i=0;i<list.size();i++)
@@ -252,6 +263,8 @@ void writeFile(fstream& out,int &nTrys,const char GMELMT,
         out<<(float)(nTrys)/(10.0f)*CNVPERC<<"% "<<endl;
     }else
         out<<"You lose. You could not guess in 10 tries or less."<<endl;
+    //close the file
+    out.close();
 }    
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
@@ -442,22 +455,10 @@ void switchH(UserColor color[],ComColor pick[],int nTrys,const int SIZE){
  * Function allows for user to enter their name to be sorted onto a leader
  * board, writes the leader file                                              */
 /******************************************************************************/
-void lder(string name,int score,fstream& out){ 
-    out>>name;
+void lder(ComColor name,int score,fstream& out){ 
     out<<"Top Ten On the Leader board\r"<<endl;
     out<<"UserName\tNumber of Tries\r"<<endl;
-    out<<name<<"\t"<< score<<"\r"<<endl;
-}
-//000000001111111112222222222333333333344444444445555555555666666666677777777778
-//345678901234567890123456789012345678901234567890123456789012345678901234567890
-/*                         Leader board Function  
- * Function allows for user to enter their name to be sorted onto a leader
- * board, writes the leader file                                              */
-/******************************************************************************/
-void lderOutput(string name,int score){ 
-    cout<<"Top Ten On the Leader board"<<endl;
-    cout<<"UserName\tNumber of Tries"<<endl;
-    cout<<name<<"\t\t"<< score<<endl;
+    out<<name.getName()<<"\t"<< score<<"\r"<<endl;
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
@@ -465,24 +466,19 @@ void lderOutput(string name,int score){
  *   This function reads the contents of the Leader board file                */
 /******************************************************************************/
 void readLdr(fstream& leader,string n){
+    //open the file
+    leader.open("leader.txt",ios::in|ios::out);
+    
+    //read the file and output its contents
     if( leader ){
         getline( leader, n );
         while( leader ){
             cout << n << endl;
             getline( leader, n );
         }
-    }  
-}
-//000000001111111112222222222333333333344444444445555555555666666666677777777778
-//345678901234567890123456789012345678901234567890123456789012345678901234567890
-/*                           Leader board Function Calls                      */
-/******************************************************************************/
-void leader(string name,int nTrys,fstream leader){
-    cout<<"Please enter a username to be put onto the Leader board "<<endl;
-    cin>>name; 
-    lderOutput(name,nTrys); //Outputs what is on the leader board
-    readLdr(leader,name); //reads the leader file
-    lder(name,nTrys,leader);//writes onto the leader file   
+    }
+    //close the file
+    leader.close();
 }
 //000000011111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
