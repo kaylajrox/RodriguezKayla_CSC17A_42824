@@ -4,12 +4,8 @@
  * file opening was used on notepad and the format outputs the way it should
  * on notepad
  */
-/*
- * Trying to add:
-   search function to search the file for username
- sort function for the file
- need to add polymorphism
- * need to finish up the class with the data on each person 
+/*When I press 5 the menu does not redisplay
+ * the username games,wins and losses still need to increment
  */
 //System Libraries
 #include <iostream>
@@ -32,6 +28,9 @@ using namespace std;
 const char CNVPERC=100;
 
 //Function Prototypes
+//functions used in the game
+void game(fstream&,fstream&,fstream&,string&,int&,char &,const int,UserColor*,
+        char*,char*,ComColor&);
 char *compic(ComColor*,string[],char[],int);
 UserColor *input(string[],const int,char[],string[]);
 void switchH(UserColor[],ComColor[],int,const int);
@@ -41,18 +40,23 @@ string aryToStr(char [],int);//converts a character array to a string
 void  writeFile(fstream& ,int& ,const char, UserColor[],ComColor[],vector<string>&);
 void readFile(fstream& ,string);
 char *input2(UserColor[],const int,char[],string[]);
+
+//functions used for the leaderboard
 void markSrt(int *,int);
 void readLdr(fstream&,string);
 void lder(int,fstream&,ComColor);
 void lderOutput(int,ComColor);
-void game(fstream&,fstream&,fstream&,string&,int&,char &,const int,UserColor*,
-        char*,char*,ComColor&);
-void leader(string,int,fstream);
+
+//menu functions
 void Menu();
 void def(int);
 int getN();
+
+//end game message functions
 void endGme(); //displays end game message
 void message();//Game Logo
+
+//player data functions
 void plyerInfo(ComColor&);//play information 
 void findPlyr(); //find the player
 void filePlyr(fstream,string); //display player file
@@ -116,7 +120,7 @@ int main(int argc, char** argv)
             case 4:{message();break;}
             case 5:{
                 //read data function should go here   
-                //read();
+                read();
                 data.print2();
             }
         default:   {def(inN);
@@ -147,9 +151,9 @@ void Menu()
  ******************************************************************************/
 int getN()
 {
-        int inN;
-        cin>>inN;
-        return inN;
+    int inN;
+    cin>>inN;
+    return inN;
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
@@ -577,7 +581,7 @@ void writeData(ComColor& data)
     out.open("playerStats.txt",ios::in|ios::out);
     
     //write the file
-    out<<"Player Stats \r"<<endl;
+    out<<"All Player Stats \r"<<endl;
     out<<"Username: "<<data.getName()<<"\r"<<endl;
     out<<"Games Played: "<<data.getGames()<<"\r"<<endl;
     out<<"Wins: "<<data.getWin()<<"\r"<<endl;
@@ -699,9 +703,7 @@ void findPlyr()
     
     //find a username
     cout<<"Type in your username to search "<<endl;
-
 }
-
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
 /*           Write Player File that Stores the Data on each player            */
@@ -741,7 +743,8 @@ void read()
             getline( player, temp );
         }
          
-    }   
+    }  
+    //close the file
     player.close();
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
@@ -768,67 +771,21 @@ void parce(string x)
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
-/*                        Put the data into a file                            */
+/*                        Put the data into a file  
+ * clear the file if needed                                                   */
 /******************************************************************************/
 void dataInfile()
 {
     //declare variables
     ComColor data;
     fstream player;
+    //open the file
     player.open("playerStats.txt",ios::in|ios::out);
-    player.clear();
-  //  player>>data.print();
-    player.close();
     
+    //clear the file
+    player.clear();
+    
+    //close the file
+    player.close();
 }
 
-////******************************************************************************
-////                     Definition of Selection Sort
-////******************************************************************************
-//void selectS(string names[]){
-//    //Declare Variables
-//    int strScan, mini; 
-//    string minval;
-//    
-//    //Scan for a certain username
-//    for (strScan=0; strScan < names.size(); strScan++){
-//        mini=strScan;
-//        minval = names[mini];
-//        for (int i=strScan+1;i<NAMES;i++){
-//            if (names[i]<minval){
-//                minval=names[i];
-//                mini=i;
-//            }
-//        }
-//        string temp=names[strScan];
-//        names[strScan]=minval;
-//        names[mini]=temp;
-//    }
-//
-//    cout<<endl;
-//}
-////******************************************************************************
-////                  Definition of function Binary Sort
-////******************************************************************************
-//int binaryS(string names[],string sNames){
-//    //declare variables
-//    int pos = -1,first = 0,last = (NAMES-1);
-//    int middle;                       
-//    bool found = false;    // Flag
-//    
-//    //search the array
-//    while (!found && first <= last){
-//        middle = (first + last) / 2; // Calculate midpoint
-//        if (names[middle] == sNames){ // If value is found at mid
-//            pos = middle;
-//            found = true;            
-//        }
-//        else if (names[middle] > sNames){ // If value is in lower half
-//            last = middle - 1;
-//        }
-//        else{
-//            first = middle + 1; // If value is in upper half
-//        }
-//    }
-//    return pos;
-//} 
