@@ -1,0 +1,3 @@
+Questions:
+I am not sure if I demonstrated polymorphism
+increment things on a file (games,wins,losses,etc)
