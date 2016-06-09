@@ -603,27 +603,6 @@ void writeData(ComColor& data)
     //close the file
     out.close();
 }
-//000000011111111112222222222333333333344444444445555555555666666666677777777778
-//345678901234567890123456789012345678901234567890123456789012345678901234567890
-//                      Sort the Array-Used to Sort Scores
-//Inputs
-//     n->Size of the array
-//     a->Array
-//Output
-//     a->The sorted array
-////////////////////////////////////////////////////////////////////////////////
-void markSrt(int *a,int n)
-{
-    for(int pos=0;pos<n-1;pos++){
-        for(int row=pos+1;row<n;row++){
-            if(*(a+pos)>*(a+row)){
-                *(a+pos)=*(a+pos)^*(a+row);
-                a[row]=a[pos]^a[row];
-                *(a+pos)=*(a+pos)^*(a+row);
-            }
-        }
-    }
-}
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
 /*                          Print a End Game Message
