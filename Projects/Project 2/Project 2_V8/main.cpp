@@ -191,9 +191,9 @@ const int SIZE,UserColor *clrPick,char *userChar,char *comChar,ComColor& outcome
         
         //output the character representation of computer's colors for error 
         //checking
-        for(int i=0;i<SIZE;i++){
-            cout<<comChar[i];
-        }
+//        for(int i=0;i<SIZE;i++){
+//            cout<<comChar[i];
+//        }
         //for loop allows player to play until the limit is hit
         for(int n=1;n<=gmelmt;n++){
             cout<<"\nRemember red= r, green=g, blue=b, brown=n, black=k,";
@@ -220,15 +220,19 @@ const int SIZE,UserColor *clrPick,char *userChar,char *comChar,ComColor& outcome
 
                 //determines whether the game limit will be incremented
                 cin>>choice;//gets user input for color
-
+                
+                //makes sure any letter is set to lower case
                 choice=tolower(choice);
+                
+                //increment the number of turns the user gets so they can keep
+                //guessing
                 if (choice=='y'){
                     limit.setTurn(nTrys);
                     ++limit; //increment the number of turns user is allowed
                     gmelmt=limit.getTurn();
                 }
             }
-            switchH(clrPick,cColor,nTrys,SIZE);
+            switchH(clrPick,cColor,nTrys,SIZE);//hints function
             cout<<"You have "<<(gmelmt-nTrys)<<" trys left"<<endl;
         }if (gmeOutcome==true)
         {
