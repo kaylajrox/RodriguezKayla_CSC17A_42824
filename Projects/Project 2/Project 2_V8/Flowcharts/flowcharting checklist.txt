@@ -1,0 +1,28 @@
+Functions	Done
+
+game-------------X
+*compic----------X
+*input-----------X
+reppic-----------X
+results----------X
+aryToStr---------X
+writeFile--------X
+readFile---------X
+readLdr----------X
+lder-------------X
+lderOutput-------X
+menu------------ X
+def--------------X
+getN ------------X
+endGme-----------X
+message----------X
+plyerInfo--------X
+findPlyr---------X
+read-------------X
+writeData--------X
+parce------------X
+main ------------X
+input2-----------X
+switchH--------- X
+
+main(803 lines)
