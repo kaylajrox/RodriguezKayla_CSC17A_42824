@@ -19,9 +19,12 @@ class UserColor : public Color {
         void setTurn(int);
         int getTurn();
         
+        //this function demonstrates polymorphism by using the color variable 
+        //from the base class of color
         void setColor(string x) {
             if(x==options[0]||x==options[1]||x==options[2]||x==options[3]||
-                        x==options[4]||x==options[5]||x==options[6]||x==options[7]){
+                        x==options[4]||x==options[5]||x==options[6]||x==options[7])
+            {
                     color=x;
             }
             else{

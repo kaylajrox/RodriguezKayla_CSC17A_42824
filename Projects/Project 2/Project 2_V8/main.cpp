@@ -4,8 +4,7 @@
  * file opening was used on notepad and the format outputs the way it should
  * on notepad
  */
-/*When I press 5 the menu does not redisplay
- * the username games,wins and losses still need to increment
+/*
  */
 //System Libraries
 #include <iostream>
@@ -33,15 +32,17 @@ void game(fstream&,fstream&,fstream&,string&,int&,char &,const int,UserColor*,
         char*,char*,ComColor&);
 char *compic(ComColor*,string[],char[],int);
 UserColor *input(string[],const int,char[],string[]);
+char *input2(UserColor[],const int,char[],string[]);
 void switchH(UserColor[],ComColor[],int,const int);
 void reppic(char[],char[],int &,const char,const int ,vector<string>&);
 void results(UserColor[],int&,const char,const char,int,char[],char[]);
 string aryToStr(char [],int);//converts a character array to a string
+
+//writing file functions
 void  writeFile(fstream& ,int& ,const char, UserColor[],ComColor[],vector<string>&);
 void readFile(fstream& ,string);
-char *input2(UserColor[],const int,char[],string[]);
 
-//functions used for the leaderboard
+//functions used for the leader board
 void markSrt(int *,int);
 void readLdr(fstream&,string);
 void lder(int,fstream&,ComColor);
@@ -127,9 +128,7 @@ int main(int argc, char** argv)
         }
     }while(reDsply);
     
-    //close the files
-    // player.close();
-    
+    //Exit Stage Right
     return 0;
 }
 /*******************************************************************************
@@ -189,6 +188,9 @@ const int SIZE,UserColor *clrPick,char *userChar,char *comChar,ComColor& outcome
         
         //computer's colors in character representation
         comChar = compic(cColor,options,optChar,SIZE);//allocate memory
+        
+        //output the character representation of computer's colors for error 
+        //checking
         for(int i=0;i<SIZE;i++){
             cout<<comChar[i];
         }
@@ -227,7 +229,7 @@ const int SIZE,UserColor *clrPick,char *userChar,char *comChar,ComColor& outcome
                 }
             }
             switchH(clrPick,cColor,nTrys,SIZE);
-            cout<<"You have "<<(10-nTrys)<<" trys left"<<endl;
+            cout<<"You have "<<(gmelmt-nTrys)<<" trys left"<<endl;
         }if (gmeOutcome==true)
         {
             win++;
@@ -361,6 +363,7 @@ UserColor *input(string order[],const int SIZE,char optChar[],string options[])
         while(v){
            try
            {
+               //polymorphism occurs within here
                 clrPick[i].setColor(color);
                 v=false;
            }catch(UserColor::EmpClass)
@@ -370,13 +373,19 @@ UserColor *input(string order[],const int SIZE,char optChar[],string options[])
            }
         }
         v = true;
-        do{    
-            //pick spot //stackdumps if i put a spot number like 23
+        do
+        {    
+            //pick spot
             cout<<"What spot would you like this color in?"<<endl;
             cin>>spot;
+            
+            //set the spot number
             clrPick[i].setSpot(spot);
         }while(set[clrPick[i].getSpot()-1]);
+        
+        //fix the order of the spots
         set[clrPick[i].getSpot()-1]=true;
+        
         //input to that index
         clrPick[clrPick[i].getSpot()-1].getColor()=color;
     } 
@@ -472,7 +481,8 @@ void switchH(UserColor color[],ComColor pick[],int nTrys,const int SIZE)
 { 
     int counter=0;
     int count=0;
-    bool check=false;
+        //check to see how mnay colors are in the right spot
+        //count to see how many of the computer's colors match the user's colors
         for(int i=0;i<SIZE;i++)
         {
             if(color[i].getColor()==pick[i].getColor())
@@ -481,25 +491,26 @@ void switchH(UserColor color[],ComColor pick[],int nTrys,const int SIZE)
         if (counter==1)
         {
             cout<<"One color is in the correct spot."<<endl;
-            check=true;
 
         }else if (counter==2)
         {
             cout<<"Two colors are in the correct spot."<<endl;
-            check=true;
         }else if (counter==3)
         {
             cout<<"Three colors are in the correct spot."<<endl;
-            check=true;
         }
         else if (counter==4)
         {
             cout<<"You guessed all the colors correctly."<<endl;
-            check=true;
         }
-        for(int j=0;j<SIZE;j++){
-            for(int i=0;i<SIZE;i++){
-                if(color[i].getColor()==pick[j].getColor()&&i!=j){
+        //check to see if colors are correct but not in the same spot
+        //count how many times a color is correct
+        for(int j=0;j<SIZE;j++)
+        {
+            for(int i=0;i<SIZE;i++)
+            {
+                if(color[i].getColor()==pick[j].getColor()&&i!=j)
+                {
                     count++;
                 }
             }
@@ -507,20 +518,16 @@ void switchH(UserColor color[],ComColor pick[],int nTrys,const int SIZE)
         if (count==1)
         {
             cout<<"One color is correct, but it is not in the correct spot."<<endl;
-            check=true;
 
         }else if (count==2)
         {
             cout<<"Two colors are correct,but they are not in the correct spot."<<endl;
-            check=true;
         }else if (count==3)
         {
             cout<<"Three colors are correct, but they are not in the correct spot."<<endl;
-            check=true;
         }else if (count==4)
         {
             cout<<"Four colors are correct, but they are not in the correct spot."<<endl;
-            check=true;
         }if(count==0&&counter==0){
             cout<<"None of your colors are correct or in the correct spot. "<<endl;
         }
