@@ -4,8 +4,8 @@
  */
 
 #include "SavingsAccount.h"
-SavingsAccount::SavingsAccount(float){
-    
+SavingsAccount::SavingsAccount(float x){
+    Balance=x;
 }             
 void  SavingsAccount::Transaction(float){
 
