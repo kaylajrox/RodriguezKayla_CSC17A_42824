@@ -43,7 +43,6 @@ void  writeFile(fstream& ,int& ,const char, UserColor[],ComColor[],vector<string
 void readFile(fstream& ,string);
 
 //functions used for the leader board
-void markSrt(int *,int);
 void readLdr(fstream&,string);
 void lder(int,fstream&,ComColor);
 void lderOutput(int,ComColor);
@@ -698,7 +697,8 @@ void findPlyr()
 }
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
-/*           Write Player File that Stores the Data on each player            */
+/*           Write Player File that Stores the Data on each player 
+ * reads and outputs contents of the player stats files                       */
 /******************************************************************************/
 void filePlyr(fstream infile,string instr)
 {
