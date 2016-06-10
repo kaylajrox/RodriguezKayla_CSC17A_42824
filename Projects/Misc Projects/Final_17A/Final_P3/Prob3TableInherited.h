@@ -6,8 +6,10 @@
 #ifndef PROB3TABLEINHERITED_H
 #define PROB3TABLEINHERITED_H
 
+#include "Prob3Table.h"
+
 template<class T>
-class Prob3TableInherited:public Prob3Table<T>
+class Prob3TableInherited : public Prob3Table<T>
 {
     protected:
 	T *augTable;                                  //Augmented Table with sums
@@ -17,6 +19,6 @@ class Prob3TableInherited:public Prob3Table<T>
         const T *getAugTable(void){return augTable;}; 
 };
 
-
+//template<class T>
 #endif /* PROB3TABLEINHERITED_H */
 

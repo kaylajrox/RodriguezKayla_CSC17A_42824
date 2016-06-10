@@ -25,16 +25,10 @@ class Prob3Table
         const T *getColSum(void){return colSum;};
         T getGrandTotal(void){return grandTotal;};
 };
-
 template<class T>
-class Prob3TableInherited:public Prob3Table<T>
-{
-    protected:
-	T *augTable;                                  //Augmented Table with sums
-    public:
-        Prob3TableInherited(char *,int,int);          //Constructor
-        ~Prob3TableInherited(){delete [] augTable;};  //Destructor
-        const T *getAugTable(void){return augTable;}; 
-};
+Prob3Table::Prob3Table(char *,int,int){
+    
+}
+
 #endif /* PROB3TABLE_H */
 
