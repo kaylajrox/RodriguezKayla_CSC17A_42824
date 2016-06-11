@@ -15,19 +15,18 @@ Employee::Employee(char a[],char b[],float c) {
         JobTitle[i]=b[i];
     }
     setHourlyRate(c);
-    NetPay=0;
-    GrossPay=0;
+    NetPay=0.0;
+    GrossPay=0.0;
     HoursWorked=0;
 }
 
-float  Employee::getGrossPay(float HourlyRate,int HoursWorked){
-    GrossPay=0;
-    if(HoursWorked<=40){
-        GrossPay=HourlyRate*HoursWorked;
-    }else if(HoursWorked<=50){
-        GrossPay=40*HourlyRate+(HoursWorked-40)*(HourlyRate*1.5);
+float  Employee::getGrossPay(float hrRate,int hrsWorked){
+    if(hrsWorked<=40){
+        GrossPay=hrRate*hrsWorked;
+    }else if(hrsWorked<=50){
+        GrossPay=40*hrRate+(hrsWorked-40)*(hrRate*1.5);
     }else{
-        GrossPay=55*HourlyRate+(HourlyRate-50)*2*HourlyRate;
+        GrossPay=40*hrRate+10*(hrRate*1.5)+(hrsWorked-50)*(2*hrRate);
     }
     return GrossPay;
 }
@@ -53,17 +52,17 @@ void Employee::toString(){
     cout<<" Gross Pay="<<GrossPay<<" NetPay="<<NetPay<<endl;
 }    
 int Employee::setHoursWorked(int x){
-    if(HoursWorked<0||HoursWorked>84){
-        cout<<"Unacceptable Hours Worked\n";
-        HoursWorked=0;
+    if(x>0&&x<84){
+        HoursWorked=x;
     }
     else{
-        HoursWorked=x;
+        cout<<"Unacceptable Hours Worked\n";
+        HoursWorked=0;
     }
     return HoursWorked;    
 } 
 float  Employee::setHourlyRate(float x){
-    if(HoursWorked>0||HoursWorked<200){
+    if(x>0&&x<200){
         HourlyRate=x;
     }
     else{
@@ -73,5 +72,5 @@ float  Employee::setHourlyRate(float x){
     return HourlyRate;
 } 
 float  Employee::CalculatePay(float a,int b){
-    return getNetPay(getGrossPay(setHourlyRate(HourlyRate),setHoursWorked(HoursWorked))); 
+    return getNetPay(getGrossPay(setHourlyRate(a),setHoursWorked(b))); 
 }

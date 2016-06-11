@@ -13,7 +13,7 @@ using namespace std;
 
 int main(int argc, char** argv) {
     cout<<"Problem 5 "<<endl;
-    cout<<"Employee information"<<endl;
+    cout<<"Employee information\n"<<endl;
     Employee Mark("Mark","Boss",215.50);
     Mark.setHoursWorked(-3);
     Mark.toString();
