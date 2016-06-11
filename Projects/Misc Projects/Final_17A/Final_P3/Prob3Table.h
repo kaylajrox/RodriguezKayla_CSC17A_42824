@@ -83,7 +83,7 @@ Prob3Table<T>::Prob3Table(char* fileTxt, int rSum, int cSum){
          
         }
         colSum[i]=cTtl;
-    }  
+    }    
     calcTable();
 }  
 template<class T>
