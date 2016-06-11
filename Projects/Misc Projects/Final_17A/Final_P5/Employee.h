@@ -17,7 +17,7 @@ class Employee {
         int    setHoursWorked(int);     //Procedure
         float  setHourlyRate(float);    //Procedure
     private:
-        double Tax(float);      //Utility Procedure
+        float Tax(float);      //Utility Procedure
         char   MyName[20];      //Property
         char   JobTitle[20];    //Property
         float  HourlyRate;      //Property
