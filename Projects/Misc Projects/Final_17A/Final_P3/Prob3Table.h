@@ -79,8 +79,7 @@ Prob3Table<T>::Prob3Table(char* fileTxt, int rSum, int cSum){
     //Total Sum of Columns
     for(int i=0;i<cols;i++){
         for(int j=0;j<rows;j++){
-            cTtl+=table[i*cols+j];
-         
+            cTtl+=table[i*cols+j];        
         }
         colSum[i]=cTtl;
     }    
@@ -96,25 +95,16 @@ Prob3Table<T>(txtFle,rows,cols){
         }
         augTable[i*(cols+1)+cols]=this->rowSum[i];
     }
-    for(int i=0;i<(rows+1);i++){
-        for(int j=0; j<cols;j++){
-            augTable[i*(cols+1)+j]=this->table[i*cols+j];
-        }
-        augTable[i*(cols+1)+cols]=this->rowSum[i];
-    }
-
-    
+    for(int i=0;i<cols;i++){
+    augTable[rows*(cols+1)+i]=this->colSum[i];
+  }
+  augTable[rows*(cols+1)+cols]=this->grandTotal;
 }
 template<class T>
 void Prob3Table<T>::calcTable(){
-    int total=0;
     for(int i=0;i<rows;i++){
-        total +=rowSum[i];
+        grandTotal+=table[i];
     }
-    for(int i=0;i<rows;i++){
-        total +=colSum[i];
-    }
-    grandTotal=total;
 }
 #endif /* PROB3TABLE_H */
 

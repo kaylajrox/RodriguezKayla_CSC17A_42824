@@ -17,7 +17,7 @@ using namespace std;
 
 //execution begins here
 int main(int argc, char** argv) {
-    cout<<"Entering problem number 3"<<endl;
+    cout<<"Entering the problem of doom. aka number 3 "<<endl;
     int rows=5;
     int cols=6;
     Prob3TableInherited<int> tab("Problem3.txt",rows,cols);
