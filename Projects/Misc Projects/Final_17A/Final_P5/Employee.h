@@ -24,7 +24,6 @@ class Employee {
         int    HoursWorked;     //Property
         float  GrossPay;        //Property
         float  NetPay;          //Property
-        //include an empty class for the try catch
 };
 
 #endif /* EMPLOYEE_H */

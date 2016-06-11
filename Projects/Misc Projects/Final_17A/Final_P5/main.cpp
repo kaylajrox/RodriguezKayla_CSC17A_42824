@@ -14,7 +14,6 @@ using namespace std;
 int main(int argc, char** argv) {
     cout<<"Problem 5 "<<endl;
     cout<<"Employee information"<<endl;
-    
     Employee Mark("Mark","Boss",215.50);
     Mark.setHoursWorked(-3);
     Mark.toString();
@@ -39,6 +38,7 @@ int main(int argc, char** argv) {
     Mary.CalculatePay(Mary.setHourlyRate(50.0),
             Mary.setHoursWorked(60));
     Mary.toString();
+
     return 0;
 }
 

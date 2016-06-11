@@ -1,38 +1,66 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /* 
  * File:   Employee.cpp
- * Author: Kayla
- * 
+ * Author: Kayla 
  * Created on June 10, 2016, 6:38 AM
  */
 
 #include "Employee.h"
+#include <iostream>
+#include <cstring>
+using namespace std;
 
 Employee::Employee(char a[],char b[],float c) {
-    MyName[20]=a[20];
-    JobTitle[20]=b[20];
+    for(int i=0;i<strlen(MyName);i++){
+        MyName[i]=a[i];
+        JobTitle[i]=b[i];
+    }
     HourlyRate=c;
 }
-float  Employee::CalculatePay(float,int){
-    
+
+float  Employee::getGrossPay(float HourlyRate,int HoursWorked){
+    GrossPay=0;
+    if(HoursWorked<=40){
+        GrossPay=HourlyRate*HoursWorked;
+    }else if(HoursWorked<=50){
+        GrossPay=40*HourlyRate+(HoursWorked-40)*(HourlyRate*1.5);
+    }else{
+        GrossPay=55*HourlyRate+(HourlyRate-50)*2*HourlyRate;
+    }
+    return GrossPay;
 }
-float  Employee::getGrossPay(float,int){
-    
-}
-float  Employee::getNetPay(float){
-    
+float  Employee::getNetPay(float GrossPay){
+    if(GrossPay<=500){
+        NetPay=GrossPay-(.1*GrossPay);
+    }else if(GrossPay<=1000){
+        NetPay=500*.1+(GrossPay-500)*.2;
+    }else{
+        NetPay=500*.1+500*.2-(GrossPay-1000)*.3;
+    }
+    return NetPay;
 }  
 void Employee::toString(){
-    
+    cout<<"Name "<<MyName<<" Job Title = "<<JobTitle<<endl;
+    cout<<"Hourly Rate = "<<HourlyRate<<" Hours Worked = "<<GrossPay;
+    cout<<" Net Pay "<<NetPay<<endl;
 }    
-int Employee::setHoursWorked(int){
-    
+int Employee::setHoursWorked(int x){
+    if(HoursWorked<0||HoursWorked>84){
+        cout<<"Unacceptable Hours Worked\n";
+    }
+    else{
+        HoursWorked=x;
+    }
+    return HoursWorked;    
 } 
-float  Employee::setHourlyRate(float){
-    
+float  Employee::setHourlyRate(float x){
+    if(HoursWorked<0||HoursWorked>200){
+        cout<<"Unacceptable Hourly Rate\n";
+    }
+    else{
+        HourlyRate=x;
+    }
+    return HourlyRate;
 } 
+float  Employee::CalculatePay(float a,int b){
+    return getNetPay(getGrossPay(setHourlyRate(HourlyRate),setHoursWorked(HoursWorked))); 
+}
