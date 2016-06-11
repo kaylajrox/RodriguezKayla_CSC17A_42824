@@ -1,5 +1,8 @@
 /* Author: Kayla
  * Final */
+/*Issues: Problem 5 worked perfectly by itself now it wont output mary's name
+ * and job title
+ */
 //Library includes Here
 #include <iostream>
 #include <iomanip>
@@ -13,6 +16,7 @@ using namespace std;
 
 //User Libraries
 #include "Prob3TableInherited.h"
+#include "Employee.h"
 
 //Function Prototypes
 void Menu();
@@ -102,7 +106,32 @@ void problem4(){
     
 }
 void problem5(){
-    
+    cout<<"Problem 5 "<<endl;
+    cout<<"Employee information\n"<<endl;
+    Employee Mark("Mark","Boss",215.50);
+    Mark.setHoursWorked(-3);
+    Mark.toString();
+    Mark.CalculatePay(Mark.setHourlyRate(20.0),
+            Mark.setHoursWorked(25));
+    Mark.toString();
+    Mark.CalculatePay(Mark.setHourlyRate(40.0),
+            Mark.setHoursWorked(25));
+    Mark.toString();
+    Mark.CalculatePay(Mark.setHourlyRate(60.0),
+            Mark.setHoursWorked(25));
+    Mark.toString();
+
+    Employee Mary("Mary","VP",50.0);
+    Mary.toString();
+    Mary.CalculatePay(Mary.setHourlyRate(50.0),
+            Mary.setHoursWorked(40));
+    Mary.toString();
+    Mary.CalculatePay(Mary.setHourlyRate(50.0),
+            Mary.setHoursWorked(50));
+    Mary.toString();
+    Mary.CalculatePay(Mary.setHourlyRate(50.0),
+            Mary.setHoursWorked(60));
+    Mary.toString();
 }
 void problem6(){
     
