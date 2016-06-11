@@ -1,6 +1,14 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 /* 
- * Problem #3 Spreadsheet Stuff
- * Class Specifications Prob3Table
+ * File:   Prob3Table.h
+ * Author: Kayla
+ *
+ * Created on June 11, 2016, 4:18 AM
  */
 
 #ifndef PROB3TABLE_H
@@ -30,18 +38,6 @@ class Prob3Table
         const T *getColSum(void){return colSum;};
         T getGrandTotal(void){return grandTotal;};
 };
-
-template<class T>
-class Prob3TableInherited:public Prob3Table<T>
-{
-    protected:
-            T *augTable;                                  //Augmented Table with sums
-    public:
-            Prob3TableInherited(char *,int,int);          //Constructor
-            ~Prob3TableInherited(){delete [] augTable;};  //Destructor
-            const T *getAugTable(void){return augTable;}; 
-};
-
 template<class T>
 Prob3Table<T>::Prob3Table(char* fileTxt, int rSum, int cSum){
     //set the variables
@@ -119,21 +115,6 @@ Prob3Table<T>::Prob3Table(char* fileTxt, int rSum, int cSum){
     }    
     calcTable();
 }  
-template<class T>
-Prob3TableInherited<T>::Prob3TableInherited(char* txtFle, int rows, int cols):
-Prob3Table<T>(txtFle,rows,cols){
-    augTable=new T[(rows+1)*(cols+1)];
-    for(int i=0;i<rows;i++){
-        for(int j=0; j<cols;j++){
-            augTable[i*(cols+1)+j]=this->table[i*cols+j];
-        }
-        augTable[i*(cols+1)+cols]=this->rowSum[i];
-    }
-    for(int i=0;i<cols;i++){
-        augTable[rows*(cols+1)+i]=this->colSum[i];
-    }
-  augTable[rows*(cols+1)+cols]=this->grandTotal;
-}
 template<class T>
 void Prob3Table<T>::calcTable(){
     for(int i=0;i<rows*cols;i++){

@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=Cygwin-Windows
 CND_ARTIFACT_DIR_Debug=dist/Debug/Cygwin-Windows
-CND_ARTIFACT_NAME_Debug=final_17a_menu
-CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin-Windows/final_17a_menu
+CND_ARTIFACT_NAME_Debug=final_p1_v2
+CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin-Windows/final_p1_v2
 CND_PACKAGE_DIR_Debug=dist/Debug/Cygwin-Windows/package
-CND_PACKAGE_NAME_Debug=final17amenu.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin-Windows/package/final17amenu.tar
+CND_PACKAGE_NAME_Debug=finalp1v2.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin-Windows/package/finalp1v2.tar
 # Release configuration
 CND_PLATFORM_Release=Cygwin-Windows
 CND_ARTIFACT_DIR_Release=dist/Release/Cygwin-Windows
-CND_ARTIFACT_NAME_Release=final_17a_menu
-CND_ARTIFACT_PATH_Release=dist/Release/Cygwin-Windows/final_17a_menu
+CND_ARTIFACT_NAME_Release=final_p1_v2
+CND_ARTIFACT_PATH_Release=dist/Release/Cygwin-Windows/final_p1_v2
 CND_PACKAGE_DIR_Release=dist/Release/Cygwin-Windows/package
-CND_PACKAGE_NAME_Release=final17amenu.tar
-CND_PACKAGE_PATH_Release=dist/Release/Cygwin-Windows/package/final17amenu.tar
+CND_PACKAGE_NAME_Release=finalp1v2.tar
+CND_PACKAGE_PATH_Release=dist/Release/Cygwin-Windows/package/finalp1v2.tar
 #
 # include compiler specific variables
 #
