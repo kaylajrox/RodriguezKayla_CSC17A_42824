@@ -2,7 +2,6 @@
  * Final */
 /*Issues: Problem 5 worked perfectly by itself now it wont output mary's name
  * and job title
- * Problem 1 says that there is a -112 that occured when that isnt in the set
  * problem 2 stops when it gets to column sort
  * Not sure if the output for number 4 is correct
  */
@@ -75,7 +74,7 @@ int getN(){
 void problem1(){
     cout<<"Now Entering Problem 1"<<endl;
     char n=5;
-    char rndseq[]={16,34,57,79,144};
+    char rndseq[]={16,34,57,79,126};
     int ntimes=100000;
     Prob1Random a(n,rndseq);
     for(int i=1;i<=ntimes;i++)
@@ -105,13 +104,13 @@ void problem2(){
     cout<<"Sorting on which column"<<endl;
     int column;
     cin>>column;
-    char *zc=rc.sortArray(ch2p,10,16,column,ascending);
+    char *zc=rc.sortArray(ch2p,10,15,column,ascending);
     for(int i=0;i<10;i++)
     {
-            for(int j=0;j<16;j++)
-            {
-                    cout<<zc[i*16+j];
-            }
+        for(int j=0;j<16;j++)
+        {
+                cout<<zc[i*16+j];
+        }
     }
     delete []zc;
     cout<<endl;

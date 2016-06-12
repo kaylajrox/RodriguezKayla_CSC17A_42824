@@ -7,10 +7,11 @@
 #include "Employee.h"
 #include <iostream>
 #include <cstring>
+#include <string>
 using namespace std;
 
 Employee::Employee(char a[],char b[],float c) {
-    for(int i=0;i<strlen(MyName);i++){
+    for(int i=0;i<strlen(MyName)+1;i++){
         MyName[i]=a[i];
         JobTitle[i]=b[i];
     }

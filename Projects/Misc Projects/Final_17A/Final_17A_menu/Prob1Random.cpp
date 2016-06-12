@@ -14,11 +14,11 @@ Prob1Random::Prob1Random(const char n,const char * list){
     set=new char[(int)n];
     nset=n;
     freq=new int[(int)n];
+    numRand=0;
     for(int i=0;i<(int)nset;i++){
         set[i]=list[i];
         freq[i]=0;
-    }
-    numRand=0;
+    }   
 }
 Prob1Random::~Prob1Random(void){
     delete[] set;
