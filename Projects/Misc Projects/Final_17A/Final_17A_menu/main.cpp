@@ -1,7 +1,6 @@
 /* Author: Kayla
  * Final */
-/*Issues: Problem 5 worked perfectly by itself now it wont output mary's name
- * and job title
+/*Issues: 
  * problem 2 stops when it gets to column sort
  * Not sure if the output for number 4 is correct
  */
@@ -10,6 +9,7 @@
 #include <iomanip>
 #include <cstring>
 #include <string>
+#include <fstream>
 #include <cmath>
 #include <cstdlib>
 using namespace std;
@@ -109,7 +109,7 @@ void problem2(){
     {
         for(int j=0;j<16;j++)
         {
-                cout<<zc[i*16+j];
+            cout<<zc[i*16+j];
         }
     }
     delete []zc;
