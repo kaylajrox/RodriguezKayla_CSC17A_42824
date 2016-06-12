@@ -5,33 +5,34 @@
  */
 
 #include <iostream>
-#include "Prob3Table.h"
+#include <fstream>
+#include "Prob2Sort.h"
 using namespace std;
 
 int main(int argc, char** argv) {
-    cout<<"Entering problem number 3"<<endl;
-    int rows=5;
-    int cols=6;
-    Prob3TableInherited<int> tab("Problem3.txt",rows,cols);
-    const int *naugT=tab.getTable();
-    for(int i=0;i<rows;i++)
-    {
-        for(int j=0;j<cols;j++)
-        {
-            cout<<naugT[i*cols+j]<<" ";
-        }
-        cout<<endl;
-    }
+    cout<<"The start of Problem 2, the sorting problem"<<endl;
+    Prob2Sort<char> rc;
+    bool ascending=true;
+    ifstream infile;
+    infile.open("Problem2.txt",ios::in);
+    char *ch2=new char[10*16];
+    char *ch2p=ch2;
+    while(infile.get(*ch2)){cout<<*ch2;ch2++;}
+    infile.close();
     cout<<endl;
-    const int *augT=tab.getAugTable();
-    for(int i=0;i<=rows;i++)
+    cout<<"Sorting on which column"<<endl;
+    int column;
+    cin>>column;
+    char *zc=rc.sortArray(ch2p,10,16,column,ascending);
+    for(int i=0;i<10;i++)
     {
-            for(int j=0;j<=cols;j++)
-            {
-                    cout<<augT[i*(cols+1)+j]<<" ";
-            }
-            cout<<endl;
+        for(int j=0;j<16;j++)
+        {
+            cout<<zc[i*16+j];
+        }
     }
+    delete []zc;
+    cout<<endl;
     
     return 0;
 }

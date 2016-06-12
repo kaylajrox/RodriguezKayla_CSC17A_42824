@@ -5,7 +5,6 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>Prob2Sort.h</itemPath>
-      <itemPath>Prob3Table.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -15,7 +14,6 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>Prob2Sort.cpp</itemPath>
-      <itemPath>Prob3Table.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -44,10 +42,6 @@
       </item>
       <item path="Prob2Sort.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Prob3Table.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Prob3Table.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
@@ -74,10 +68,6 @@
       <item path="Prob2Sort.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Prob2Sort.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Prob3Table.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Prob3Table.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

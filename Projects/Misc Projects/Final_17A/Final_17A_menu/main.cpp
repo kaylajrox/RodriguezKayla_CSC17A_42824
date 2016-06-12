@@ -3,6 +3,8 @@
 /*Issues: Problem 5 worked perfectly by itself now it wont output mary's name
  * and job title
  * Problem 1 says that there is a -112 that occured when that isnt in the set
+ * problem 2 stops when it gets to column sort
+ * Not sure if the output for number 4 is correct
  */
 //Library includes Here
 #include <iostream>
@@ -20,6 +22,8 @@ using namespace std;
 #include "Employee.h"
 #include "SavingsAccount.h"
 #include "Prob1Random.h"
+#include "Prob2Sort.h"
+
 //Function Prototypes
 void Menu();
 int getN();
@@ -88,7 +92,29 @@ void problem1(){
 }
 
 void problem2(){
-   
+   cout<<"The start of Problem 2, the sorting problem"<<endl;
+    Prob2Sort<char> rc;
+    bool ascending=true;
+    ifstream infile;
+    infile.open("Problem2.txt",ios::in);
+    char *ch2=new char[10*16];
+    char *ch2p=ch2;
+    while(infile.get(*ch2)){cout<<*ch2;ch2++;}
+    infile.close();
+    cout<<endl;
+    cout<<"Sorting on which column"<<endl;
+    int column;
+    cin>>column;
+    char *zc=rc.sortArray(ch2p,10,16,column,ascending);
+    for(int i=0;i<10;i++)
+    {
+            for(int j=0;j<16;j++)
+            {
+                    cout<<zc[i*16+j];
+            }
+    }
+    delete []zc;
+    cout<<endl;
 }
 void problem3(){
     cout<<"Entering Problem 3"<<endl;
