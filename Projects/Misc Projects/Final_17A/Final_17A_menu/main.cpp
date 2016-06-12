@@ -2,6 +2,7 @@
  * Final */
 /*Issues: Problem 5 worked perfectly by itself now it wont output mary's name
  * and job title
+ * Problem 1 says that there is a -112 that occured when that isnt in the set
  */
 //Library includes Here
 #include <iostream>
@@ -17,7 +18,8 @@ using namespace std;
 //User Libraries
 #include "Prob3TableInherited.h"
 #include "Employee.h"
-
+#include "SavingsAccount.h"
+#include "Prob1Random.h"
 //Function Prototypes
 void Menu();
 int getN();
@@ -67,7 +69,22 @@ int getN(){
         return inN;
 }
 void problem1(){
-    
+    cout<<"Now Entering Problem 1"<<endl;
+    char n=5;
+    char rndseq[]={16,34,57,79,144};
+    int ntimes=100000;
+    Prob1Random a(n,rndseq);
+    for(int i=1;i<=ntimes;i++)
+    {
+        a.randFromSet();
+    }
+    int *x=a.getFreq();
+    char *y=a.getSet();
+    for(int i=0;i<n;i++)
+    {
+        cout<<int(y[i])<<" occured "<<x[i]<<" times"<<endl;
+    }
+    cout<<"The total number of random numbers is "<<a.getNumRand()<<endl;
 }
 
 void problem2(){
@@ -103,7 +120,19 @@ void problem3(){
 }
 
 void problem4(){
-    
+    cout<<"Now Entering problem 4\n";
+    SavingsAccount mine(-300);
+
+    for(int i=1;i<=10;i++)
+    {
+        mine.Transaction((float)(rand()%500)*(rand()%3-1));
+    }
+    mine.toString();
+    cout<<"Balance after 7 years given 10% interest = "
+            <<mine.Total((float)(0.10),7)<<endl;
+    cout<<"Balance after 7 years given 10% interest = "
+            <<mine.TotalRecursive((float)(0.10),7)
+            <<" Recursive Calculation "<<endl;
 }
 void problem5(){
     cout<<"Problem 5 "<<endl;

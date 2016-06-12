@@ -36,8 +36,10 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/Employee.o \
+	${OBJECTDIR}/Prob1Random.o \
 	${OBJECTDIR}/Prob3Table.o \
 	${OBJECTDIR}/Prob3TableInherited.o \
+	${OBJECTDIR}/SavingsAccount.o \
 	${OBJECTDIR}/main.o
 
 
@@ -70,6 +72,11 @@ ${OBJECTDIR}/Employee.o: Employee.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Employee.o Employee.cpp
 
+${OBJECTDIR}/Prob1Random.o: Prob1Random.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Prob1Random.o Prob1Random.cpp
+
 ${OBJECTDIR}/Prob3Table.o: Prob3Table.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -79,6 +86,11 @@ ${OBJECTDIR}/Prob3TableInherited.o: Prob3TableInherited.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Prob3TableInherited.o Prob3TableInherited.cpp
+
+${OBJECTDIR}/SavingsAccount.o: SavingsAccount.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/SavingsAccount.o SavingsAccount.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
