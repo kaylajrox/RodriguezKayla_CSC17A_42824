@@ -91,29 +91,29 @@ void problem1(){
 }
 
 void problem2(){
-   cout<<"The start of Problem 2, the sorting problem"<<endl;
+    cout<<"The start of Problem 2, the sorting problem"<<endl;
     Prob2Sort<char> rc;
     bool ascending=true;
     ifstream infile;
-    infile.open("Problem2.txt",ios::in);
-    char *ch2=new char[10*16];
-    char *ch2p=ch2;
-    while(infile.get(*ch2)){cout<<*ch2;ch2++;}
+    infile.open("Problem2.txt", ios::in);
+    char *ch2 = new char[10*17];
+    char *ch2p = ch2;
+    int i=0;
+    while (infile.get(ch2[i])) {cout<<ch2[i];ch2++;}
     infile.close();
     cout<<endl;
     cout<<"Sorting on which column"<<endl;
     int column;
     cin>>column;
-    char *zc=rc.sortArray(ch2p,10,15,column,ascending);
-    for(int i=0;i<10;i++)
-    {
-        for(int j=0;j<16;j++)
-        {
-            cout<<zc[i*16+j];
+    char *zc = rc.sortArray(ch2p, 10, 17, column, ascending);
+    for (int i=0;i<10;i++) {
+        for (int j=0; j<17;j++) {
+            cout<<zc[i*17+j];
         }
     }
     delete []zc;
     cout<<endl;
+
 }
 void problem3(){
     cout<<"Entering Problem 3"<<endl;
@@ -188,7 +188,28 @@ void problem5(){
     Mary.toString();
 }
 void problem6(){
-    
+    cout<<"Problem 6\n";
+    cout<<"3.75"<<endl;
+    cout<<"Base 2: 0011.1100"<<endl;
+    cout<<"Octal: 3.6"<<endl;
+    cout<<"Hex: 3.C"<<endl;
+    cout<<"Float Representation: 78000002 "<<endl;
+    cout<<"IEEE 754 : 40700000"<<endl;
+    cout<<"power=1, power goes in the beginning after the signed/unsigned bit\n";
+    cout<<"\n.7"<<endl;
+    cout<<"Base 2: .10110011001 (repeating 0011)"<<endl;
+    cout<<"Octal: .5463146 (repeating 3146)"<<endl;
+    cout<<"Hex: .B333 (repeating 3)"<<endl;
+    cout<<"Float representation: 59999900 "<<endl;
+    cout<<"IEEE 754: 3F333333"<<endl;
+    cout<<"power= -1, power goes in the beginning after the signed/unsigned bit\n";
+    cout<<"\n89.9"<<endl;
+    cout<<"Base 2: 1011001.111001"<<endl;
+    cout<<"Octal: 131.71463"<<endl;
+    cout<<"Hex: 59.E666 (repeating 6)"<<endl;
+    cout<<"Float representation: 5BCCCC07"<<endl;
+    cout<<"IEEE 754: 42B3CCCD"<<endl;
+    cout<<"power=6, power goes in the beginning after the signed/unsigned bit\n";
 }
 void def(int inN){
         cout<<"You typed "<<inN<<" to exit the program"<<endl;
